@@ -8,19 +8,73 @@
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
 
   /* ---- navigation : condensation, progression, parallaxe ---- */
-  var nav = $("#nav"), progress = $("#progress"), heroImg = $("#heroImg");
+  var nav = $("#nav"), progress = $("#progress");
   function onScroll() {
     if (nav) nav.classList.toggle("stuck", window.scrollY > 24);
     if (progress) {
       var h = document.documentElement.scrollHeight - window.innerHeight;
       progress.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + "%";
     }
-    if (heroImg && !reduce && window.scrollY < 900) {
-      heroImg.style.transform = "translateY(" + (window.scrollY * -0.06) + "px)";
-    }
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+
+  /* ---- annonces du hero : défilement automatique ---- */
+  var rotator = $("#heroRotator");
+  if (rotator) {
+    var slides = $$(".slide", rotator), dots = $("#hDots"),
+        idx = 0, timer = null, paused = reduce, DELAY = 7000;
+    slides.forEach(function (sl, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-label", "Annonce " + (i + 1) + " sur " + slides.length);
+      b.setAttribute("aria-current", i === 0 ? "true" : "false");
+      b.innerHTML = "<i></i>";
+      b.addEventListener("click", function () { go(i); restart(); });
+      dots.appendChild(b);
+    });
+    var bullets = $$("button", dots);
+
+    function go(i) {
+      idx = (i + slides.length) % slides.length;
+      slides.forEach(function (sl, n) {
+        sl.classList.toggle("on", n === idx);
+        sl.setAttribute("aria-hidden", n === idx ? "false" : "true");
+      });
+      bullets.forEach(function (b, n) {
+        b.setAttribute("aria-current", n === idx ? "true" : "false");
+        var bar = b.firstChild;           /* relance la barre de progression */
+        bar.style.animation = "none";
+        void bar.offsetWidth;
+        bar.style.animation = "";
+      });
+    }
+    function restart() {
+      clearInterval(timer);
+      if (!paused) timer = setInterval(function () { go(idx + 1); }, DELAY);
+    }
+    function setPaused(v) {
+      paused = v;
+      dots.classList.toggle("paused", v);
+      var b = $("#hPause");
+      b.setAttribute("aria-label", v ? "Reprendre le défilement" : "Mettre en pause le défilement");
+      b.innerHTML = v
+        ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></svg>'
+        : '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
+      restart();
+    }
+    $("#hNext").addEventListener("click", function () { go(idx + 1); restart(); });
+    $("#hPrev").addEventListener("click", function () { go(idx - 1); restart(); });
+    $("#hPause").addEventListener("click", function () { setPaused(!paused); });
+    rotator.addEventListener("mouseenter", function () { clearInterval(timer); dots.classList.add("paused"); });
+    rotator.addEventListener("mouseleave", function () { if (!paused) { dots.classList.remove("paused"); restart(); } });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) clearInterval(timer); else restart();
+    });
+    if (reduce) setPaused(true); else restart();
+  }
 
   /* ---- menu mobile ---- */
   var burger = $("#burger"), drawer = $("#drawer");
