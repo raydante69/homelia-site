@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administration — Homelia</title>
+<meta name="description" content="Espace réservé aux responsables Homelia.">
+<link rel="canonical" href="https://www.homelia-accession.fr/admin.html">
+<meta property="og:title" content="Administration — Homelia">
+<meta property="og:description" content="Espace réservé aux responsables Homelia.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="https://www.homelia-accession.fr/assets/img/communay-1.jpg">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1E3A48">
+<link rel="icon" href="/assets/img/logo-icone.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" defer></script>
+<script src="/assets/js/supabase-config.js" defer></script>
+<script src="/assets/js/app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="/index.html" aria-label="Homelia, accueil"><img src="/assets/img/logo-homelia.png" alt="Homelia — accession immobilière" width="220" height="44"></a>
+    <ul class="nav-links"><li><a href="/programmes.html">Programmes <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 9l7 7 7-7"/></svg></a><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe<span>Communay (69) · T3 · T4</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs<span>Coublevie (38) · T2 à T5</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2<span>Bourg-Saint-Christophe (01) · T4 en duplex</span></a></li><li><a href="/programmes/frans.html">Green Parc<span>Frans (01) · T4</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs<span>Savigneux (01) · T4</span></a></li><li><a href="/programmes/saint-julien.html">Le Clos Chopin<span>Saint-Julien (69) · T4 en duplex</span></a></li><li><a href="/programmes/la-chapelle-de-guinchay.html">Le Bois de la Croix<span>La Chapelle-de-Guinchay (71) · T4 duplex jumelés</span></a></li><li><a href="/programmes/bassens.html">Camberia<span>Bassens (73) · T2 · T3</span></a></li><li><a href="/programmes/drancy.html">L'Essentiel<span>Drancy (93) · T2 · T3</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></li><li><a href="/guide-du-brs.html">Le BRS</a></li><li><a href="/eligibilite.html">Éligibilité</a></li><li><a href="/accompagnement.html">Accompagnement</a></li><li><a href="/nous-connaitre.html">Nous connaître</a></li></ul>
+    <a class="nav-compte" data-compte href="/connexion.html" hidden><svg viewBox="0 0 24 24"><path d="M18 20v-1.5a4 4 0 00-4-4h-4a4 4 0 00-4 4V20"/><circle cx="12" cy="8" r="3.6"/></svg>Connexion</a>
+    <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
+  </div>
+  <div class="drawer" id="drawer"><div><div class="in"><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/programmes/communay.html">Le 16 Télégraphe — Communay</a><a class="sub" href="/programmes/coublevie.html">Les Terrasses des 3 Parcs — Coublevie</a><a class="sub" href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 — Bourg-Saint-Christophe</a><a class="sub" href="/programmes/frans.html">Green Parc — Frans</a>
+    <a data-compte href="/connexion.html" hidden>Connexion</a>
+    <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
+  </div></div></div>
+  <i class="progress" id="progress"></i>
+</header>
+<main id="main">
+<section class="phead"><div class="wrap">
+  <p class="crumb"><a href="/index.html">Accueil</a> · Administration</p>
+  <p class="eyebrow">Espace responsable</p>
+  <h1>Administration</h1>
+  <p>Gestion des annonces, suivi des demandes reçues et réglages du compte.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div id="acces" class="chargement">Vérification de vos droits…</div>
+  <div id="contenu" hidden>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-onglet="annonces">Annonces</button>
+      <button role="tab" aria-selected="false" data-onglet="messages">Demandes <span id="badge-msg" class="etat attente" hidden></span></button>
+      <button role="tab" aria-selected="false" data-onglet="compte">Mon compte</button>
+    </div>
+    <div class="alerte" id="alerte"></div>
+
+    <!-- ------------------------- ANNONCES ------------------------- -->
+    <div class="tabpanel" data-panneau="annonces">
+      <div class="barre-outils">
+        <span class="compteur" id="compteur"></span>
+        <button class="btn" type="button" id="nouvelle">Nouvelle annonce</button>
+      </div>
+
+      <div class="panel" id="editeur" hidden>
+        <h2 id="editeur-titre">Nouvelle annonce</h2>
+        <p class="sub">Les champs marqués d'un astérisque sont nécessaires à l'affichage de la fiche.</p>
+        <form class="form" id="f-annonce">
+          <input type="hidden" id="a-id">
+          <div class="form-grid">
+            <div class="fw"><label for="a-nom">Nom du programme *</label><input id="a-nom" required></div>
+            <div class="fw"><label for="a-slug">Identifiant d'URL *</label><input id="a-slug" required pattern="[a-z0-9-]+">
+              <span class="note">Lettres minuscules et tirets : « les-terrasses ».</span></div>
+            <div class="fw"><label for="a-ville">Commune *</label><input id="a-ville" required></div>
+            <div class="fw"><label for="a-dep">Département *</label><input id="a-dep" placeholder="69" required></div>
+            <div class="fw"><label for="a-depnom">Nom du département</label><input id="a-depnom" placeholder="Rhône"></div>
+            <div class="fw"><label for="a-region">Région</label><input id="a-region"></div>
+            <div class="fw"><label for="a-statut">Statut</label>
+              <select id="a-statut"><option>En vente</option><option>Bientôt</option><option>Dernières opportunités</option><option>Vendu</option></select></div>
+            <div class="fw"><label for="a-typo">Typologies</label><input id="a-typo" placeholder="T3 · T4"></div>
+            <div class="fw"><label for="a-prix">Prix affiché</label><input id="a-prix" placeholder="199 000 €"></div>
+            <div class="fw"><label for="a-prixlib">Mention sous le prix</label><input id="a-prixlib" placeholder="à partir de"></div>
+            <div class="fw"><label for="a-logements">Composition</label><input id="a-logements" placeholder="12 logements"></div>
+            <div class="fw"><label for="a-livraison">Livraison</label><input id="a-livraison" placeholder="Été 2028"></div>
+            <div class="fw large"><label for="a-accroche">Accroche</label><input id="a-accroche" placeholder="Une phrase qui résume le programme"></div>
+            <div class="fw large"><label for="a-desc">Description</label><textarea id="a-desc" placeholder="Un paragraphe par ligne vide."></textarea></div>
+            <div class="fw large"><label for="a-specs">Points clés</label><input id="a-specs" placeholder="12 logements, Jardin privatif, 2 stationnements">
+              <span class="note">Séparés par des virgules.</span></div>
+            <div class="fw large"><label for="a-prest">Prestations</label><textarea id="a-prest" placeholder="Jardin privatif | Jardin engazonné de 17 à 94 m²"></textarea>
+              <span class="note">Une par ligne, au format « Titre | Détail ».</span></div>
+            <div class="fw large"><label for="a-loc">Localisation</label><textarea id="a-loc" placeholder="En voiture | Lyon : 25 min ; Accès A7"></textarea>
+              <span class="note">Une rubrique par ligne, au format « Titre | point ; point ».</span></div>
+            <div class="fw"><label for="a-photo">Photo principale</label><input id="a-photo" type="file" accept="image/*">
+              <span class="note" id="a-photo-etat"></span></div>
+            <div class="fw"><label for="a-image">ou adresse de l'image</label><input id="a-image" placeholder="/assets/img/…"></div>
+            <div class="fw"><label for="a-ordre">Ordre d'affichage</label><input id="a-ordre" type="number" value="50"></div>
+            <div class="fw"><label>Options</label>
+              <label class="check"><input id="a-avant" type="checkbox"><span>Mettre en avant sur la page d'accueil</span></label>
+              <label class="check" style="margin-top:6px"><input id="a-publiee" type="checkbox" checked><span>Annonce visible du public</span></label></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button class="btn" type="submit">Enregistrer</button>
+            <button class="btn btn-ghost" type="button" id="annuler">Annuler</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="panel" id="liste-annonces"></div>
+    </div>
+
+    <!-- ------------------------- MESSAGES ------------------------- -->
+    <div class="tabpanel" data-panneau="messages" hidden>
+      <div class="barre-outils">
+        <div class="filters" id="filtre-msg">
+          <button type="button" data-f="tous" aria-pressed="true">Toutes</button>
+          <button type="button" data-f="nouveau" aria-pressed="false">Nouvelles</button>
+          <button type="button" data-f="en_cours" aria-pressed="false">En cours</button>
+          <button type="button" data-f="traite" aria-pressed="false">Traitées</button>
+        </div>
+      </div>
+      <div id="liste-messages"></div>
+    </div>
+
+    <!-- ------------------------- COMPTE ------------------------- -->
+    <div class="tabpanel" data-panneau="compte" hidden>
+      <div class="panel" style="max-width:560px">
+        <h2>Adresse de connexion</h2>
+        <p class="sub">Un lien de confirmation sera envoyé à la nouvelle adresse.</p>
+        <form class="form" id="f-email">
+          <div class="fw"><label for="n-email">Nouvelle adresse e-mail</label><input id="n-email" type="email" required></div>
+          <div><button class="btn" type="submit">Changer l'adresse</button></div>
+        </form>
+      </div>
+      <div class="panel" style="max-width:560px">
+        <h2>Mot de passe</h2>
+        <p class="sub">Choisissez un mot de passe long et unique : il protège l'ensemble des annonces et des demandes reçues.</p>
+        <form class="form" id="f-mdp">
+          <div class="fw"><label for="n-mdp">Nouveau mot de passe</label><input id="n-mdp" type="password" minlength="8" autocomplete="new-password" required></div>
+          <div class="fw"><label for="n-mdp2">Confirmation</label><input id="n-mdp2" type="password" minlength="8" autocomplete="new-password" required></div>
+          <div><button class="btn" type="submit">Changer le mot de passe</button></div>
+        </form>
+      </div>
+      <div class="panel" style="max-width:560px">
+        <h2>Session</h2>
+        <button class="btn btn-ghost" type="button" id="deco">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var H = window.Homelia, $ = H.$, $$ = H.$$;
+  var annonces = [], messages = [], filtre = "tous";
+
+  function dire(texte, ok) {
+    var a = $("#alerte");
+    a.textContent = texte;
+    a.className = "alerte show " + (ok ? "ok" : "ko");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+  $$("[data-onglet]").forEach(function (t) {
+    t.addEventListener("click", function () {
+      $$("[data-onglet]").forEach(function (o) { o.setAttribute("aria-selected", String(o === t)); });
+      $$("[data-panneau]").forEach(function (p) { p.hidden = p.dataset.panneau !== t.dataset.onglet; });
+    });
+  });
+
+  /* ---------- accès ---------- */
+  H.auChangement(async function (session) {
+    if (!H.actif) { $("#acces").textContent = "La base de données n'est pas encore configurée."; return; }
+    if (!session) { window.location.href = "/connexion.html?retour=/admin.html"; return; }
+    if (!H.estResponsable()) {
+      $("#acces").innerHTML = "Cet espace est réservé aux responsables. <a href='/espace.html'>Aller à mon espace</a>.";
+      return;
+    }
+    $("#acces").hidden = true;
+    $("#contenu").hidden = false;
+    $("#n-email").value = session.user.email;
+    await chargerAnnonces();
+    await chargerMessages();
+  });
+
+  /* ---------- annonces ---------- */
+  async function chargerAnnonces() {
+    annonces = (await H.annonces({ toutes: true })) || [];
+    $("#compteur").textContent = annonces.length + " annonce" + (annonces.length > 1 ? "s" : "")
+      + " · " + annonces.filter(function (a) { return a.publiee; }).length + " en ligne";
+    $("#liste-annonces").innerHTML = annonces.map(function (a) {
+      return '<div class="ligne">'
+        + '<img src="' + H.echappe(H.image(a)) + '" alt="">'
+        + '<div class="corps"><h3>' + H.echappe(a.nom) + "</h3>"
+        + "<p>" + H.echappe(a.ville) + " (" + H.echappe(a.departement) + ") · " + H.echappe(a.typologies || "—")
+        + " · " + H.echappe(a.prix || "prix non renseigné") + "</p></div>"
+        + '<span class="etat ' + (a.publiee ? "ok" : "off") + '">' + (a.publiee ? "En ligne" : "Masquée") + "</span>"
+        + (a.mis_en_avant ? '<span class="etat attente">Accueil</span>' : "")
+        + '<div class="actions">'
+        + '<a class="btn btn-sm btn-ghost" href="' + H.lien(a) + '" target="_blank" rel="noopener">Voir</a>'
+        + '<button class="btn btn-sm btn-ghost" type="button" data-modifier="' + a.id + '">Modifier</button>'
+        + '<button class="btn btn-sm btn-ghost" type="button" data-basculer="' + a.id + '">' + (a.publiee ? "Masquer" : "Publier") + "</button>"
+        + '<button class="btn btn-sm btn-ghost" type="button" data-supprimer="' + a.id + '">Supprimer</button>'
+        + "</div></div>";
+    }).join("") || '<div class="vide"><p>Aucune annonce pour le moment.</p></div>';
+
+    $$("[data-modifier]").forEach(function (b) {
+      b.addEventListener("click", function () { remplir(annonces.find(function (a) { return a.id === b.dataset.modifier; })); });
+    });
+    $$("[data-basculer]").forEach(function (b) {
+      b.addEventListener("click", async function () {
+        var a = annonces.find(function (x) { return x.id === b.dataset.basculer; });
+        var r = await H.db.from("annonces").update({ publiee: !a.publiee }).eq("id", a.id);
+        if (r.error) dire("Modification impossible : " + r.error.message, false);
+        else { dire(a.publiee ? "Annonce masquée." : "Annonce publiée.", true); chargerAnnonces(); }
+      });
+    });
+    $$("[data-supprimer]").forEach(function (b) {
+      b.addEventListener("click", async function () {
+        var a = annonces.find(function (x) { return x.id === b.dataset.supprimer; });
+        if (!window.confirm("Supprimer définitivement « " + a.nom + " » ? Cette action est irréversible.")) return;
+        var r = await H.db.from("annonces").delete().eq("id", a.id);
+        if (r.error) dire("Suppression impossible : " + r.error.message, false);
+        else { dire("Annonce supprimée.", true); chargerAnnonces(); }
+      });
+    });
+  }
+
+  function lignes(txt) {
+    return txt.split("\n").map(function (l) { return l.trim(); }).filter(Boolean);
+  }
+  function remplir(a) {
+    $("#editeur").hidden = false;
+    $("#editeur-titre").textContent = a ? "Modifier « " + a.nom + " »" : "Nouvelle annonce";
+    $("#a-id").value = a ? a.id : "";
+    $("#a-nom").value = a ? a.nom : "";
+    $("#a-slug").value = a ? a.slug : "";
+    $("#a-ville").value = a ? a.ville : "";
+    $("#a-dep").value = a ? a.departement : "";
+    $("#a-depnom").value = a ? (a.departement_nom || "") : "";
+    $("#a-region").value = a ? (a.region || "") : "";
+    $("#a-statut").value = a ? a.statut : "En vente";
+    $("#a-typo").value = a ? (a.typologies || "") : "";
+    $("#a-prix").value = a ? (a.prix || "") : "";
+    $("#a-prixlib").value = a ? (a.prix_libelle || "à partir de") : "à partir de";
+    $("#a-logements").value = a ? (a.logements || "") : "";
+    $("#a-livraison").value = a ? (a.livraison || "") : "";
+    $("#a-accroche").value = a ? (a.accroche || "") : "";
+    $("#a-desc").value = a ? (a.description || "") : "";
+    $("#a-specs").value = a ? (a.specs || []).join(", ") : "";
+    $("#a-prest").value = a ? (a.prestations || []).map(function (p) { return p.titre + " | " + p.detail; }).join("\n") : "";
+    $("#a-loc").value = a ? (a.localisation || []).map(function (l) { return l.titre + " | " + (l.points || []).join(" ; "); }).join("\n") : "";
+    $("#a-image").value = a ? (a.image_url || "") : "";
+    $("#a-ordre").value = a ? a.ordre : 50;
+    $("#a-avant").checked = a ? Boolean(a.mis_en_avant) : false;
+    $("#a-publiee").checked = a ? Boolean(a.publiee) : true;
+    $("#a-photo-etat").textContent = "";
+    $("#editeur").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  $("#nouvelle").addEventListener("click", function () { remplir(null); });
+  $("#annuler").addEventListener("click", function () { $("#editeur").hidden = true; });
+
+  $("#a-nom").addEventListener("blur", function () {
+    if ($("#a-slug").value || !$("#a-nom").value) return;
+    $("#a-slug").value = $("#a-nom").value.toLowerCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  });
+
+  $("#a-photo").addEventListener("change", async function () {
+    var f = $("#a-photo").files[0];
+    if (!f) return;
+    $("#a-photo-etat").textContent = "Envoi en cours…";
+    var nom = Date.now() + "-" + f.name.toLowerCase().replace(/[^a-z0-9.]+/g, "-");
+    var up = await H.db.storage.from("annonces").upload(nom, f, { cacheControl: "31536000", upsert: false });
+    if (up.error) { $("#a-photo-etat").textContent = "Envoi impossible : " + up.error.message; return; }
+    var pub = H.db.storage.from("annonces").getPublicUrl(nom);
+    $("#a-image").value = pub.data.publicUrl;
+    $("#a-photo-etat").textContent = "Photo envoyée.";
+  });
+
+  $("#f-annonce").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var donnees = {
+      nom: $("#a-nom").value.trim(), slug: $("#a-slug").value.trim(), ville: $("#a-ville").value.trim(),
+      departement: $("#a-dep").value.trim(), departement_nom: $("#a-depnom").value.trim(),
+      region: $("#a-region").value.trim(), statut: $("#a-statut").value, typologies: $("#a-typo").value.trim(),
+      prix: $("#a-prix").value.trim(), prix_libelle: $("#a-prixlib").value.trim(),
+      logements: $("#a-logements").value.trim(), livraison: $("#a-livraison").value.trim(),
+      accroche: $("#a-accroche").value.trim(), description: $("#a-desc").value,
+      specs: $("#a-specs").value.split(",").map(function (s) { return s.trim(); }).filter(Boolean),
+      prestations: lignes($("#a-prest").value).map(function (l) {
+        var p = l.split("|"); return { titre: (p[0] || "").trim(), detail: (p[1] || "").trim() };
+      }),
+      localisation: lignes($("#a-loc").value).map(function (l) {
+        var p = l.split("|");
+        return { titre: (p[0] || "").trim(), points: (p[1] || "").split(";").map(function (x) { return x.trim(); }).filter(Boolean) };
+      }),
+      image_url: $("#a-image").value.trim() || null,
+      ordre: Number($("#a-ordre").value) || 50,
+      mis_en_avant: $("#a-avant").checked, publiee: $("#a-publiee").checked
+    };
+    var id = $("#a-id").value;
+    var r = id
+      ? await H.db.from("annonces").update(donnees).eq("id", id)
+      : await H.db.from("annonces").insert(donnees);
+    if (r.error) { dire("Enregistrement impossible : " + r.error.message, false); return; }
+    dire(id ? "Annonce mise à jour." : "Annonce créée.", true);
+    $("#editeur").hidden = true;
+    chargerAnnonces();
+  });
+
+  /* ---------- messages ---------- */
+  async function chargerMessages() {
+    messages = await H.tousLesMessages();
+    var nouveaux = messages.filter(function (m) { return m.statut === "nouveau"; }).length;
+    var badge = $("#badge-msg");
+    badge.hidden = nouveaux === 0;
+    badge.textContent = nouveaux;
+    afficherMessages();
+  }
+  function afficherMessages() {
+    var liste = messages.filter(function (m) { return filtre === "tous" || m.statut === filtre; });
+    $("#liste-messages").innerHTML = liste.map(function (m) {
+      return '<article class="msg">'
+        + "<header><h3>" + H.echappe(m.nom) + "</h3>"
+        + '<span class="etat ' + (m.statut === "traite" ? "ok" : m.statut === "en_cours" ? "attente" : "off") + '">'
+        + (m.statut === "traite" ? "Traitée" : m.statut === "en_cours" ? "En cours" : "Nouvelle") + "</span>"
+        + "<time>" + H.date(m.cree_le) + "</time></header>"
+        + '<p class="contenu">' + H.echappe(m.contenu) + "</p>"
+        + '<p class="meta"><span>✉ <a href="mailto:' + H.echappe(m.email) + '">' + H.echappe(m.email) + "</a></span>"
+        + (m.telephone ? '<span>☎ <a href="tel:' + H.echappe(m.telephone) + '">' + H.echappe(m.telephone) + "</a></span>" : "")
+        + (m.annonces ? "<span>Programme : " + H.echappe(m.annonces.nom) + "</span>" : "")
+        + (m.foyer ? "<span>Foyer : " + H.echappe(m.foyer) + "</span>" : "")
+        + (m.rfr ? "<span>RFR : " + H.echappe(m.rfr) + "</span>" : "")
+        + "</p>"
+        + '<div class="form" style="margin-top:14px">'
+        + '<textarea data-reponse="' + m.id + '" placeholder="Réponse visible par le demandeur dans son espace">' + H.echappe(m.reponse || "") + "</textarea>"
+        + '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">'
+        + '<button class="btn btn-sm" type="button" data-enregistrer="' + m.id + '">Enregistrer la réponse</button>'
+        + '<button class="btn btn-sm btn-ghost" type="button" data-statut="' + m.id + '" data-valeur="en_cours">Marquer en cours</button>'
+        + '<button class="btn btn-sm btn-ghost" type="button" data-statut="' + m.id + '" data-valeur="traite">Marquer traitée</button>'
+        + "</div></div></article>";
+    }).join("") || '<div class="panel"><div class="vide"><p>Aucune demande dans cette catégorie.</p></div></div>';
+
+    $$("[data-statut]").forEach(function (b) {
+      b.addEventListener("click", async function () {
+        var r = await H.db.from("messages").update({ statut: b.dataset.valeur }).eq("id", b.dataset.statut);
+        if (r.error) dire("Modification impossible : " + r.error.message, false); else chargerMessages();
+      });
+    });
+    $$("[data-enregistrer]").forEach(function (b) {
+      b.addEventListener("click", async function () {
+        var texte = $('[data-reponse="' + b.dataset.enregistrer + '"]').value.trim();
+        var r = await H.db.from("messages")
+          .update({ reponse: texte, repondu_le: new Date().toISOString(), statut: "traite" })
+          .eq("id", b.dataset.enregistrer);
+        if (r.error) dire("Enregistrement impossible : " + r.error.message, false);
+        else { dire("Réponse enregistrée : elle apparaît dans l'espace du demandeur.", true); chargerMessages(); }
+      });
+    });
+  }
+  $("#filtre-msg").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    $$("button", $("#filtre-msg")).forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+    filtre = b.dataset.f;
+    afficherMessages();
+  });
+
+  /* ---------- compte ---------- */
+  $("#f-email").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var r = await H.majCompte({ email: $("#n-email").value.trim() });
+    dire(r.error ? "Changement impossible : " + r.error.message
+      : "Un lien de confirmation a été envoyé à la nouvelle adresse.", !r.error);
+  });
+  $("#f-mdp").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    if ($("#n-mdp").value !== $("#n-mdp2").value) { dire("Les deux mots de passe ne correspondent pas.", false); return; }
+    var r = await H.majCompte({ password: $("#n-mdp").value });
+    dire(r.error ? "Changement impossible : " + r.error.message : "Mot de passe modifié.", !r.error);
+    if (!r.error) { $("#n-mdp").value = ""; $("#n-mdp2").value = ""; }
+  });
+  $("#deco").addEventListener("click", function () { H.deconnexion(); });
+});
+</script>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="/index.html"><img src="/assets/img/logo-homelia.png" alt="Homelia" style="filter:brightness(0) invert(1)" width="230" height="46"></a>
+        <p style="margin:0;line-height:1.8">3 rue de Genève, 69006 Lyon<br>
+          <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a><br>
+          <a href="tel:0465848711">04 65 84 87 11</a></p>
+      </div>
+      <div><h4>Programmes</h4><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe <span style="opacity:.6">· Communay</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs <span style="opacity:.6">· Coublevie</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 <span style="opacity:.6">· Bourg-Saint-Christophe</span></a></li><li><a href="/programmes/frans.html">Green Parc <span style="opacity:.6">· Frans</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs <span style="opacity:.6">· Savigneux</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></div>
+      <div><h4>Comprendre</h4><ul>
+        <li><a href="/guide-du-brs.html">Guide du BRS</a></li>
+        <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
+        <li><a href="/accompagnement.html">Notre accompagnement</a></li>
+        <li><a href="/guide-du-brs.html#revente">Revendre son BRS</a></li></ul></div>
+      <div><h4>Homelia</h4><ul>
+        <li><a href="/nous-connaitre.html">Nous connaître</a></li>
+        <li><a href="/promoteurs.html">Promoteurs &amp; OFS</a></li>
+        <li><a href="/contact.html">Contact</a></li></ul></div>
+    </div>
+    <div class="legal-row">
+      <span>© <span data-year>2026</span> Homelia</span><span class="sep">·</span>
+      <a href="/mentions-legales.html">Mentions légales</a><span class="sep">·</span>
+      <a href="/confidentialite.html">Politique de confidentialité</a><span class="sep">·</span>
+      <a href="/cookies.html">Politique de cookies</a><span class="sep">·</span>
+      <a href="/plan-du-site.html">Plan du site</a>
+    </div>
+    <p class="legal">SIREN 944 647 403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
+    Vente soumise aux conditions du Bail Réel Solidaire et aux plafonds de ressources en vigueur. Les visuels sont non contractuels.</p>
+  </div>
+</footer>
+
+<aside class="cookie" id="cookie" role="dialog" aria-live="polite" aria-label="Gestion des cookies">
+  <h3>Cookies</h3>
+  <p>Ce site n'utilise que des cookies strictement nécessaires à son fonctionnement. Aucun cookie publicitaire n'est déposé sans votre accord.</p>
+  <div class="acts">
+    <button class="btn btn-sm" data-choice="all" type="button">Tout accepter</button>
+    <button class="btn btn-sm btn-ghost" data-choice="essential" type="button">Cookies essentiels uniquement</button>
+    <a class="btn btn-sm btn-ghost" href="/cookies.html">En savoir plus</a>
+  </div>
+</aside>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

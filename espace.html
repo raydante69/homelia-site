@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plan du site — Homelia</title>
-<meta name="description" content="Toutes les pages du site Homelia.">
-<link rel="canonical" href="https://www.homelia-accession.fr/plan-du-site.html">
-<meta property="og:title" content="Plan du site — Homelia">
-<meta property="og:description" content="Toutes les pages du site Homelia.">
+<title>Mon espace — Homelia</title>
+<meta name="description" content="Vos favoris, vos demandes et votre profil.">
+<link rel="canonical" href="https://www.homelia-accession.fr/espace.html">
+<meta property="og:title" content="Mon espace — Homelia">
+<meta property="og:description" content="Vos favoris, vos demandes et votre profil.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:image" content="https://www.homelia-accession.fr/assets/img/communay-1.jpg">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#1E3A48">
 <link rel="icon" href="/assets/img/logo-icone.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
@@ -38,32 +39,116 @@
   </div></div></div>
   <i class="progress" id="progress"></i>
 </header>
-<main id="main"><section class="phead"><div class="wrap">
-  <p class="crumb"><a href="/index.html">Accueil</a> · Plan du site</p><p class="eyebrow">Navigation</p>
-  <h1>Plan du site</h1>
-  <p>L'ensemble des pages publiées sur homelia-accession.fr.</p>
+<main id="main">
+<section class="phead"><div class="wrap">
+  <p class="crumb"><a href="/index.html">Accueil</a> · Mon espace</p>
+  <p class="eyebrow">Votre espace</p>
+  <h1 id="bonjour">Mon espace</h1>
+  <p>Vos programmes mis de côté, vos échanges avec l'équipe et vos informations personnelles.</p>
 </div></section>
-<section><div class="wrap prose">
-  <h2 style="margin-top:0">Pages principales</h2>
-  <ul>
-    <li><a href="/index.html">Accueil</a></li>
-    <li><a href="/programmes.html">Nos programmes</a></li>
-    <li><a href="/guide-du-brs.html">Guide du Bail Réel Solidaire</a></li>
-    <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
-    <li><a href="/accompagnement.html">Notre accompagnement</a></li>
-    <li><a href="/promoteurs.html">Promoteurs &amp; OFS</a></li>
-    <li><a href="/nous-connaitre.html">Nous connaître</a></li>
-    <li><a href="/contact.html">Contact</a></li>
-  </ul>
-  <h2>Programmes</h2>
-  <ul><li><a href="/programmes/communay.html">Le 16 Télégraphe — Communay (69)</a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs — Coublevie (38)</a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 — Bourg-Saint-Christophe (01)</a></li><li><a href="/programmes/frans.html">Green Parc — Frans (01)</a></li><li><a href="/programmes/savigneux.html">L'Orée des champs — Savigneux (01)</a></li><li><a href="/programmes/saint-julien.html">Le Clos Chopin — Saint-Julien (69)</a></li><li><a href="/programmes/la-chapelle-de-guinchay.html">Le Bois de la Croix — La Chapelle-de-Guinchay (71)</a></li><li><a href="/programmes/bassens.html">Camberia — Bassens (73)</a></li><li><a href="/programmes/drancy.html">L'Essentiel — Drancy (93)</a></li></ul>
-  <h2>Informations légales</h2>
-  <ul>
-    <li><a href="/mentions-legales.html">Mentions légales</a></li>
-    <li><a href="/confidentialite.html">Politique de confidentialité</a></li>
-    <li><a href="/cookies.html">Politique de cookies</a></li>
-  </ul>
-</div></section></main>
+
+<section><div class="wrap">
+  <div id="acces" class="chargement">Chargement…</div>
+  <div id="contenu" hidden>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-onglet="favoris">Mes favoris</button>
+      <button role="tab" aria-selected="false" data-onglet="messages">Mes demandes</button>
+      <button role="tab" aria-selected="false" data-onglet="profil">Mon profil</button>
+    </div>
+
+    <div class="tabpanel" data-panneau="favoris">
+      <div id="favoris"></div>
+    </div>
+
+    <div class="tabpanel" data-panneau="messages" hidden>
+      <div id="messages"></div>
+      <p style="margin-top:22px"><a class="btn btn-ghost" href="/contact.html">Nouvelle demande</a></p>
+    </div>
+
+    <div class="tabpanel" data-panneau="profil" hidden>
+      <div class="panel" style="max-width:560px">
+        <h2>Mes informations</h2>
+        <p class="sub">Ces informations nous servent à vous recontacter.</p>
+        <div class="alerte" id="alerte"></div>
+        <form class="form" id="f-profil">
+          <div class="fw"><label for="p-nom">Nom et prénom</label><input id="p-nom" type="text"></div>
+          <div class="fw"><label for="p-tel">Téléphone</label><input id="p-tel" type="tel"></div>
+          <div class="fw"><label for="p-email">Adresse e-mail</label><input id="p-email" type="email" disabled>
+            <span class="note">Pour changer d'adresse, écrivez-nous.</span></div>
+          <div><button class="btn" type="submit">Enregistrer</button></div>
+        </form>
+      </div>
+      <div class="panel" style="max-width:560px">
+        <h2>Session</h2>
+        <p class="sub">Vous êtes connecté sur cet appareil.</p>
+        <button class="btn btn-ghost" type="button" id="deco">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var H = window.Homelia, $ = H.$;
+  var VIDE = function (t) {
+    return '<div class="panel"><div class="vide"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.4A3.8 3.8 0 0112 8a3.8 3.8 0 017 2.6C19 15.4 12 20 12 20z"/></svg><p>' + t + "</p></div></div>";
+  };
+  H.$$("[data-onglet]").forEach(function (t) {
+    t.addEventListener("click", function () {
+      H.$$("[data-onglet]").forEach(function (o) { o.setAttribute("aria-selected", String(o === t)); });
+      H.$$("[data-panneau]").forEach(function (p) { p.hidden = p.dataset.panneau !== t.dataset.onglet; });
+    });
+  });
+
+  H.auChangement(async function (session, profil) {
+    if (!H.actif) { $("#acces").textContent = "Les comptes ne sont pas encore activés sur ce site."; return; }
+    if (!session) { window.location.href = "/connexion.html?retour=/espace.html"; return; }
+    $("#acces").hidden = true;
+    $("#contenu").hidden = false;
+    var nom = (profil && profil.nom) || session.user.email.split("@")[0];
+    $("#bonjour").textContent = "Bonjour " + nom;
+    $("#p-nom").value = (profil && profil.nom) || "";
+    $("#p-tel").value = (profil && profil.telephone) || "";
+    $("#p-email").value = session.user.email;
+
+    var favs = await H.mesFavoris();
+    $("#favoris").innerHTML = favs.length
+      ? '<div class="cards">' + favs.map(function (a) { return H.carte(a, { favori: true }); }).join("") + "</div>"
+      : VIDE("Aucun favori pour l'instant. Ouvrez un programme et touchez le cœur pour le retrouver ici.");
+    H.$$("[data-fav]").forEach(function (b) {
+      b.setAttribute("aria-pressed", "true");
+      b.addEventListener("click", async function (e) {
+        e.preventDefault();
+        await H.basculerFavori(b.dataset.fav);
+        b.closest(".card").remove();
+      });
+    });
+
+    var msgs = await H.mesMessages();
+    $("#messages").innerHTML = msgs.length ? msgs.map(function (m) {
+      var etat = m.statut === "traite" ? '<span class="etat ok">Traité</span>'
+        : m.statut === "en_cours" ? '<span class="etat attente">En cours</span>'
+        : '<span class="etat off">Envoyé</span>';
+      return '<article class="msg"><header><h3>' + (m.annonces ? H.echappe(m.annonces.nom) : "Demande générale") + "</h3>"
+        + etat + "<time>" + H.date(m.cree_le) + "</time></header>"
+        + '<p class="contenu">' + H.echappe(m.contenu) + "</p>"
+        + (m.reponse ? '<div class="reponse"><strong>Réponse de Homelia</strong><p class="contenu" style="margin-top:6px">'
+            + H.echappe(m.reponse) + "</p></div>" : "") + "</article>";
+    }).join("") : VIDE("Vous n'avez pas encore envoyé de demande.");
+  });
+
+  $("#f-profil").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var u = H.utilisateur();
+    var r = await H.db.from("profils").update({ nom: $("#p-nom").value.trim(), telephone: $("#p-tel").value.trim() }).eq("id", u.id);
+    var a = $("#alerte");
+    a.textContent = r.error ? "Enregistrement impossible." : "Informations enregistrées.";
+    a.className = "alerte show " + (r.error ? "ko" : "ok");
+  });
+  $("#deco").addEventListener("click", function () { H.deconnexion(); });
+});
+</script>
+</main>
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-grid">

@@ -18,6 +18,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" defer></script>
+<script src="/assets/js/supabase-config.js" defer></script>
+<script src="/assets/js/app.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
@@ -25,10 +28,12 @@
   <div class="wrap nav-in">
     <a class="logo" href="/index.html" aria-label="Homelia, accueil"><img src="/assets/img/logo-homelia.png" alt="Homelia — accession immobilière" width="220" height="44"></a>
     <ul class="nav-links"><li><a href="/programmes.html" class="on">Programmes <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 9l7 7 7-7"/></svg></a><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe<span>Communay (69) · T3 · T4</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs<span>Coublevie (38) · T2 à T5</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2<span>Bourg-Saint-Christophe (01) · T4 en duplex</span></a></li><li><a href="/programmes/frans.html">Green Parc<span>Frans (01) · T4</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs<span>Savigneux (01) · T4</span></a></li><li><a href="/programmes/saint-julien.html">Le Clos Chopin<span>Saint-Julien (69) · T4 en duplex</span></a></li><li><a href="/programmes/la-chapelle-de-guinchay.html">Le Bois de la Croix<span>La Chapelle-de-Guinchay (71) · T4 duplex jumelés</span></a></li><li><a href="/programmes/bassens.html">Camberia<span>Bassens (73) · T2 · T3</span></a></li><li><a href="/programmes/drancy.html">L'Essentiel<span>Drancy (93) · T2 · T3</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></li><li><a href="/guide-du-brs.html">Le BRS</a></li><li><a href="/eligibilite.html">Éligibilité</a></li><li><a href="/accompagnement.html">Accompagnement</a></li><li><a href="/nous-connaitre.html">Nous connaître</a></li></ul>
+    <a class="nav-compte" data-compte href="/connexion.html" hidden><svg viewBox="0 0 24 24"><path d="M18 20v-1.5a4 4 0 00-4-4h-4a4 4 0 00-4 4V20"/><circle cx="12" cy="8" r="3.6"/></svg>Connexion</a>
     <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
   </div>
   <div class="drawer" id="drawer"><div><div class="in"><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/programmes/communay.html">Le 16 Télégraphe — Communay</a><a class="sub" href="/programmes/coublevie.html">Les Terrasses des 3 Parcs — Coublevie</a><a class="sub" href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 — Bourg-Saint-Christophe</a><a class="sub" href="/programmes/frans.html">Green Parc — Frans</a>
+    <a data-compte href="/connexion.html" hidden>Connexion</a>
     <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
   </div></div></div>
   <i class="progress" id="progress"></i>
@@ -41,7 +46,7 @@
 <section><div class="wrap">
   <div class="filters" data-filter-group data-filter-target="#liste" data-filter-count="#count"><button type="button" data-f="*" aria-pressed="true">Tous les départements</button><button type="button" data-f="d69" aria-pressed="false">Rhône (69)</button><button type="button" data-f="d38" aria-pressed="false">Isère (38)</button><button type="button" data-f="d01" aria-pressed="false">Ain (01)</button><button type="button" data-f="d71" aria-pressed="false">Saône-et-Loire (71)</button><button type="button" data-f="d73" aria-pressed="false">Savoie (73)</button><button type="button" data-f="d93" aria-pressed="false">Seine-Saint-Denis (93)</button></div>
   <p class="note" style="margin:-14px 0 24px"><span id="count">9</span> programmes affichés · mise à jour du 12 septembre 2026</p>
-  <div class="cards" id="liste"><div data-tags="d69 r69"><a class="card" href="/programmes/communay.html">
+  <div class="cards" id="liste"><div data-tags="d69" data-slug="communay"><a class="card" href="/programmes/communay.html">
       <div class="card-img"><span class="chip">En vente · T3 · T4</span>
         <img src="/assets/img/communay-1.jpg" alt="Le 16 Télégraphe à Communay (69)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -49,7 +54,7 @@
         <span class="price">199 000 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>12 logements</span><span>T3 et T4</span><span>Jardin privatif</span><span>2 stationnements</span></div>
-    </a></div><div data-tags="d38 r38"><a class="card" href="/programmes/coublevie.html">
+    </a></div><div data-tags="d38" data-slug="coublevie"><a class="card" href="/programmes/coublevie.html">
       <div class="card-img"><span class="chip">En vente · T2 à T5</span>
         <img src="/assets/img/coublevie-1.jpg" alt="Les Terrasses des 3 Parcs à Coublevie (38)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -57,7 +62,7 @@
         <span class="price">129 000 €<small>T2 à partir de</small></span>
       </div>
       <div class="card-specs"><span>T2 à T5</span><span>Espaces extérieurs</span><span>Verger partagé</span><span>Proche Voiron</span></div>
-    </a></div><div data-tags="d01 r01"><a class="card" href="/programmes/bourg-saint-christophe.html">
+    </a></div><div data-tags="d01" data-slug="bourg-saint-christophe"><a class="card" href="/programmes/bourg-saint-christophe.html">
       <div class="card-img"><span class="chip">En vente · T4 en duplex</span>
         <img src="/assets/img/bourg-st-christophe.jpg" alt="Le Domaine des Chênes 2 à Bourg-Saint-Christophe (01)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -65,7 +70,7 @@
         <span class="price">235 500 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>T4 duplex</span><span>Près de 90 m²</span><span>Jardin privatif</span><span>Garage individuel</span></div>
-    </a></div><div data-tags="d01 r01"><a class="card" href="/programmes/frans.html">
+    </a></div><div data-tags="d01" data-slug="frans"><a class="card" href="/programmes/frans.html">
       <div class="card-img"><span class="chip">En vente · T4</span>
         <img src="/assets/img/frans.jpg" alt="Green Parc à Frans (01)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -73,7 +78,7 @@
         <span class="price">219 000 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>14 pavillons</span><span>T4 duplex</span><span>Jardin et terrasse</span><span>Aire de jeux</span></div>
-    </a></div><div data-tags="d01 r01"><a class="card" href="/programmes/savigneux.html">
+    </a></div><div data-tags="d01" data-slug="savigneux"><a class="card" href="/programmes/savigneux.html">
       <div class="card-img"><span class="chip">En vente · T4</span>
         <img src="/assets/img/savigneux.jpg" alt="L'Orée des champs à Savigneux (01)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -81,7 +86,7 @@
         <span class="price">225 000 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>T4</span><span>Terrasse</span><span>Jardin privatif</span><span>2 stationnements</span></div>
-    </a></div><div data-tags="d69 r69"><a class="card" href="/programmes/saint-julien.html">
+    </a></div><div data-tags="d69" data-slug="saint-julien"><a class="card" href="/programmes/saint-julien.html">
       <div class="card-img"><span class="chip">En vente · T4 en duplex</span>
         <img src="/assets/img/st-julien.jpg" alt="Le Clos Chopin à Saint-Julien (69)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -89,7 +94,7 @@
         <span class="price">257 500 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>8 logements</span><span>Près de 100 m²</span><span>Parcelles jusqu'à 450 m²</span><span>Garage</span></div>
-    </a></div><div data-tags="d71 r71"><a class="card" href="/programmes/la-chapelle-de-guinchay.html">
+    </a></div><div data-tags="d71" data-slug="la-chapelle-de-guinchay"><a class="card" href="/programmes/la-chapelle-de-guinchay.html">
       <div class="card-img"><span class="chip">En vente · T4 duplex jumelés</span>
         <img src="/assets/img/chapelle-guinchay.jpg" alt="Le Bois de la Croix à La Chapelle-de-Guinchay (71)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -97,7 +102,7 @@
         <span class="price">185 000 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>T4 duplex</span><span>Terrasse et jardin</span><span>Garage</span><span>Finitions personnalisables</span></div>
-    </a></div><div data-tags="d73 r73"><a class="card" href="/programmes/bassens.html">
+    </a></div><div data-tags="d73" data-slug="bassens"><a class="card" href="/programmes/bassens.html">
       <div class="card-img"><span class="chip">En vente · T2 · T3</span>
         <img src="/assets/img/bassens.jpg" alt="Camberia à Bassens (73)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -105,7 +110,7 @@
         <span class="price">153 000 €<small>T2 à partir de</small></span>
       </div>
       <div class="card-specs"><span>T2 et T3</span><span>Espace extérieur</span><span>Stationnement et cave</span><span>Proche Chambéry</span></div>
-    </a></div><div data-tags="d93 r93"><a class="card" href="/programmes/drancy.html">
+    </a></div><div data-tags="d93" data-slug="drancy"><a class="card" href="/programmes/drancy.html">
       <div class="card-img"><span class="chip">En vente · T2 · T3</span>
         <img src="/assets/img/drancy.jpg" alt="L'Essentiel à Drancy (93)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">

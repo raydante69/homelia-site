@@ -3,14 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plan du site — Homelia</title>
-<meta name="description" content="Toutes les pages du site Homelia.">
-<link rel="canonical" href="https://www.homelia-accession.fr/plan-du-site.html">
-<meta property="og:title" content="Plan du site — Homelia">
-<meta property="og:description" content="Toutes les pages du site Homelia.">
+<title>Connexion — Homelia</title>
+<meta name="description" content="Connectez-vous à votre espace Homelia pour retrouver vos favoris et vos messages.">
+<link rel="canonical" href="https://www.homelia-accession.fr/connexion.html">
+<meta property="og:title" content="Connexion — Homelia">
+<meta property="og:description" content="Connectez-vous à votre espace Homelia pour retrouver vos favoris et vos messages.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:image" content="https://www.homelia-accession.fr/assets/img/communay-1.jpg">
+<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#1E3A48">
 <link rel="icon" href="/assets/img/logo-icone.png" type="image/png">
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
@@ -39,31 +40,93 @@
   <i class="progress" id="progress"></i>
 </header>
 <main id="main"><section class="phead"><div class="wrap">
-  <p class="crumb"><a href="/index.html">Accueil</a> · Plan du site</p><p class="eyebrow">Navigation</p>
-  <h1>Plan du site</h1>
-  <p>L'ensemble des pages publiées sur homelia-accession.fr.</p>
+  <p class="crumb"><a href="/index.html">Accueil</a> · Connexion</p><p class="eyebrow">Votre espace</p>
+  <h1>Connexion</h1>
+  <p>Un compte vous permet d'enregistrer vos favoris, de suivre vos demandes et d'échanger avec notre équipe.</p>
 </div></section>
-<section><div class="wrap prose">
-  <h2 style="margin-top:0">Pages principales</h2>
-  <ul>
-    <li><a href="/index.html">Accueil</a></li>
-    <li><a href="/programmes.html">Nos programmes</a></li>
-    <li><a href="/guide-du-brs.html">Guide du Bail Réel Solidaire</a></li>
-    <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
-    <li><a href="/accompagnement.html">Notre accompagnement</a></li>
-    <li><a href="/promoteurs.html">Promoteurs &amp; OFS</a></li>
-    <li><a href="/nous-connaitre.html">Nous connaître</a></li>
-    <li><a href="/contact.html">Contact</a></li>
-  </ul>
-  <h2>Programmes</h2>
-  <ul><li><a href="/programmes/communay.html">Le 16 Télégraphe — Communay (69)</a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs — Coublevie (38)</a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 — Bourg-Saint-Christophe (01)</a></li><li><a href="/programmes/frans.html">Green Parc — Frans (01)</a></li><li><a href="/programmes/savigneux.html">L'Orée des champs — Savigneux (01)</a></li><li><a href="/programmes/saint-julien.html">Le Clos Chopin — Saint-Julien (69)</a></li><li><a href="/programmes/la-chapelle-de-guinchay.html">Le Bois de la Croix — La Chapelle-de-Guinchay (71)</a></li><li><a href="/programmes/bassens.html">Camberia — Bassens (73)</a></li><li><a href="/programmes/drancy.html">L'Essentiel — Drancy (93)</a></li></ul>
-  <h2>Informations légales</h2>
-  <ul>
-    <li><a href="/mentions-legales.html">Mentions légales</a></li>
-    <li><a href="/confidentialite.html">Politique de confidentialité</a></li>
-    <li><a href="/cookies.html">Politique de cookies</a></li>
-  </ul>
-</div></section></main>
+<section><div class="wrap" style="max-width:560px">
+  <div class="panel">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-onglet="connexion">Se connecter</button>
+      <button role="tab" aria-selected="false" data-onglet="inscription">Créer un compte</button>
+    </div>
+    <div class="alerte" id="alerte"></div>
+
+    <div class="tabpanel" data-panneau="connexion">
+      <form class="form" id="f-connexion" novalidate>
+        <div class="fw"><label for="c-email">Adresse e-mail</label><input id="c-email" type="email" autocomplete="email" required></div>
+        <div class="fw"><label for="c-mdp">Mot de passe</label><input id="c-mdp" type="password" autocomplete="current-password" required></div>
+        <div><button class="btn" type="submit">Se connecter</button></div>
+        <p class="note" style="margin:0"><a href="#" id="oubli">Mot de passe oublié ?</a></p>
+      </form>
+    </div>
+
+    <div class="tabpanel" data-panneau="inscription" hidden>
+      <form class="form" id="f-inscription" novalidate>
+        <div class="row">
+          <div class="fw"><label for="i-nom">Nom et prénom</label><input id="i-nom" type="text" autocomplete="name" required></div>
+          <div class="fw"><label for="i-tel">Téléphone</label><input id="i-tel" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="fw"><label for="i-email">Adresse e-mail</label><input id="i-email" type="email" autocomplete="email" required></div>
+        <div class="fw"><label for="i-mdp">Mot de passe</label><input id="i-mdp" type="password" autocomplete="new-password" minlength="8" required>
+          <span class="note">8 caractères minimum.</span></div>
+        <div class="fw"><label class="check"><input id="i-rgpd" type="checkbox" required>
+          <span>J'accepte la <a href="/confidentialite.html">politique de confidentialité</a>.</span></label></div>
+        <div><button class="btn" type="submit">Créer mon compte</button></div>
+      </form>
+    </div>
+  </div>
+  <p class="note" id="hors-ligne" hidden>Les comptes ne sont pas encore activés sur ce site. Écrivez-nous à
+    <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a> ou appelez le <a href="tel:0465848711">04 65 84 87 11</a>.</p>
+</div></section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var H = window.Homelia, $ = H.$;
+  var alerte = $("#alerte");
+  function dire(texte, ok) {
+    alerte.textContent = texte;
+    alerte.className = "alerte show " + (ok ? "ok" : "ko");
+  }
+  if (!H.actif) {
+    $("#hors-ligne").hidden = false;
+    H.$$(".panel form button").forEach(function (b) { b.disabled = true; });
+    dire("Connexion indisponible : la base de données n'est pas encore configurée.", false);
+  }
+  H.$$("[data-onglet]").forEach(function (t) {
+    t.addEventListener("click", function () {
+      H.$$("[data-onglet]").forEach(function (o) { o.setAttribute("aria-selected", String(o === t)); });
+      H.$$("[data-panneau]").forEach(function (p) { p.hidden = p.dataset.panneau !== t.dataset.onglet; });
+    });
+  });
+  function apresConnexion() {
+    var retour = new URLSearchParams(location.search).get("retour");
+    window.location.href = retour || (H.estResponsable() ? "/admin.html" : "/espace.html");
+  }
+  H.auChangement(function (s) { if (s && !location.search.includes("reinit")) apresConnexion(); });
+
+  $("#f-connexion").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    var r = await H.connexion($("#c-email").value.trim(), $("#c-mdp").value);
+    if (r.error) dire("Connexion impossible : identifiants incorrects.", false);
+  });
+  $("#f-inscription").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    if (!$("#i-rgpd").checked) { dire("Merci d'accepter la politique de confidentialité.", false); return; }
+    var r = await H.inscription($("#i-email").value.trim(), $("#i-mdp").value, $("#i-nom").value.trim(), $("#i-tel").value.trim());
+    if (r.error) dire("Création impossible : " + r.error.message, false);
+    else dire("Compte créé. Vérifiez votre boîte mail pour confirmer votre adresse, puis connectez-vous.", true);
+  });
+  $("#oubli").addEventListener("click", async function (e) {
+    e.preventDefault();
+    var email = $("#c-email").value.trim();
+    if (!email) { dire("Indiquez d'abord votre adresse e-mail.", false); return; }
+    var r = await H.motDePasseOublie(email);
+    dire(r.error ? "Envoi impossible : " + r.error.message : "Un lien de réinitialisation vous a été envoyé.", !r.error);
+  });
+});
+</script>
+</main>
 <footer class="site-foot">
   <div class="wrap">
     <div class="foot-grid">

@@ -21,10 +21,14 @@
 
 
   /* ---- annonces du hero : défilement automatique ---- */
-  var rotator = $("#heroRotator");
-  if (rotator) {
+  var timer = null;
+  window.homeliaInitRotator = function () {
+    var rotator = $("#heroRotator");
+    if (!rotator) return;
+    clearInterval(timer);
     var slides = $$(".slide", rotator), dots = $("#hDots"),
-        idx = 0, timer = null, paused = reduce, DELAY = 7000;
+        idx = 0, paused = reduce, DELAY = 7000;
+    dots.innerHTML = "";
     slides.forEach(function (sl, i) {
       var b = document.createElement("button");
       b.type = "button";
@@ -74,7 +78,8 @@
       if (document.hidden) clearInterval(timer); else restart();
     });
     if (reduce) setPaused(true); else restart();
-  }
+  };
+  window.homeliaInitRotator();
 
   /* ---- menu mobile ---- */
   var burger = $("#burger"), drawer = $("#drawer");
@@ -253,6 +258,33 @@
       });
       if (!valid) { $(".bad [data-req]", form).focus(); return; }
       var get = function (n) { var el = form.elements[n]; return el ? el.value : ""; };
+
+      /* Si la base est configurée, la demande est enregistrée et suivie dans l'espace du visiteur. */
+      var H = window.Homelia;
+      if (H && H.actif) {
+        var opt = form.elements.programme ? form.elements.programme.selectedOptions[0] : null;
+        var slug = opt ? opt.dataset.slug : null;
+        (async function () {
+          var a = slug ? await H.annonce(slug) : null;
+          var r = await H.envoyerMessage({
+            nom: get("nom"), email: get("email"), telephone: get("tel"),
+            annonce: a ? a.id : null, foyer: get("foyer"), rfr: get("rfr"), contenu: get("message")
+          });
+          var ok = $("#form-ok");
+          if (r.error) {
+            ok.textContent = "Envoi impossible pour le moment. Écrivez-nous à contact@homelia-accession.fr.";
+            ok.classList.add("show");
+            return;
+          }
+          ok.innerHTML = H.utilisateur()
+            ? "Demande envoyée. Vous la retrouvez, ainsi que notre réponse, dans <a href=\"/espace.html\">votre espace</a>."
+            : "Demande envoyée. Nous vous répondons sous 24 h. <a href=\"/connexion.html\">Créez un compte</a> pour suivre vos échanges.";
+          ok.classList.add("show");
+          form.reset();
+        })();
+        return;
+      }
+
       var body = [
         "Nom : " + get("nom"),
         "Email : " + get("email"),
