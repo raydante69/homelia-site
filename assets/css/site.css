@@ -249,6 +249,12 @@ input[type=range]{ width:100%; accent-color:var(--deep2); }
 .why .wrap{ text-align:center; }
 .why h2{ font-size:clamp(27px,3.5vw,42px); line-height:1.1; margin:10px auto 48px; max-width:24ch; }
 .grid4{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:38px 28px; }
+/* Une rangée de moins de quatre éléments se recentre, au lieu de rester calée
+   à gauche avec une colonne vide à droite. */
+.grid4:not(.left):has(> :nth-child(3):last-child){ grid-template-columns:repeat(3,minmax(0,1fr));
+  max-width:940px; margin-inline:auto; }
+.grid4:not(.left):has(> :nth-child(2):last-child){ grid-template-columns:repeat(2,minmax(0,1fr));
+  max-width:640px; margin-inline:auto; }
 .tile{ width:46px; height:46px; border-radius:13px; background:var(--sand-soft); display:grid; place-items:center;
   margin:0 auto 14px; transition:transform .35s var(--ease), background .35s var(--ease); }
 .grid4 > div:hover .tile{ transform:translateY(-4px) rotate(-4deg); background:var(--sand); }
