@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" defer></script>
+<script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
 <script src="/assets/js/app.js" defer></script>
 </head>
@@ -59,6 +59,8 @@
     <li><strong>Identité et coordonnées :</strong> nom, prénom, adresse e-mail, numéro de téléphone.</li>
     <li><strong>Données relatives au projet :</strong> programme concerné, composition du foyer, revenu fiscal de référence, contenu de votre message.</li>
     <li><strong>Données de navigation :</strong> adresse IP, pages consultées, date et durée de visite, type de navigateur — collectées par l'hébergeur à des fins de sécurité et de bon fonctionnement du site.</li>
+    <li><strong>Données de compte</strong>, si vous en créez un : adresse e-mail, mot de passe (stocké sous forme chiffrée,
+      jamais en clair et jamais accessible à Homelia), nom, téléphone, programmes mis en favori et historique de vos demandes.</li>
   </ul>
   <p>Les champs obligatoires sont signalés par un astérisque dans nos formulaires. Le revenu fiscal de référence est facultatif : il ne sert qu'à vous répondre plus précisément sur votre éligibilité.</p>
 
@@ -69,6 +71,7 @@
       <tr><td>Répondre à vos demandes de contact et d'information</td><td>Mesures précontractuelles prises à votre demande (art. 6.1.b RGPD)</td></tr>
       <tr><td>Vérifier votre éligibilité et monter votre dossier</td><td>Exécution de mesures précontractuelles et du contrat (art. 6.1.b RGPD)</td></tr>
       <tr><td>Vous informer du lancement de nouveaux programmes</td><td>Votre consentement (art. 6.1.a RGPD), révocable à tout moment</td></tr>
+      <tr><td>Gérer votre compte, vos favoris et le suivi de vos demandes</td><td>Exécution du service que vous avez demandé (art. 6.1.b RGPD)</td></tr>
       <tr><td>Assurer la sécurité et le bon fonctionnement du site</td><td>Intérêt légitime de Homelia (art. 6.1.f RGPD)</td></tr>
       <tr><td>Respecter nos obligations comptables et légales</td><td>Obligation légale (art. 6.1.c RGPD)</td></tr>
     </tbody>
@@ -81,18 +84,25 @@
     <li>à l'<strong>Organisme de Foncier Solidaire</strong> concerné, pour l'instruction de votre éligibilité et de l'agrément ;</li>
     <li>au <strong>promoteur ou au vendeur</strong> du programme, pour la réservation ;</li>
     <li>au <strong>notaire</strong> chargé de l'acte, et le cas échéant à votre banque ou à votre courtier, avec votre accord ;</li>
-    <li>à nos <strong>prestataires techniques</strong> (hébergement, messagerie), agissant en qualité de sous-traitants.</li>
+    <li>à nos <strong>prestataires techniques</strong>, agissant en qualité de sous-traitants :
+      <strong>Vercel</strong> (hébergement des pages) et <strong>Supabase</strong> (base de données,
+      gestion des comptes et stockage des photos).</li>
   </ul>
   <p>Vos données ne sont ni vendues, ni louées, ni cédées à des tiers à des fins commerciales.</p>
 
   <h2>5. Transferts hors Union européenne</h2>
-  <p>L'hébergement du site est assuré par Vercel Inc., société établie aux États-Unis. Les transferts éventuels de données de navigation sont encadrés par les garanties appropriées prévues au chapitre V du RGPD (clauses contractuelles types et, le cas échéant, cadre de protection des données UE—États-Unis). [Vérifier auprès de l'hébergeur la documentation applicable.]</p>
+  <p>L'hébergement des pages est assuré par Vercel Inc., société établie aux États-Unis. La base de données, les comptes
+  et les photos sont hébergés par Supabase, dans la région [préciser la région du projet, par exemple Europe (Francfort)].
+  Les transferts éventuels hors Union européenne sont encadrés par les garanties appropriées prévues au chapitre V du RGPD
+  (clauses contractuelles types et, le cas échéant, cadre de protection des données UE—États-Unis).
+  [Vérifier la documentation applicable auprès de chaque prestataire.]</p>
 
   <h2>6. Durées de conservation</h2>
   <div class="table-wrap"><table>
     <thead><tr><th>Catégorie</th><th>Durée</th></tr></thead>
     <tbody>
       <tr><td>Demandes de contact sans suite (prospects)</td><td>3 ans à compter du dernier contact</td></tr>
+      <tr><td>Comptes inactifs (favoris et historique associés)</td><td>3 ans à compter de la dernière connexion, puis suppression</td></tr>
       <tr><td>Dossiers d'acquisition menés à leur terme</td><td>Durée de la relation contractuelle, puis archivage selon les délais légaux de prescription</td></tr>
       <tr><td>Pièces comptables et justificatifs</td><td>10 ans (article L.123-22 du Code de commerce)</td></tr>
       <tr><td>Journaux de connexion du site</td><td>12 mois maximum</td></tr>

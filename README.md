@@ -38,7 +38,8 @@ plan-du-site.html       Plan du site
 assets/css/site.css     Feuille de styles unique
 assets/js/site.js       Interactions du site public
 assets/js/app.js        Comptes, annonces, favoris, messagerie
-assets/js/supabase-config.js  Clés Supabase (à renseigner)
+assets/js/supabase-config.js  Clés Supabase (renseignées)
+assets/js/vendor/supabase.js  Bibliothèque supabase-js, servie avec le site
 assets/img/             Visuels des programmes et logos
 supabase/schema.sql     Tables et règles d'accès
 supabase/seed.sql       Chargement des 9 annonces existantes
@@ -61,9 +62,14 @@ demandes d'autrui à un compte qui n'est pas responsable.
 
 ## Activer les comptes (Supabase)
 
-Tant que `assets/js/supabase-config.js` est vide, le site fonctionne en mode
-statique : les pages de connexion et d'administration affichent un message et
-le formulaire de contact bascule sur le logiciel de messagerie du visiteur.
+Les clés sont renseignées : les comptes sont actifs. Si l'on vide
+`assets/js/supabase-config.js`, le site retombe en mode statique — les pages de
+connexion et d'administration affichent un message et le formulaire de contact
+bascule sur le logiciel de messagerie du visiteur.
+
+La bibliothèque `supabase-js` est servie depuis `assets/js/vendor/` plutôt que
+depuis un CDN : une dépendance externe de moins, et rien à déclarer de plus
+côté RGPD.
 
 1. Créer un projet sur [supabase.com](https://supabase.com) (gratuit), région Europe.
 2. **SQL Editor → New query** : coller `supabase/schema.sql`, exécuter.
@@ -76,7 +82,7 @@ le formulaire de contact bascule sur le logiciel de messagerie du visiteur.
    where id = (select id from auth.users where email = 'contact@homelia-accession.fr');
    ```
 6. **Project Settings → API** : copier *Project URL* et la clé *anon public*
-   dans `assets/js/supabase-config.js`, puis pousser le fichier.
+   dans `assets/js/supabase-config.js`, puis pousser le fichier. *(Fait.)*
 7. **Authentication → URL Configuration** : renseigner l'adresse du site
    (`https://…vercel.app` puis le domaine définitif) dans *Site URL* et
    *Redirect URLs*, sinon les liens de confirmation et de réinitialisation échouent.

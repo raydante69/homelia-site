@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js" defer></script>
+<script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
 <script src="/assets/js/app.js" defer></script>
 </head>
@@ -53,10 +53,13 @@
     <thead><tr><th>Nom</th><th>Nature</th><th>Finalité</th><th>Durée</th></tr></thead>
     <tbody>
       <tr><td><code>homelia-cookies</code></td><td>Stockage local (navigateur)</td><td>Mémoriser votre choix concernant les cookies, pour ne plus vous solliciter à chaque visite</td><td>Jusqu'à effacement par vos soins</td></tr>
+      <tr><td><code>sb-…-auth-token</code></td><td>Stockage local (navigateur)</td><td>Vous maintenir connecté à votre espace entre deux visites. Déposé uniquement si vous créez un compte et vous connectez ; supprimé à la déconnexion</td><td>Jusqu'à la déconnexion</td></tr>
       <tr><td>Journaux techniques</td><td>Hébergeur</td><td>Sécurité, prévention des abus et bon fonctionnement du site</td><td>12 mois maximum</td></tr>
     </tbody>
   </table></div>
-  <p>Aucun cookie publicitaire, aucun traceur de réseau social et aucun outil de mesure d'audience tiers n'est déposé sur ce site à la date de dernière mise à jour.</p>
+  <p>Aucun cookie publicitaire, aucun traceur de réseau social et aucun outil de mesure d'audience tiers n'est déposé sur ce site
+  à la date de dernière mise à jour. Le jeton de session n'est déposé que pour les personnes qui se créent un compte : il est
+  strictement nécessaire au fonctionnement de l'espace personnel et ne sert à aucun suivi publicitaire.</p>
 
   <div class="callout">
     <p><strong>Si une mesure d'audience est ajoutée par la suite</strong> — Google Analytics, Matomo ou équivalent — cette page devra être complétée avec le nom de l'outil, sa finalité, sa durée de conservation et les modalités de recueil du consentement, et le bandeau devra bloquer son dépôt tant que le consentement n'est pas donné.</p>

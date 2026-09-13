@@ -1,13 +1,11 @@
 /* ==========================================================================
    Homelia — connexion à Supabase
-   Renseignez les deux valeurs ci-dessous, disponibles dans votre projet
-   Supabase : Project Settings → API.
-   - url     : « Project URL »   (https://xxxxxxxx.supabase.co)
-   - anonKey : « anon public »    (clé publique, conçue pour être exposée)
-   Tant que ces champs sont vides, le site fonctionne normalement en mode
-   statique : ni comptes, ni espace responsable.
+   Ces deux valeurs proviennent de Project Settings → API.
+   La clé « anon public » est conçue pour être exposée dans le navigateur :
+   elle ne donne accès qu'à ce que les règles d'accès (RLS) autorisent.
+   Ne jamais placer ici la clé « service_role ».
    ========================================================================== */
 window.HOMELIA_SUPABASE = {
-  url: "",
-  anonKey: ""
+  url: "https://rtxydrwydvueaueydtvs.supabase.co",
+  anonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0eHlkcnd5ZHZ1ZWF1ZXlkdHZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkyNDk5ODYsImV4cCI6MjEwNDgyNTk4Nn0.bXNlfXuCqqCtPMUS_FIvxk-5EI4QQ4UzVUL0r2qMJHY"
 };
