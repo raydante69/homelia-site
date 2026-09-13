@@ -753,3 +753,12 @@ td.num,th.num{ text-align:right; }
 @media (prefers-reduced-motion: reduce){
   .carte-terr .zone path{ stroke-dashoffset:0 !important; fill-opacity:.16 !important; animation:none !important; }
 }
+
+/* repères factuels d'un territoire */
+.reperes{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:2px; margin:20px 0 10px;
+  background:var(--line); border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+.reperes > div{ background:var(--paper); padding:14px 16px; }
+.reperes dt{ font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--mut); font-weight:600; }
+.reperes dd{ margin:5px 0 0; font-family:"Schibsted Grotesk",system-ui,sans-serif; font-size:17px;
+  letter-spacing:-.02em; }
+@media (max-width:560px){ .reperes{ grid-template-columns:1fr; } }
