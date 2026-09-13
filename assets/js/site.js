@@ -46,7 +46,7 @@
       b.setAttribute("aria-label", "Annonce " + (i + 1) + " sur " + slides.length);
       b.setAttribute("aria-current", i === 0 ? "true" : "false");
       b.innerHTML = "<i></i>";
-      b.addEventListener("click", function () { go(i); restart(); });
+      b.addEventListener("click", function () { go(i); relancer(); });
       dots.appendChild(b);
     });
     var bullets = $$("button", dots);
@@ -88,8 +88,14 @@
         : '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';
       restart();
     }
-    $("#hNext").addEventListener("click", function () { go(idx + 1); restart(); });
-    $("#hPrev").addEventListener("click", function () { go(idx - 1); restart(); });
+    /* Cliquer sur une flèche relance le remplissage de la barre : sans cela
+       le focus pris par le bouton la laissait figée sur place. */
+    function relancer() {
+      if (!paused) dots.classList.remove("paused");
+      restart();
+    }
+    $("#hNext").addEventListener("click", function () { go(idx + 1); relancer(); });
+    $("#hPrev").addEventListener("click", function () { go(idx - 1); relancer(); });
     $("#hPause").addEventListener("click", function () { setPaused(!paused); });
     /* Le survol ne met plus le carrousel en pause : le pointeur reste souvent
        posé sur le hero, et le défilement semblait alors bloqué. Seuls le bouton
@@ -99,6 +105,9 @@
     function zone(e) { return rotator.contains(e.target) || dots.contains(e.target); }
     document.addEventListener("focusin", function (e) {
       if (perime() || !zone(e)) return;
+      /* Au clavier seulement : à la souris, le clic vaut action délibérée et
+         le défilement doit reprendre aussitôt. */
+      try { if (!e.target.matches(":focus-visible")) return; } catch (err) { /* navigateur ancien */ }
       clearTimeout(timer); dots.classList.add("paused");
     });
     document.addEventListener("focusout", function (e) {
