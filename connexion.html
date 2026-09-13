@@ -45,7 +45,7 @@
   <p>Un compte vous permet d'enregistrer vos favoris, de suivre vos demandes et d'échanger avec notre équipe.</p>
 </div></section>
 <section><div class="wrap" style="max-width:560px">
-  <div class="panel">
+  <div class="bloc">
     <div class="tabs" role="tablist">
       <button role="tab" aria-selected="true" data-onglet="connexion">Se connecter</button>
       <button role="tab" aria-selected="false" data-onglet="inscription">Créer un compte</button>
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   if (!H.actif) {
     $("#hors-ligne").hidden = false;
-    H.$$(".panel form button").forEach(function (b) { b.disabled = true; });
+    H.$$(".bloc form button").forEach(function (b) { b.disabled = true; });
     dire("Connexion indisponible : la base de données n'est pas encore configurée.", false);
   }
   H.$$("[data-onglet]").forEach(function (t) {

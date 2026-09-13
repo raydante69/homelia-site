@@ -64,7 +64,7 @@
         <button class="btn" type="button" id="nouvelle">Nouvelle annonce</button>
       </div>
 
-      <div class="panel" id="editeur" hidden>
+      <div class="bloc" id="editeur" hidden>
         <h2 id="editeur-titre">Nouvelle annonce</h2>
         <p class="sub">Les champs marqués d'un astérisque sont nécessaires à l'affichage de la fiche.</p>
         <form class="form" id="f-annonce">
@@ -107,7 +107,7 @@
         </form>
       </div>
 
-      <div class="panel" id="liste-annonces"></div>
+      <div class="bloc" id="liste-annonces"></div>
     </div>
 
     <!-- ------------------------- MESSAGES ------------------------- -->
@@ -125,7 +125,7 @@
 
     <!-- ------------------------- COMPTE ------------------------- -->
     <div class="tabpanel" data-panneau="compte" hidden>
-      <div class="panel" style="max-width:560px">
+      <div class="bloc" style="max-width:560px">
         <h2>Adresse de connexion</h2>
         <p class="sub">Un lien de confirmation sera envoyé à la nouvelle adresse.</p>
         <form class="form" id="f-email">
@@ -133,7 +133,7 @@
           <div><button class="btn" type="submit">Changer l'adresse</button></div>
         </form>
       </div>
-      <div class="panel" style="max-width:560px">
+      <div class="bloc" style="max-width:560px">
         <h2>Mot de passe</h2>
         <p class="sub">Choisissez un mot de passe long et unique : il protège l'ensemble des annonces et des demandes reçues.</p>
         <form class="form" id="f-mdp">
@@ -142,7 +142,7 @@
           <div><button class="btn" type="submit">Changer le mot de passe</button></div>
         </form>
       </div>
-      <div class="panel" style="max-width:560px">
+      <div class="bloc" style="max-width:560px">
         <h2>Session</h2>
         <button class="btn btn-ghost" type="button" id="deco">Se déconnecter</button>
       </div>
@@ -341,7 +341,7 @@ document.addEventListener("DOMContentLoaded", function () {
         + '<button class="btn btn-sm btn-ghost" type="button" data-statut="' + m.id + '" data-valeur="en_cours">Marquer en cours</button>'
         + '<button class="btn btn-sm btn-ghost" type="button" data-statut="' + m.id + '" data-valeur="traite">Marquer traitée</button>'
         + "</div></div></article>";
-    }).join("") || '<div class="panel"><div class="vide"><p>Aucune demande dans cette catégorie.</p></div></div>';
+    }).join("") || '<div class="bloc"><div class="vide"><p>Aucune demande dans cette catégorie.</p></div></div>';
 
     $$("[data-statut]").forEach(function (b) {
       b.addEventListener("click", async function () {

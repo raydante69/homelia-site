@@ -62,7 +62,7 @@ window.Homelia = (function () {
 
   async function reprendreAnnonces() {
     var rotator = $("#heroRotator"), liste = $("#liste");
-    if (!rotator && !liste) return;
+    if (!rotator && !liste) return;   /* la promesse se résout quand même */
     var toutes = await annonces();
     if (!toutes || !toutes.length) return;
 
@@ -89,6 +89,83 @@ window.Homelia = (function () {
     }
   }
 
+
+  /* ---------------- favoris sur les pages publiques ---------------- */
+  var COEUR = '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.4A3.8 3.8 0 0112 8a3.8 3.8 0 017 2.6C19 15.4 12 20 12 20z"/></svg>';
+  var parSlug = null;
+
+  function slugDeLien(href) {
+    if (!href) return null;
+    var m = href.match(/\/programmes\/([a-z0-9-]+)\.html/);
+    if (m) return m[1];
+    m = href.match(/\/annonce\.html\?a=([a-z0-9-]+)/);
+    return m ? m[1] : null;
+  }
+
+  async function activerFavoris() {
+    if (!actif) return;
+    if (!parSlug) {
+      var toutes = await annonces();
+      if (!toutes) return;
+      parSlug = {};
+      toutes.forEach(function (a) { parSlug[a.slug] = a; });
+    }
+    var mesIds = [];
+    if (session) {
+      var r = await db.from("favoris").select("annonce");
+      mesIds = (r.data || []).map(function (f) { return f.annonce; });
+    }
+
+    /* un cœur sur chaque carte de programme */
+    $$("a.card").forEach(function (carte) {
+      var a = parSlug[slugDeLien(carte.getAttribute("href"))];
+      var visuel = carte.querySelector(".card-img");
+      if (!a || !visuel || visuel.querySelector(".fav")) return;
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "fav";
+      b.dataset.fav = a.id;
+      b.innerHTML = COEUR;
+      visuel.appendChild(b);
+    });
+
+    /* un bouton sur les fiches programme rédigées */
+    var meta = $('meta[name="programme"]');
+    var fiche = meta ? parSlug[meta.content] : null;
+    var barre = $(".phead .hero-cta");
+    if (fiche && barre && !barre.querySelector("[data-fav]")) {
+      var gros = document.createElement("button");
+      gros.type = "button";
+      gros.className = "btn btn-line";
+      gros.dataset.fav = fiche.id;
+      gros.dataset.texte = "1";
+      barre.appendChild(gros);
+    }
+
+    $$("[data-fav]").forEach(function (b) {
+      var actifFav = mesIds.indexOf(b.dataset.fav) > -1;
+      peindre(b, actifFav);
+      if (b.dataset.lie) return;
+      b.dataset.lie = "1";
+      b.addEventListener("click", async function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var res = await basculerFavori(b.dataset.fav);
+        if (res !== null) peindre(b, res);
+      });
+    });
+  }
+
+  function peindre(b, estFavori) {
+    b.setAttribute("aria-pressed", String(estFavori));
+    if (b.dataset.texte) {
+      b.textContent = estFavori ? "Retirer de mes favoris" : "Ajouter à mes favoris";
+    } else {
+      b.setAttribute("aria-label", estFavori ? "Retirer des favoris" : "Ajouter aux favoris");
+      b.title = estFavori ? "Retirer des favoris" : "Ajouter aux favoris";
+    }
+  }
+
   async function init() {
     if (!actif) { majEntete(); return; }
     var r = await db.auth.getSession();
@@ -96,12 +173,13 @@ window.Homelia = (function () {
     await chargerProfil();
     majEntete();
     prevenir();
-    reprendreAnnonces();
+    reprendreAnnonces().then(activerFavoris);
     db.auth.onAuthStateChange(async function (_e, s) {
       session = s;
       await chargerProfil();
       majEntete();
       prevenir();
+      activerFavoris();
     });
   }
 
@@ -218,7 +296,7 @@ window.Homelia = (function () {
   return {
     actif: actif, db: db, init: init, auChangement: auChangement,
     utilisateur: utilisateur, profil: function () { return profil; }, estResponsable: estResponsable,
-    annonces: annonces, annonce: annonce, reprendreAnnonces: reprendreAnnonces, lien: lien, image: image, carte: carte,
+    annonces: annonces, annonce: annonce, reprendreAnnonces: reprendreAnnonces, activerFavoris: activerFavoris, lien: lien, image: image, carte: carte,
     mesFavoris: mesFavoris, estFavori: estFavori, basculerFavori: basculerFavori,
     envoyerMessage: envoyerMessage, mesMessages: mesMessages, tousLesMessages: tousLesMessages,
     connexion: connexion, inscription: inscription, motDePasseOublie: motDePasseOublie,

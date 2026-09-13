@@ -66,7 +66,7 @@
     </div>
 
     <div class="tabpanel" data-panneau="profil" hidden>
-      <div class="panel" style="max-width:560px">
+      <div class="bloc" style="max-width:560px">
         <h2>Mes informations</h2>
         <p class="sub">Ces informations nous servent à vous recontacter.</p>
         <div class="alerte" id="alerte"></div>
@@ -78,7 +78,7 @@
           <div><button class="btn" type="submit">Enregistrer</button></div>
         </form>
       </div>
-      <div class="panel" style="max-width:560px">
+      <div class="bloc" style="max-width:560px">
         <h2>Session</h2>
         <p class="sub">Vous êtes connecté sur cet appareil.</p>
         <button class="btn btn-ghost" type="button" id="deco">Se déconnecter</button>
@@ -91,7 +91,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   var H = window.Homelia, $ = H.$;
   var VIDE = function (t) {
-    return '<div class="panel"><div class="vide"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.4A3.8 3.8 0 0112 8a3.8 3.8 0 017 2.6C19 15.4 12 20 12 20z"/></svg><p>' + t + "</p></div></div>";
+    return '<div class="bloc"><div class="vide"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.4A3.8 3.8 0 0112 8a3.8 3.8 0 017 2.6C19 15.4 12 20 12 20z"/></svg><p>' + t + "</p></div></div>";
   };
   H.$$("[data-onglet]").forEach(function (t) {
     t.addEventListener("click", function () {
