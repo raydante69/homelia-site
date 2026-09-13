@@ -12,6 +12,7 @@
 }
 *,*::before,*::after{ box-sizing:border-box; }
 html{ scroll-behavior:smooth; }
+[id]{ scroll-margin-top:86px; }
 body{ margin:0; background:var(--paper); color:var(--ink);
   font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif; font-size:16px; line-height:1.62; -webkit-font-smoothing:antialiased; }
 img{ display:block; max-width:100%; }
@@ -21,9 +22,10 @@ button{ font:inherit; cursor:pointer; }
 h1,h2,h3,h4,.disp{ font-family:"Schibsted Grotesk",system-ui,sans-serif; font-weight:600; letter-spacing:-.028em; text-wrap:balance; margin:0; }
 em.it{ font-family:"Fraunces",Georgia,serif; font-style:italic; font-weight:300; letter-spacing:-.01em; }
 :focus-visible{ outline:2px solid var(--sand); outline-offset:3px; border-radius:4px; }
-.wrap{ max-width:var(--wrap); margin:0 auto; padding-inline:22px; }
+.wrap{ max-width:var(--wrap); margin:0 auto;
+  padding-inline:max(22px, env(safe-area-inset-left)) max(22px, env(safe-area-inset-right)); }
 .wrap-sm{ max-width:820px; }
-section{ padding-block:92px; }
+section{ padding-block:clamp(52px, 7vw, 92px); }
 .eyebrow{ font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--deep2); font-weight:500; margin:0; }
 .tabnum{ font-variant-numeric:tabular-nums; }
 .skip{ position:absolute; left:-9999px; top:0; background:#fff; color:var(--ink); padding:12px 18px; z-index:999; border-radius:0 0 10px 0; }
@@ -101,13 +103,16 @@ section{ padding-block:92px; }
   box-shadow:0 30px 60px rgba(8,20,26,.34); background:var(--deep2); }
 .hero-frame .slide{ position:absolute; inset:0; opacity:0; transition:opacity .9s var(--ease); }
 .hero-frame .slide.on{ opacity:1; }
+.hero-frame .slide .hero-ann,.hero-frame .slide .hero-tag{ opacity:0; transition:opacity .25s var(--ease); }
+.hero-frame .slide.on .hero-ann,.hero-frame .slide.on .hero-tag{ opacity:1; transition:opacity .45s var(--ease) .35s; }
 .hero-frame .slide img{ width:100%; height:100%; object-fit:cover; transform:scale(1.04);
   transition:transform 7s linear; }
 .hero-frame .slide.on img{ transform:scale(1); }
 .hero-frame .slide::after{ content:""; position:absolute; inset:0;
   background:linear-gradient(180deg,rgba(10,22,29,.3) 0%,rgba(10,22,29,0) 38%,rgba(10,22,29,.55) 100%); }
 .hero-tag{ position:absolute; z-index:3; top:16px; left:16px; background:rgba(255,255,255,.94); color:var(--ink);
-  border-radius:100px; padding:7px 15px; font-size:12.5px; font-weight:500; }
+  border-radius:100px; padding:7px 15px; font-size:12.5px; font-weight:500;
+  max-width:calc(100% - 170px); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .hero-ann{ position:absolute; z-index:3; left:16px; right:16px; bottom:16px; background:var(--paper); color:var(--ink);
   border-radius:16px; padding:16px 18px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;
   box-shadow:0 18px 40px rgba(8,20,26,.3); }
@@ -498,8 +503,8 @@ td.num,th.num{ text-align:right; }
 /* ==========================================================================
    Carte, simulateur de mensualité, filtres enrichis, plaquette imprimable
    ========================================================================== */
-.carte{ position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--line);
-  background:var(--surf); aspect-ratio:16/7; min-height:300px; }
+.carte{ position:relative; width:100%; border-radius:18px; overflow:hidden; border:1px solid var(--line);
+  background:var(--surf); aspect-ratio:16/7; }
 .carte iframe{ width:100%; height:100%; border:0; display:block; }
 .carte-voile{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
   justify-content:center; gap:14px; text-align:center; padding:28px 22px;
@@ -615,3 +620,149 @@ td.num,th.num{ text-align:right; }
 .actus-titre h2{ font-size:clamp(20px,2.3vw,26px); }
 .actus-titre span{ font-size:13px; color:var(--mut); }
 @media (max-width:820px){ .actu-une{ margin-bottom:48px; } }
+
+/* ==========================================================================
+   Adaptation aux petits écrans
+   Regroupé ici pour rester lisible : tout ce qui suit corrige ou affine
+   l'affichage sur tablette et sur téléphone.
+   ========================================================================== */
+
+/* ---------- tablette ---------- */
+@media (max-width:1080px){
+  .hero-in{ gap:40px; }
+  .mech-in,.split{ gap:40px; }
+  .grid4{ gap:32px 24px; }
+  .sim{ padding:28px; gap:28px; }
+}
+
+/* ---------- sous 940 px : bascule en une colonne ---------- */
+@media (max-width:940px){
+  .split img[style*="sticky"],.split img{ position:static !important; }
+  .actu.grande .actu-corps{ padding:24px; }
+  .phead{ padding-block:40px 46px; }
+  .final{ border-radius:20px; }
+  .sim{ border-radius:18px; }
+}
+
+/* ---------- téléphone ---------- */
+@media (max-width:740px){
+  body{ font-size:16px; line-height:1.68; }
+
+  /* aucun champ sous 16 px : en dessous, iOS zoome automatiquement à la saisie */
+  input,select,textarea,
+  .form input,.form select,.form textarea,
+  .form-grid input,.form-grid select,.form-grid textarea,
+  .recherche input,.recherche select{ font-size:16px; }
+
+  /* cibles tactiles confortables */
+  .btn{ padding:14px 22px; }
+  .btn-sm{ padding:11px 16px; }
+  .nav-compte{ padding:12px 16px; }
+  .site-foot li a{ padding-block:9px; }
+  .site-foot ul{ gap:2px; }
+  .site-foot p a{ display:inline-block; padding-block:7px; }
+  .legal-row a{ display:inline-block; padding-block:8px; }
+  input[type=range]{ height:36px; }
+  .legal-row{ gap:10px 18px; line-height:2; }
+  .legal-row .sep{ display:none; }
+  .seg button{ padding:12px 17px; }
+  .filters button{ padding:11px 18px; }
+  .tabs button{ padding:12px 16px; }
+  .fav{ width:42px; height:42px; top:10px; right:10px; }
+  .hero-ctrl button{ width:40px; height:40px; }
+  .hero-dots button{ height:34px; width:38px; background:transparent; display:grid; align-items:center; }
+  .hero-dots button::before{ content:""; display:block; height:4px; border-radius:100px; background:rgba(255,255,255,.26); }
+  .hero-dots button[aria-current="true"]::before{ background:rgba(255,255,255,.3); }
+  .hero-dots button i{ inset:9px 0; }
+
+  /* l'annonce passe sous la photo, à l'intérieur de la diapositive :
+     on voit le programme, puis ses informations, sans superposition */
+  .hero-frame{ aspect-ratio:4/4.7; border-radius:16px; background:var(--paper); }
+  .hero-frame .slide{ display:flex; flex-direction:column; gap:10px; }
+  .hero-frame .slide::after{ display:none; }
+  .hero-frame .slide img{ flex:1 1 auto; min-height:0; border-radius:16px 16px 0 0; }
+  .hero-ann{ position:static; box-shadow:none; border:none; border-radius:0 0 16px 16px;
+    padding:4px 16px 16px; flex-direction:column; align-items:stretch; gap:12px; }
+  .hero-ann .tarif{ display:flex; align-items:baseline; gap:8px; margin-left:0; text-align:left; }
+  .hero-ann .tarif b{ font-size:20px; }
+  .hero-ann .btn{ width:100%; justify-content:center; }
+  .hero-dots{ margin-top:14px; }
+  .hero-in{ padding-block:36px 44px; }
+  .hero h1{ font-size:clamp(30px,8.4vw,40px); }
+  .hero .sub{ font-size:16px; }
+  .hero-cta .btn{ flex:1 1 auto; justify-content:center; }
+
+  /* lisibilité des textes secondaires */
+  .note,.hint,.card-bar .loc,.actu-meta{ font-size:13.5px; }
+  .eyebrow{ font-size:11.5px; letter-spacing:.16em; }
+  .prose p,.prose li{ font-size:16px; }
+  .verdict small,.site-foot .legal{ font-size:12.5px; }
+
+  /* cartes programme : le prix passe sous le nom plutôt que de le comprimer */
+  .card-bar{ flex-wrap:wrap; gap:10px; }
+  .card-bar .price{ margin-left:0; width:100%; text-align:left; display:flex;
+    align-items:baseline; gap:8px; }
+  .card-bar .price small{ display:inline; }
+  .rail .card{ flex-basis:86%; }
+  .rail{ gap:14px; }
+
+  /* simulateurs et formulaires */
+  .sim{ padding:22px; gap:22px; border-radius:16px; margin-top:-24px; }
+  .sim-band{ padding-bottom:clamp(44px,8vw,70px); }
+  .verdict{ padding:20px; }
+  .ligne-calc.total b{ font-size:24px; }
+  .rfr-head{ flex-wrap:wrap; }
+  .form .row{ gap:14px; }
+
+  /* carte : format plus haut, plus lisible sur un écran étroit */
+  .carte{ aspect-ratio:1/1; }
+  .carte-voile{ gap:12px; padding:22px 18px; }
+
+  /* tableaux : le tableau des lots devient une liste de fiches */
+  .table-wrap{ border:none; border-radius:0; overflow:visible; }
+  table{ min-width:0; }
+  thead{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); }
+  tbody tr{ display:block; background:var(--paper); border:1px solid var(--line);
+    border-radius:14px; padding:14px 16px; margin-bottom:12px; }
+  tbody td{ display:flex; justify-content:space-between; align-items:baseline; gap:16px;
+    padding:6px 0; border:none; text-align:right; }
+  tbody td::before{ content:attr(data-col); text-align:left; color:var(--mut);
+    font-size:13px; flex:0 0 auto; }
+  tbody td:first-child{ border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:6px; }
+  tbody td.num,td.num{ text-align:right; }
+
+  /* bandeau cookies : pleine largeur, au-dessus du pouce */
+  .cookie{ left:12px; right:12px; bottom:12px; padding:18px; border-radius:16px; }
+  .cookie .acts{ gap:8px; }
+  .cookie .acts .btn{ flex:1 1 auto; justify-content:center; }
+
+  /* menu déroulant : on évite qu'il dépasse l'écran */
+  .drawer .in{ max-height:70vh; overflow-y:auto; }
+}
+
+/* ---------- très petits écrans ---------- */
+@media (max-width:420px){
+  .wrap{ padding-inline:max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); }
+  .hero-badge{ position:static; margin-top:12px; box-shadow:none; border:1px solid var(--line); }
+  .sec-head{ flex-direction:column; align-items:flex-start; gap:16px; }
+  .rail-nav{ align-self:flex-end; }
+  .actus-titre{ flex-direction:column; gap:6px; }
+  .final{ padding:40px 20px; }
+  .final-cta .btn,.hero-cta .btn{ width:100%; justify-content:center; }
+}
+
+/* ---------- appareils tactiles : pas d'effet qui dépend du survol ---------- */
+@media (hover:none){
+  .card:hover .card-img img,.actu:hover .actu-img img{ transform:none; }
+  .btn:hover{ transform:none; box-shadow:none; }
+  .actu:hover{ transform:none; box-shadow:none; }
+  .hero-frame .slide img{ transition:none; transform:none; }
+  .grid4 > div:hover .tile{ transform:none; }
+  .nav-links ul{ display:none; }
+}
+
+/* ---------- écrans très larges ---------- */
+@media (min-width:1600px){
+  :root{ --wrap:1420px; }
+  body{ font-size:17px; }
+}

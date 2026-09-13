@@ -103,11 +103,17 @@
       burger.setAttribute("aria-expanded", String(!open));
       drawer.classList.toggle("open", !open);
     });
-    drawer.addEventListener("click", function (e) {
-      if (e.target.closest("a")) {
-        burger.setAttribute("aria-expanded", "false");
-        drawer.classList.remove("open");
-      }
+    function fermer() {
+      burger.setAttribute("aria-expanded", "false");
+      drawer.classList.remove("open");
+    }
+    drawer.addEventListener("click", function (e) { if (e.target.closest("a")) fermer(); });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && drawer.classList.contains("open")) { fermer(); burger.focus(); }
+    });
+    document.addEventListener("click", function (e) {
+      if (!drawer.classList.contains("open")) return;
+      if (!drawer.contains(e.target) && !burger.contains(e.target)) fermer();
     });
   }
 
