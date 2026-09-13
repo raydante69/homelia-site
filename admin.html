@@ -95,6 +95,15 @@
             <div class="fw"><label for="a-photo">Photo principale</label><input id="a-photo" type="file" accept="image/*">
               <span class="note" id="a-photo-etat"></span></div>
             <div class="fw"><label for="a-image">ou adresse de l'image</label><input id="a-image" placeholder="/assets/img/…"></div>
+            <div class="fw"><label for="a-prixnum">Prix en chiffres (pour les filtres et le simulateur)</label>
+              <input id="a-prixnum" type="number" min="0" step="1000" placeholder="199000"></div>
+            <div class="fw"><label for="a-surface">Surface de référence (m²)</label>
+              <input id="a-surface" type="number" min="0" step="0.5" placeholder="60"></div>
+            <div class="fw"><label for="a-redevance">Redevance (€ par m² et par mois)</label>
+              <input id="a-redevance" type="number" min="0" step="0.05" placeholder="1.15"></div>
+            <div class="fw"><label for="a-coord">Coordonnées de la commune</label>
+              <input id="a-coord" placeholder="45.60433, 4.83247">
+              <span class="note">Latitude, longitude — copiables depuis openstreetmap.org (clic droit sur le lieu).</span></div>
             <div class="fw"><label for="a-ordre">Ordre d'affichage</label><input id="a-ordre" type="number" value="50"></div>
             <div class="fw"><label>Options</label>
               <label class="check"><input id="a-avant" type="checkbox"><span>Mettre en avant sur la page d'accueil</span></label>
@@ -234,6 +243,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function coord(i) {
+    var v = ($("#a-coord").value || "").split(",");
+    var n = Number((v[i] || "").trim());
+    return isFinite(n) && n !== 0 ? n : null;
+  }
   function lignes(txt) {
     return txt.split("\n").map(function (l) { return l.trim(); }).filter(Boolean);
   }
@@ -259,6 +273,10 @@ document.addEventListener("DOMContentLoaded", function () {
     $("#a-prest").value = a ? (a.prestations || []).map(function (p) { return p.titre + " | " + p.detail; }).join("\n") : "";
     $("#a-loc").value = a ? (a.localisation || []).map(function (l) { return l.titre + " | " + (l.points || []).join(" ; "); }).join("\n") : "";
     $("#a-image").value = a ? (a.image_url || "") : "";
+    $("#a-prixnum").value = a && a.prix_num ? a.prix_num : "";
+    $("#a-surface").value = a && a.surface_ref ? a.surface_ref : "";
+    $("#a-redevance").value = a && a.redevance_m2 ? a.redevance_m2 : "";
+    $("#a-coord").value = a && a.lat ? a.lat + ", " + a.lon : "";
     $("#a-ordre").value = a ? a.ordre : 50;
     $("#a-avant").checked = a ? Boolean(a.mis_en_avant) : false;
     $("#a-publiee").checked = a ? Boolean(a.publiee) : true;
@@ -305,6 +323,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return { titre: (p[0] || "").trim(), points: (p[1] || "").split(";").map(function (x) { return x.trim(); }).filter(Boolean) };
       }),
       image_url: $("#a-image").value.trim() || null,
+      prix_num: Number($("#a-prixnum").value) || null,
+      surface_ref: Number($("#a-surface").value) || null,
+      redevance_m2: Number($("#a-redevance").value) || null,
+      lat: coord(0), lon: coord(1),
       ordre: Number($("#a-ordre").value) || 50,
       mis_en_avant: $("#a-avant").checked, publiee: $("#a-publiee").checked
     };

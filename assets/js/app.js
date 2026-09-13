@@ -96,13 +96,17 @@ window.Homelia = (function () {
       var nouvelles = toutes.filter(function (a) { return connus.indexOf(a.slug) === -1; });
       nouvelles.forEach(function (a) {
         var bloc = document.createElement("div");
-        bloc.dataset.tags = "d" + a.departement;
         bloc.dataset.slug = a.slug;
+        bloc.dataset.dep = a.departement;
+        bloc.dataset.typo = typologies(a.typologies).join(" ");
+        bloc.dataset.prix = a.prix_num || "";
+        bloc.dataset.statut = (a.statut || "").toLowerCase();
+        bloc.dataset.texte = [a.nom, a.ville, a.departement_nom, a.departement, a.accroche]
+          .filter(Boolean).join(" ").toLowerCase();
         bloc.innerHTML = carte(a);
         liste.appendChild(bloc);
       });
-      var compteur = $("#count");
-      if (compteur && nouvelles.length) compteur.textContent = connus.length + nouvelles.length;
+      if (nouvelles.length && window.homeliaFiltrer) window.homeliaFiltrer();
     }
   }
 
@@ -247,6 +251,19 @@ window.Homelia = (function () {
     if (!actif) return null;
     var r = await db.from("annonces").select("*").eq("slug", slug).maybeSingle();
     return r.data;
+  }
+
+  /* « T2 à T5 » ou « T3 · T4 » -> ['T2','T3','T4','T5'] */
+  function typologies(t) {
+    var niveaux = (t || "").match(/T\d/g) || [];
+    var nums = niveaux.map(function (x) { return Number(x.slice(1)); });
+    if (!nums.length) return [];
+    if (/\u00e0/.test(t) && nums.length >= 2) {
+      var out = [];
+      for (var i = Math.min.apply(null, nums); i <= Math.max.apply(null, nums); i++) out.push("T" + i);
+      return out;
+    }
+    return nums.sort().map(function (n) { return "T" + n; });
   }
 
   function lien(a) { return a.page_statique || ("/annonce.html?a=" + encodeURIComponent(a.slug)); }

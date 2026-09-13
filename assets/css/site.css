@@ -311,10 +311,14 @@ td.num,th.num{ text-align:right; }
 /* ---------- formulaire ---------- */
 .form{ display:grid; gap:16px; }
 .form .row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.form label{ display:block; font-size:13px; color:var(--mut); margin-bottom:6px; font-weight:500; }
-.form input,.form select,.form textarea{ width:100%; border:1px solid var(--line); border-radius:11px;
+.form label,.form-grid label{ display:block; font-size:13px; color:var(--mut); margin-bottom:6px; font-weight:500; }
+.form input,.form select,.form textarea,
+.form-grid input,.form-grid select,.form-grid textarea{ width:100%; border:1px solid var(--line); border-radius:11px;
   padding:12px 14px; font:inherit; font-size:15px; background:var(--paper); color:var(--ink); transition:border-color .2s, box-shadow .2s; }
-.form input:focus,.form select:focus,.form textarea:focus{ outline:none; border-color:var(--deep2); box-shadow:0 0 0 3px rgba(44,86,110,.12); }
+.form input:focus,.form select:focus,.form textarea:focus,
+.form-grid input:focus,.form-grid select:focus,.form-grid textarea:focus{ outline:none; border-color:var(--deep2); box-shadow:0 0 0 3px rgba(44,86,110,.12); }
+.form-grid input[type=range]{ padding:0; border:none; background:transparent; }
+.form-grid > .fw > label{ display:block; font-size:13px; color:var(--mut); margin-bottom:6px; font-weight:500; }
 .form textarea{ min-height:130px; resize:vertical; }
 .form .check{ display:flex; gap:10px; align-items:flex-start; font-size:13px; color:var(--mut); }
 .form .check input{ width:auto; margin-top:3px; flex:0 0 auto; }
@@ -489,4 +493,76 @@ td.num,th.num{ text-align:right; }
   .form-grid{ grid-template-columns:1fr; }
   .ligne{ flex-wrap:wrap; }
   .ligne .actions{ width:100%; }
+}
+
+/* ==========================================================================
+   Carte, simulateur de mensualité, filtres enrichis, plaquette imprimable
+   ========================================================================== */
+.carte{ position:relative; border-radius:18px; overflow:hidden; border:1px solid var(--line);
+  background:var(--surf); aspect-ratio:16/7; min-height:300px; }
+.carte iframe{ width:100%; height:100%; border:0; display:block; }
+.carte-voile{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:14px; text-align:center; padding:28px 22px;
+  background:linear-gradient(160deg,var(--surf),#E4EBEE); }
+.carte-voile p{ margin:0; font-size:15px; color:#3C4F58; }
+.carte-voile .note{ max-width:46ch; font-size:12.5px; }
+.carte-voile strong{ font-family:"Schibsted Grotesk",system-ui,sans-serif; font-size:19px; letter-spacing:-.02em; }
+
+.ligne-calc{ display:flex; align-items:baseline; justify-content:space-between; gap:14px;
+  padding:11px 0; border-bottom:1px solid rgba(15,29,36,.08); font-size:14.5px; color:#3C4F58; }
+.ligne-calc b{ font-family:"Schibsted Grotesk",system-ui,sans-serif; font-size:19px; color:var(--ink); }
+.ligne-calc.total{ border-bottom:none; border-top:2px solid var(--deep); margin-top:6px; padding-top:14px; }
+.ligne-calc.total b{ font-size:28px; letter-spacing:-.03em; }
+.ligne-calc.total span{ font-weight:500; color:var(--ink); }
+#sim-mens .form-grid{ gap:14px 16px; }
+#sim-mens label b{ font-family:"Schibsted Grotesk",system-ui,sans-serif; font-variant-numeric:tabular-nums;
+  color:var(--ink); font-size:14px; text-transform:none; letter-spacing:0; }
+
+.recherche{ display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:12px; margin-bottom:18px; }
+.recherche label{ display:block; font-size:12px; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--mut); font-weight:500; margin-bottom:6px; }
+.recherche input,.recherche select{ width:100%; border:1px solid var(--line); border-radius:11px;
+  padding:11px 13px; font:inherit; font-size:14.5px; background:var(--paper); color:var(--ink); }
+.recherche input:focus,.recherche select:focus{ outline:none; border-color:var(--deep2); box-shadow:0 0 0 3px rgba(44,86,110,.12); }
+.resultats{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:22px; font-size:13.5px; color:var(--mut); }
+.resultats button{ border:none; background:none; color:var(--deep2); text-decoration:underline;
+  text-underline-offset:3px; font-size:13.5px; padding:0; }
+.aucun{ background:var(--surf); border-radius:16px; padding:40px 24px; text-align:center; color:var(--mut); }
+
+@media (max-width:900px){ .recherche{ grid-template-columns:1fr 1fr; } }
+@media (max-width:520px){ .recherche{ grid-template-columns:1fr; } }
+
+/* ---------- plaquette imprimable ---------- */
+@media print{
+  @page{ size:A4; margin:14mm 12mm; }
+  body{ background:#fff !important; color:#000; font-size:11pt; }
+  .nav,.drawer,.progress,.site-foot,.cookie,.final,.rail-nav,.dots,.hero-ctrl,.hero-dots,
+  .carte,.filters,.recherche,.resultats,.sim-band,#sim-mens,#sim,.tabs,.fav,[data-imprimer],
+  .skip,.card-specs,.q .ico,.cards,.sec-head,.rail,.callout,.pulse{ display:none !important; }
+  tr{ break-inside:avoid; }
+  section{ break-inside:avoid-page; }
+  #lots{ break-inside:auto; }
+  h2,h3{ break-after:avoid; }
+  .phead{ background:#fff !important; color:#000; padding-block:0 12pt; border-bottom:1.5pt solid #1E3A48; }
+  .phead h1{ color:#000; font-size:24pt; }
+  .phead p,.crumb{ color:#333; }
+  .phead .hero-cta{ display:none !important; }
+  .phead::after{ content:"Homelia · accession immobilière · 04 65 84 87 11 · contact@homelia-accession.fr";
+    display:block; margin-top:10pt; font-size:9pt; color:#1E3A48; }
+  section{ padding-block:10pt !important; }
+  .wrap{ max-width:none; padding-inline:0; }
+  .split{ grid-template-columns:1fr 1fr !important; gap:14pt; }
+  img{ max-height:70mm; object-fit:cover; border-radius:3mm; }
+  .stats{ grid-template-columns:repeat(4,1fr) !important; }
+  .stat strong{ font-size:14pt !important; }
+  table{ font-size:9.5pt; }
+  th{ background:#EEF2F3 !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .table-wrap{ overflow:visible; }
+  .q .panel{ grid-template-rows:1fr !important; }
+  .why{ background:#fff !important; }
+  a[href^="/"]::after{ content:""; }
+  .reveal,.reveal.pre{ opacity:1 !important; transform:none !important; }
+  section:has(#lots){ break-inside:auto; }
+  .grid4{ grid-template-columns:repeat(4,1fr) !important; gap:10pt !important; }
+  .tile{ display:none; }
 }

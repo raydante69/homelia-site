@@ -44,9 +44,29 @@
   <p>Maisons de ville, duplex et appartements, en Auvergne-Rhône-Alpes, en Bourgogne et en Île-de-France. Tous nos programmes sont proposés en Bail Réel Solidaire, avec TVA à 5,5 %% et frais de notaire réduits.</p>
 </div></section>
 <section><div class="wrap">
-  <div class="filters" data-filter-group data-filter-target="#liste" data-filter-count="#count"><button type="button" data-f="*" aria-pressed="true">Tous les départements</button><button type="button" data-f="d69" aria-pressed="false">Rhône (69)</button><button type="button" data-f="d38" aria-pressed="false">Isère (38)</button><button type="button" data-f="d01" aria-pressed="false">Ain (01)</button><button type="button" data-f="d71" aria-pressed="false">Saône-et-Loire (71)</button><button type="button" data-f="d73" aria-pressed="false">Savoie (73)</button><button type="button" data-f="d93" aria-pressed="false">Seine-Saint-Denis (93)</button></div>
-  <p class="note" style="margin:-14px 0 24px"><span id="count">9</span> programmes affichés · mise à jour du 12 septembre 2026</p>
-  <div class="cards" id="liste"><div data-tags="d69" data-slug="communay"><a class="card" href="/programmes/communay.html">
+  <div class="recherche" id="recherche">
+    <div><label for="f-texte">Rechercher</label>
+      <input id="f-texte" type="search" placeholder="Commune, nom du programme…" autocomplete="off"></div>
+    <div><label for="f-dep">Département</label>
+      <select id="f-dep"><option value="">Tous</option><option value="69">Rhône (69)</option><option value="38">Isère (38)</option><option value="01">Ain (01)</option><option value="71">Saône-et-Loire (71)</option><option value="73">Savoie (73)</option><option value="93">Seine-Saint-Denis (93)</option></select></div>
+    <div><label for="f-typo">Typologie</label>
+      <select id="f-typo"><option value="">Toutes</option><option value="T2">T2 et plus</option><option value="T3">T3 et plus</option><option value="T4">T4 et plus</option><option value="T5">T5 et plus</option></select></div>
+    <div><label for="f-budget">Budget maximum</label>
+      <select id="f-budget">
+        <option value="">Sans limite</option>
+        <option value="160000">160 000 €</option>
+        <option value="180000">180 000 €</option>
+        <option value="200000">200 000 €</option>
+        <option value="230000">230 000 €</option>
+        <option value="260000">260 000 €</option>
+      </select></div>
+  </div>
+  <div class="resultats">
+    <span><b id="count">9</b> programme<span data-pluriel>s</span> affiché<span data-pluriel>s</span>
+      · mise à jour du 12 septembre 2026</span>
+    <button type="button" id="f-raz" hidden>Réinitialiser</button>
+  </div>
+  <div class="cards" id="liste"><div data-slug="communay" data-dep="69" data-typo="T3 T4" data-prix="199000" data-statut="en vente" data-texte="le 16 télégraphe communay rhône 69 douze maisons de ville neuves avec jardin privatif, au sud de la métropole de lyon."><a class="card" href="/programmes/communay.html">
       <div class="card-img"><span class="chip">En vente · T3 · T4</span>
         <img src="/assets/img/communay-1.jpg" alt="Le 16 Télégraphe à Communay (69)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -54,7 +74,7 @@
         <span class="price">199 000 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>12 logements</span><span>T3 et T4</span><span>Jardin privatif</span><span>2 stationnements</span></div>
-    </a></div><div data-tags="d38" data-slug="coublevie"><a class="card" href="/programmes/coublevie.html">
+    </a></div><div data-slug="coublevie" data-dep="38" data-typo="T2 T3 T4 T5" data-prix="129000" data-statut="en vente" data-texte="les terrasses des 3 parcs coublevie isère 38 une résidence au cœur de coublevie, aux portes du parc naturel régional de chartreuse."><a class="card" href="/programmes/coublevie.html">
       <div class="card-img"><span class="chip">En vente · T2 à T5</span>
         <img src="/assets/img/coublevie-1.jpg" alt="Les Terrasses des 3 Parcs à Coublevie (38)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -62,7 +82,7 @@
         <span class="price">129 000 €<small>T2 à partir de</small></span>
       </div>
       <div class="card-specs"><span>T2 à T5</span><span>Espaces extérieurs</span><span>Verger partagé</span><span>Proche Voiron</span></div>
-    </a></div><div data-tags="d01" data-slug="bourg-saint-christophe"><a class="card" href="/programmes/bourg-saint-christophe.html">
+    </a></div><div data-slug="bourg-saint-christophe" data-dep="01" data-typo="T4" data-prix="235500" data-statut="en vente" data-texte="le domaine des chênes 2 bourg-saint-christophe ain 01 des maisons en duplex de près de 90 m², à trente kilomètres de lyon."><a class="card" href="/programmes/bourg-saint-christophe.html">
       <div class="card-img"><span class="chip">En vente · T4 en duplex</span>
         <img src="/assets/img/bourg-st-christophe.jpg" alt="Le Domaine des Chênes 2 à Bourg-Saint-Christophe (01)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -70,7 +90,7 @@
         <span class="price">235 500 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>T4 duplex</span><span>Près de 90 m²</span><span>Jardin privatif</span><span>Garage individuel</span></div>
-    </a></div><div data-tags="d01" data-slug="frans"><a class="card" href="/programmes/frans.html">
+    </a></div><div data-slug="frans" data-dep="01" data-typo="T4" data-prix="219000" data-statut="en vente" data-texte="green parc frans ain 01 quatorze pavillons en duplex avec jardin, entre villefranche-sur-saône et lyon."><a class="card" href="/programmes/frans.html">
       <div class="card-img"><span class="chip">En vente · T4</span>
         <img src="/assets/img/frans.jpg" alt="Green Parc à Frans (01)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -78,7 +98,7 @@
         <span class="price">219 000 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>14 pavillons</span><span>T4 duplex</span><span>Jardin et terrasse</span><span>Aire de jeux</span></div>
-    </a></div><div data-tags="d01" data-slug="savigneux"><a class="card" href="/programmes/savigneux.html">
+    </a></div><div data-slug="savigneux" data-dep="01" data-typo="T4" data-prix="225000" data-statut="en vente" data-texte="l'orée des champs savigneux ain 01 des t4 avec terrasse et jardin, au cœur d'un village de l'ain."><a class="card" href="/programmes/savigneux.html">
       <div class="card-img"><span class="chip">En vente · T4</span>
         <img src="/assets/img/savigneux.jpg" alt="L'Orée des champs à Savigneux (01)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -86,7 +106,7 @@
         <span class="price">225 000 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>T4</span><span>Terrasse</span><span>Jardin privatif</span><span>2 stationnements</span></div>
-    </a></div><div data-tags="d69" data-slug="saint-julien"><a class="card" href="/programmes/saint-julien.html">
+    </a></div><div data-slug="saint-julien" data-dep="69" data-typo="T4" data-prix="257500" data-statut="en vente" data-texte="le clos chopin saint-julien rhône 69 huit maisons en duplex avec vue sur les monts du beaujolais."><a class="card" href="/programmes/saint-julien.html">
       <div class="card-img"><span class="chip">En vente · T4 en duplex</span>
         <img src="/assets/img/st-julien.jpg" alt="Le Clos Chopin à Saint-Julien (69)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -94,7 +114,7 @@
         <span class="price">257 500 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>8 logements</span><span>Près de 100 m²</span><span>Parcelles jusqu'à 450 m²</span><span>Garage</span></div>
-    </a></div><div data-tags="d71" data-slug="la-chapelle-de-guinchay"><a class="card" href="/programmes/la-chapelle-de-guinchay.html">
+    </a></div><div data-slug="la-chapelle-de-guinchay" data-dep="71" data-typo="T4" data-prix="185000" data-statut="en vente" data-texte="le bois de la croix la chapelle-de-guinchay saône-et-loire 71 des maisons jumelées en duplex, entre mâcon et belleville-en-beaujolais."><a class="card" href="/programmes/la-chapelle-de-guinchay.html">
       <div class="card-img"><span class="chip">En vente · T4 duplex jumelés</span>
         <img src="/assets/img/chapelle-guinchay.jpg" alt="Le Bois de la Croix à La Chapelle-de-Guinchay (71)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -102,7 +122,7 @@
         <span class="price">185 000 €<small>à partir de</small></span>
       </div>
       <div class="card-specs"><span>T4 duplex</span><span>Terrasse et jardin</span><span>Garage</span><span>Finitions personnalisables</span></div>
-    </a></div><div data-tags="d73" data-slug="bassens"><a class="card" href="/programmes/bassens.html">
+    </a></div><div data-slug="bassens" data-dep="73" data-typo="T2 T3" data-prix="153000" data-statut="en vente" data-texte="camberia bassens savoie 73 le calme d'une commune résidentielle, à la porte de chambéry."><a class="card" href="/programmes/bassens.html">
       <div class="card-img"><span class="chip">En vente · T2 · T3</span>
         <img src="/assets/img/bassens.jpg" alt="Camberia à Bassens (73)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">
@@ -110,7 +130,7 @@
         <span class="price">153 000 €<small>T2 à partir de</small></span>
       </div>
       <div class="card-specs"><span>T2 et T3</span><span>Espace extérieur</span><span>Stationnement et cave</span><span>Proche Chambéry</span></div>
-    </a></div><div data-tags="d93" data-slug="drancy"><a class="card" href="/programmes/drancy.html">
+    </a></div><div data-slug="drancy" data-dep="93" data-typo="T2 T3" data-prix="169000" data-statut="en vente" data-texte="l'essentiel drancy seine-saint-denis 93 une résidence contemporaine du quartier paris campagne, aux portes de paris."><a class="card" href="/programmes/drancy.html">
       <div class="card-img"><span class="chip">En vente · T2 · T3</span>
         <img src="/assets/img/drancy.jpg" alt="L'Essentiel à Drancy (93)" loading="lazy" width="1500" height="950"></div>
       <div class="card-bar">

@@ -43,6 +43,8 @@ assets/js/vendor/supabase.js  Bibliothèque supabase-js, servie avec le site
 assets/img/             Visuels des programmes et logos
 supabase/schema.sql     Tables et règles d'accès
 supabase/seed.sql       Chargement des 9 annonces existantes
+supabase/correctif-01.sql  Règle d'accès des profils + promotion du responsable
+supabase/correctif-02.sql  Colonnes carte et simulateur de mensualité
 sitemap.xml, robots.txt Référencement
 ```
 
@@ -88,6 +90,16 @@ côté RGPD.
 La clé *anon* est publique par conception : elle ne donne accès qu'à ce que les
 règles d'accès autorisent. La clé *service_role*, elle, ne doit jamais être
 placée dans ce dépôt.
+
+## Carte et simulateur de mensualité
+
+Chaque fiche affiche une carte OpenStreetMap et un simulateur de coût mensuel
+(crédit + redevance foncière). Les deux se nourrissent de cinq colonnes ajoutées
+par `supabase/correctif-02.sql` : `lat`, `lon`, `prix_num`, `surface_ref` et
+`redevance_m2`, renseignables depuis l'administration.
+
+La carte n'est chargée qu'après un clic du visiteur : aucune requête ne part
+vers OpenStreetMap avant, ce qui évite d'avoir à la déclarer comme traceur.
 
 ## Gérer les annonces
 

@@ -48,6 +48,7 @@
   <div class="hero-cta" style="margin-top:26px">
     <a class="btn btn-sand" href="/contact.html?programme=drancy">Être rappelé <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
     <a class="btn btn-line" href="/guide-du-brs.html">Comprendre le BRS</a>
+    <button class="btn btn-line" type="button" data-imprimer>Télécharger la plaquette</button>
   </div>
 </div></section>
 
@@ -101,6 +102,56 @@
   
 </div></section>
 
+
+<section style="padding-top:0"><div class="wrap">
+  <p class="eyebrow reveal">Sur la carte</p>
+  <h2 class="reveal" style="font-size:clamp(24px,3vw,34px);margin:10px 0 20px">Où se situe L'Essentiel</h2>
+  <div class="carte reveal" data-carte
+       data-src="https://www.openstreetmap.org/export/embed.html?bbox=2.42632,48.91098,2.46472,48.93498&amp;layer=mapnik&amp;marker=48.92298,2.44552"
+       data-titre="Carte de L'Essentiel à Drancy (93)">
+    <div class="carte-voile">
+      <p><strong>L'Essentiel</strong><br>Drancy (93) — 48.92298, 2.44552</p>
+      <button class="btn" type="button">Afficher la carte</button>
+      <p class="note">La carte est fournie par OpenStreetMap. Elle n'est chargée que si vous le demandez :
+        aucune donnée n'est transmise avant votre clic.</p>
+    </div>
+  </div>
+  <p class="note"><a href="https://www.openstreetmap.org/?mlat=48.92298&amp;mlon=2.44552#map=15/48.92298/2.44552"
+     target="_blank" rel="noopener noreferrer">Ouvrir dans OpenStreetMap</a> · Emplacement de la commune, à titre indicatif.</p>
+</div></section>
+<section class="why" id="mensualite"><div class="wrap" style="text-align:left">
+  <div class="sim flat" id="sim-mens" data-prix="169000" data-surface="45" data-redevance="">
+    <div>
+      <p class="eyebrow">Votre budget</p>
+      <h2 style="margin:8px 0 6px">Combien coûte L'Essentiel par mois ?</h2>
+      <p class="hint">Le prix d'achat ne fait pas tout : en BRS, il faut ajouter la redevance versée à l'Organisme de Foncier Solidaire. Voici le coût mensuel complet.</p>
+      <div class="form-grid">
+        <div class="fw"><label for="m-prix">Prix du logement</label>
+          <input id="m-prix" type="number" min="50000" max="600000" step="1000" inputmode="numeric"></div>
+        <div class="fw"><label for="m-apport">Apport personnel</label>
+          <input id="m-apport" type="number" min="0" max="400000" step="1000" value="10000" inputmode="numeric"></div>
+        <div class="fw"><label for="m-duree">Durée du crédit : <b id="m-duree-val">25 ans</b></label>
+          <input id="m-duree" type="range" min="10" max="30" step="1" value="25"></div>
+        <div class="fw"><label for="m-taux">Taux annuel : <b id="m-taux-val">3,40 %</b></label>
+          <input id="m-taux" type="range" min="1" max="6" step="0.05" value="3.4"></div>
+        <div class="fw"><label for="m-surface">Surface habitable (m²)</label>
+          <input id="m-surface" type="number" min="20" max="200" step="0.5" inputmode="decimal"></div>
+        <div class="fw"><label for="m-redevance">Redevance (€ par m² et par mois)</label>
+          <input id="m-redevance" type="number" min="0" max="5" step="0.05" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div class="verdict" id="m-resultat">
+      <span class="state">Coût mensuel estimé</span>
+      <div class="ligne-calc"><span>Mensualité de crédit</span><b class="tabnum" id="m-credit">—</b></div>
+      <div class="ligne-calc"><span>Redevance foncière</span><b class="tabnum" id="m-redev">—</b></div>
+      <div class="ligne-calc total"><span>Total par mois</span><b class="tabnum" id="m-total">—</b></div>
+      <p class="note" style="margin-top:14px">Montant emprunté : <span class="tabnum" id="m-emprunt">—</span> ·
+        Coût total des intérêts : <span class="tabnum" id="m-interets">—</span></p>
+      <small>Estimation indicative, hors assurance emprunteur, taxe foncière, charges de copropriété et frais de dossier.
+        Elle ne vaut ni offre de prêt ni conseil en financement.</small>
+    </div>
+  </div>
+</div></section>
 <section style="padding-top:0"><div class="wrap sim-band" style="padding:0;background:none"><div class="sim flat" id="sim-form">
   <div>
     <h2>Suis-je éligible au BRS ?</h2>

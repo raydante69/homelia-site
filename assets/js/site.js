@@ -74,6 +74,20 @@
     $("#hPause").addEventListener("click", function () { setPaused(!paused); });
     rotator.addEventListener("mouseenter", function () { clearInterval(timer); dots.classList.add("paused"); });
     rotator.addEventListener("mouseleave", function () { if (!paused) { dots.classList.remove("paused"); restart(); } });
+    /* Même égard au clavier qu'à la souris : le défilement s'arrête tant que le
+       focus est dans le carrousel, sinon le contenu bouge sous les doigts. */
+    function zone(e) { return rotator.contains(e.target) || dots.contains(e.target); }
+    document.addEventListener("focusin", function (e) {
+      if (zone(e)) { clearInterval(timer); dots.classList.add("paused"); }
+    });
+    document.addEventListener("focusout", function (e) {
+      if (zone(e) && !paused) { dots.classList.remove("paused"); restart(); }
+    });
+    document.addEventListener("keydown", function (e) {
+      if (!zone(e)) return;
+      if (e.key === "ArrowLeft") { go(idx - 1); restart(); }
+      if (e.key === "ArrowRight") { go(idx + 1); restart(); }
+    });
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) clearInterval(timer); else restart();
     });
@@ -315,6 +329,143 @@
         cookie.classList.remove("show");
       });
     });
+  }
+
+
+  /* ---- carte : chargée seulement à la demande du visiteur ---- */
+  window.homeliaCarte = function (bloc) {
+    var b = $("button", bloc);
+    if (!b || bloc.dataset.lie) return;
+    bloc.dataset.lie = "1";
+    b.addEventListener("click", function () {
+      var cadre = document.createElement("iframe");
+      cadre.src = bloc.dataset.src;
+      cadre.title = bloc.dataset.titre || "Carte";
+      cadre.loading = "lazy";
+      cadre.setAttribute("referrerpolicy", "no-referrer");
+      bloc.innerHTML = "";
+      bloc.appendChild(cadre);
+    });
+  };
+  $$("[data-carte]").forEach(window.homeliaCarte);
+
+  /* ---- plaquette : mise en page d'impression du navigateur ---- */
+  $$("[data-imprimer]").forEach(function (b) {
+    b.addEventListener("click", function () { window.print(); });
+  });
+
+  /* ---- simulateur de mensualité ---- */
+  var mens = $("#sim-mens");
+  if (mens) {
+    var euro = function (n) {
+      return Math.round(n).toLocaleString("fr-FR").replace(/\u202F|\u00A0/g, " ") + " €";
+    };
+    var champs = {
+      prix: $("#m-prix"), apport: $("#m-apport"), duree: $("#m-duree"),
+      taux: $("#m-taux"), surface: $("#m-surface"), redevance: $("#m-redevance")
+    };
+    champs.prix.value = mens.dataset.prix || 199000;
+    champs.surface.value = mens.dataset.surface || 60;
+    champs.redevance.value = mens.dataset.redevance || "";
+    champs.redevance.placeholder = mens.dataset.redevance ? "" : "non communiquée";
+
+    function calculer() {
+      var prix = Number(champs.prix.value) || 0,
+          apport = Math.min(Number(champs.apport.value) || 0, prix),
+          annees = Number(champs.duree.value),
+          taux = Number(champs.taux.value),
+          surface = Number(champs.surface.value) || 0,
+          parM2 = Number(champs.redevance.value) || 0;
+
+      $("#m-duree-val").textContent = annees + " ans";
+      $("#m-taux-val").textContent = taux.toFixed(2).replace(".", ",") + " %";
+
+      var emprunt = Math.max(prix - apport, 0),
+          t = taux / 100 / 12,
+          n = annees * 12,
+          credit = t > 0 ? emprunt * t / (1 - Math.pow(1 + t, -n)) : emprunt / n,
+          redev = surface * parM2;
+
+      $("#m-credit").textContent = euro(credit);
+      $("#m-redev").textContent = parM2 ? euro(redev) : "à confirmer";
+      $("#m-total").textContent = euro(credit + redev);
+      $("#m-emprunt").textContent = euro(emprunt);
+      $("#m-interets").textContent = euro(Math.max(credit * n - emprunt, 0));
+    }
+    Object.keys(champs).forEach(function (k) {
+      champs[k].addEventListener("input", calculer);
+    });
+    calculer();
+
+    /* Les fiches générées depuis la base renseignent le simulateur après coup. */
+    window.homeliaMensualite = function (prix, surface, redevance) {
+      if (prix) champs.prix.value = prix;
+      if (surface) champs.surface.value = surface;
+      champs.redevance.value = redevance || "";
+      champs.redevance.placeholder = redevance ? "" : "non communiquée";
+      calculer();
+    };
+  }
+
+  /* ---- recherche et filtres de la liste des programmes ---- */
+  var recherche = $("#recherche");
+  if (recherche) {
+    var liste = $("#liste"), compteur = $("#count"), raz = $("#f-raz");
+    var sansAccent = function (v) {
+      return (v || "").toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    };
+    var vide = document.createElement("div");
+    vide.className = "aucun";
+    vide.hidden = true;
+    vide.innerHTML = "<p><strong>Aucun programme ne correspond à cette recherche.</strong></p>"
+      + "<p>Élargissez le budget ou le département — ou <a href=\"/contact.html\">dites-nous ce que vous cherchez</a>, "
+      + "nous vous préviendrons au prochain lancement.</p>";
+    liste.parentNode.insertBefore(vide, liste.nextSibling);
+
+    function filtrer() {
+      var q = sansAccent($("#f-texte").value.trim()),
+          dep = $("#f-dep").value,
+          typo = $("#f-typo").value,
+          budget = Number($("#f-budget").value) || 0,
+          visibles = 0;
+
+      $$("[data-slug]", liste).forEach(function (bloc) {
+        var ok = true;
+        if (q && sansAccent(bloc.dataset.texte).indexOf(q) === -1) ok = false;
+        if (ok && dep && bloc.dataset.dep !== dep) ok = false;
+        if (ok && typo) {
+          var vise = Number(typo.slice(1));
+          var offerts = (bloc.dataset.typo || "").split(" ").filter(Boolean)
+            .map(function (t) { return Number(t.slice(1)); });
+          if (!offerts.some(function (n) { return n >= vise; })) ok = false;
+        }
+        if (ok && budget) {
+          var prix = Number(bloc.dataset.prix);
+          if (!prix || prix > budget) ok = false;
+        }
+        bloc.hidden = !ok;
+        if (ok) visibles++;
+      });
+
+      compteur.textContent = visibles;
+      $$("[data-pluriel]").forEach(function (el) { el.textContent = visibles > 1 ? "s" : ""; });
+      vide.hidden = visibles > 0;
+      raz.hidden = !(q || dep || typo || budget);
+    }
+
+    $$("#f-texte, #f-dep, #f-typo, #f-budget").forEach(function (el) {
+      el.addEventListener("input", filtrer);
+      el.addEventListener("change", filtrer);
+    });
+    raz.addEventListener("click", function () {
+      $("#f-texte").value = "";
+      $("#f-dep").value = "";
+      $("#f-typo").value = "";
+      $("#f-budget").value = "";
+      filtrer();
+    });
+    window.homeliaFiltrer = filtrer;   /* rappelé après ajout d'annonces depuis la base */
+    filtrer();
   }
 
   /* ---- ancres avec décalage de l'en-tête ---- */

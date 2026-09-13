@@ -76,6 +76,48 @@
   <div class="grid4 left" id="a-loc" style="gap:30px 28px"></div>
 </div></section>
 
+<section id="a-carte-bloc" hidden style="padding-top:0"><div class="wrap">
+  <p class="eyebrow">Sur la carte</p>
+  <h2 id="a-carte-titre" style="font-size:clamp(24px,3vw,34px);margin:10px 0 20px"></h2>
+  <div class="carte" id="a-carte" data-carte></div>
+  <p class="note" id="a-carte-lien"></p>
+</div></section>
+
+
+<section class="why" id="mensualite"><div class="wrap" style="text-align:left">
+  <div class="sim flat" id="sim-mens" data-prix="" data-surface="" data-redevance="">
+    <div>
+      <p class="eyebrow">Votre budget</p>
+      <h2 style="margin:8px 0 6px">Combien cela fait-il par mois ?</h2>
+      <p class="hint">Le prix d'achat ne fait pas tout : en BRS, il faut ajouter la redevance versée à l'Organisme de Foncier Solidaire. Voici le coût mensuel complet.</p>
+      <div class="form-grid">
+        <div class="fw"><label for="m-prix">Prix du logement</label>
+          <input id="m-prix" type="number" min="50000" max="600000" step="1000" inputmode="numeric"></div>
+        <div class="fw"><label for="m-apport">Apport personnel</label>
+          <input id="m-apport" type="number" min="0" max="400000" step="1000" value="10000" inputmode="numeric"></div>
+        <div class="fw"><label for="m-duree">Durée du crédit : <b id="m-duree-val">25 ans</b></label>
+          <input id="m-duree" type="range" min="10" max="30" step="1" value="25"></div>
+        <div class="fw"><label for="m-taux">Taux annuel : <b id="m-taux-val">3,40 %</b></label>
+          <input id="m-taux" type="range" min="1" max="6" step="0.05" value="3.4"></div>
+        <div class="fw"><label for="m-surface">Surface habitable (m²)</label>
+          <input id="m-surface" type="number" min="20" max="200" step="0.5" inputmode="decimal"></div>
+        <div class="fw"><label for="m-redevance">Redevance (€ par m² et par mois)</label>
+          <input id="m-redevance" type="number" min="0" max="5" step="0.05" inputmode="decimal"></div>
+      </div>
+    </div>
+    <div class="verdict" id="m-resultat">
+      <span class="state">Coût mensuel estimé</span>
+      <div class="ligne-calc"><span>Mensualité de crédit</span><b class="tabnum" id="m-credit">—</b></div>
+      <div class="ligne-calc"><span>Redevance foncière</span><b class="tabnum" id="m-redev">—</b></div>
+      <div class="ligne-calc total"><span>Total par mois</span><b class="tabnum" id="m-total">—</b></div>
+      <p class="note" style="margin-top:14px">Montant emprunté : <span class="tabnum" id="m-emprunt">—</span> ·
+        Coût total des intérêts : <span class="tabnum" id="m-interets">—</span></p>
+      <small>Estimation indicative, hors assurance emprunteur, taxe foncière, charges de copropriété et frais de dossier.
+        Elle ne vaut ni offre de prêt ni conseil en financement.</small>
+    </div>
+  </div>
+</div></section>
+
 <section id="a-absente" hidden><div class="wrap prose">
   <h2>Programme introuvable</h2>
   <p>Cette annonce n'existe plus ou n'est pas publiée. Retrouvez tous nos programmes en cours sur la
@@ -126,6 +168,24 @@ document.addEventListener("DOMContentLoaded", async function () {
         + (l.points || []).map(function (x) { return "<li>" + H.echappe(x) + "</li>"; }).join("") + "</ul></div>";
     }).join("");
   }
+
+  if (a.lat && a.lon) {
+    var d = 0.012, bb = [a.lon - d * 1.6, a.lat - d, a.lon + d * 1.6, a.lat + d].map(function (v) { return v.toFixed(5); }).join(",");
+    document.getElementById("a-carte-bloc").hidden = false;
+    $("#a-carte-titre").textContent = "Où se situe " + a.nom;
+    var carte = $("#a-carte");
+    carte.dataset.src = "https://www.openstreetmap.org/export/embed.html?bbox=" + bb + "&layer=mapnik&marker=" + a.lat + "," + a.lon;
+    carte.dataset.titre = "Carte de " + a.nom + " à " + a.ville;
+    carte.innerHTML = '<div class="carte-voile"><p><strong>' + H.echappe(a.nom) + "</strong><br>"
+      + H.echappe(a.ville) + " (" + H.echappe(a.departement) + ") — " + a.lat + ", " + a.lon + "</p>"
+      + '<button class="btn" type="button">Afficher la carte</button>'
+      + '<p class="note">La carte est fournie par OpenStreetMap. Elle n'est chargée que si vous le demandez.</p></div>';
+    if (window.homeliaCarte) window.homeliaCarte(carte);
+    $("#a-carte-lien").innerHTML = '<a href="https://www.openstreetmap.org/?mlat=' + a.lat + "&mlon=" + a.lon
+      + "#map=15/" + a.lat + "/" + a.lon + '" target="_blank" rel="noopener noreferrer">Ouvrir dans OpenStreetMap</a>'
+      + " · Emplacement de la commune, à titre indicatif.";
+  }
+  if (window.homeliaMensualite) window.homeliaMensualite(a.prix_num, a.surface_ref, a.redevance_m2);
 
   var bouton = $("#a-fav");
   H.auChangement(async function (session) {
