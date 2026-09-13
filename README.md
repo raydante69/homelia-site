@@ -76,11 +76,9 @@ côté RGPD.
 3. Nouvelle requête : coller `supabase/seed.sql`, exécuter (charge les 9 annonces).
 4. **Authentication → Users → Add user** : e-mail `contact@homelia-accession.fr`,
    mot de passe choisi, cocher *Auto Confirm User*.
-5. Revenir au SQL Editor et exécuter :
-   ```sql
-   update public.profils set role = 'responsable'
-   where id = (select id from auth.users where email = 'contact@homelia-accession.fr');
-   ```
+5. Revenir au SQL Editor et exécuter `supabase/correctif-01.sql`, qui promeut ce
+   compte en responsable (et corrige une règle d'accès). La requête de
+   vérification en fin de fichier doit renvoyer `role = responsable`.
 6. **Project Settings → API** : copier *Project URL* et la clé *anon public*
    dans `assets/js/supabase-config.js`, puis pousser le fichier. *(Fait.)*
 7. **Authentication → URL Configuration** : renseigner l'adresse du site

@@ -171,9 +171,17 @@ document.addEventListener("DOMContentLoaded", function () {
   /* ---------- accès ---------- */
   H.auChangement(async function (session) {
     if (!H.actif) { $("#acces").textContent = "La base de données n'est pas encore configurée."; return; }
-    if (!session) { window.location.href = "/connexion.html?retour=/admin.html"; return; }
+    if (!session) {
+      if (H.reseauKo()) {
+        $("#acces").textContent = "Impossible de vérifier votre session : vérifiez votre connexion, puis rechargez la page.";
+        return;
+      }
+      window.location.replace("/connexion.html?retour=/admin.html");
+      return;
+    }
     if (!H.estResponsable()) {
-      $("#acces").innerHTML = "Cet espace est réservé aux responsables. <a href='/espace.html'>Aller à mon espace</a>.";
+      $("#acces").innerHTML = "Cet espace est réservé aux responsables de Homelia.<br>"
+        + "<a class='btn btn-ghost' style='margin-top:14px' href='/espace.html'>Aller à mon espace</a>";
       return;
     }
     $("#acces").hidden = true;

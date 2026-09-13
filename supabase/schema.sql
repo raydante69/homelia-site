@@ -135,9 +135,20 @@ drop policy if exists "profil lisible par son propriétaire" on public.profils;
 create policy "profil lisible par son propriétaire" on public.profils
   for select using (auth.uid() = id or public.est_responsable());
 
+-- Lecture du rôle sans repasser par les règles d'accès (évite une récursion)
+create or replace function public.mon_role()
+returns text
+language sql
+stable
+security definer set search_path = public
+as $$
+  select role from public.profils where id = auth.uid();
+$$;
+
 drop policy if exists "profil modifiable par son propriétaire" on public.profils;
 create policy "profil modifiable par son propriétaire" on public.profils
-  for update using (auth.uid() = id) with check (auth.uid() = id and role = (select role from public.profils where id = auth.uid()));
+  for update using (auth.uid() = id)
+  with check (auth.uid() = id and role = public.mon_role());
 
 drop policy if exists "profil créable par son propriétaire" on public.profils;
 create policy "profil créable par son propriétaire" on public.profils

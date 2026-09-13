@@ -10,6 +10,9 @@ window.Homelia = (function () {
   var actif = Boolean(cfg.url && cfg.anonKey && window.supabase);
   var db = actif ? window.supabase.createClient(cfg.url, cfg.anonKey) : null;
   var session = null, profil = null;
+  var pret = false;        /* la session a-t-elle fini d'être chargée ? */
+  var reseauKo = false;    /* la session n'a pas pu être vérifiée */
+  var recuperation = false; /* arrivée par un lien de réinitialisation */
   var abonnes = [];
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -31,14 +34,28 @@ window.Homelia = (function () {
   function estResponsable() { return Boolean(profil && profil.role === "responsable"); }
   function utilisateur() { return session ? session.user : null; }
 
-  function prevenir() { abonnes.forEach(function (f) { try { f(session, profil); } catch (e) {} }); }
-  function auChangement(f) { abonnes.push(f); f(session, profil); }
+  function prevenir() {
+    pret = true;
+    abonnes.forEach(function (f) { try { f(session, profil); } catch (e) { console.error(e); } });
+  }
+  /* Les pages protégées s'abonnent ici. Le rappel n'est déclenché qu'une fois la
+     session réellement chargée : sans cela, une page se croyait déconnectée le
+     temps d'un aller-retour réseau et renvoyait vers la connexion en boucle. */
+  function auChangement(f) {
+    abonnes.push(f);
+    if (pret) { try { f(session, profil); } catch (e) { console.error(e); } }
+  }
 
   async function chargerProfil() {
     profil = null;
     if (!session) return;
     var r = await db.from("profils").select("*").eq("id", session.user.id).maybeSingle();
-    profil = r.data || null;
+    if (r.data) { profil = r.data; return; }
+    /* Compte créé avant la mise en place du déclencheur : on répare la fiche. */
+    var creation = await db.from("profils")
+      .insert({ id: session.user.id, nom: session.user.user_metadata ? session.user.user_metadata.nom : null })
+      .select().maybeSingle();
+    profil = creation.data || { id: session.user.id, role: "membre" };
   }
 
   /* ---------------- reprise des annonces sur les pages publiques ---------------- */
@@ -167,14 +184,28 @@ window.Homelia = (function () {
   }
 
   async function init() {
-    if (!actif) { majEntete(); return; }
-    var r = await db.auth.getSession();
-    session = r.data.session;
-    await chargerProfil();
+    if (!actif) { majEntete(); prevenir(); return; }
+    /* Si le réseau ne répond pas, on n'attend pas indéfiniment : la page doit
+       s'afficher, quitte à considérer le visiteur comme déconnecté. */
+    function limite(promesse, ms) {
+      return Promise.race([promesse, new Promise(function (_, rejette) {
+        setTimeout(function () { rejette(new Error("délai dépassé")); }, ms);
+      })]);
+    }
+    try {
+      var r = await limite(db.auth.getSession(), 8000);
+      session = r.data.session;
+      await limite(chargerProfil(), 8000);
+    } catch (e) {
+      console.error("Session indisponible :", e);
+      session = null;
+      reseauKo = true;
+    }
     majEntete();
     prevenir();
     reprendreAnnonces().then(activerFavoris);
-    db.auth.onAuthStateChange(async function (_e, s) {
+    db.auth.onAuthStateChange(async function (evenement, s) {
+      if (evenement === "PASSWORD_RECOVERY") recuperation = true;
       session = s;
       await chargerProfil();
       majEntete();
@@ -264,6 +295,13 @@ window.Homelia = (function () {
     return r.data || [];
   }
 
+  /* Une destination de retour ne peut être qu'un chemin interne. */
+  function destination(defaut) {
+    var r = new URLSearchParams(window.location.search).get("retour");
+    if (r && /^\/[^/\\]/.test(r)) return r;
+    return defaut;
+  }
+
   /* ---------------- authentification ---------------- */
   async function connexion(email, mdp) { return await db.auth.signInWithPassword({ email: email, password: mdp }); }
   async function inscription(email, mdp, nom, tel) {
@@ -272,7 +310,7 @@ window.Homelia = (function () {
   async function motDePasseOublie(email) {
     return await db.auth.resetPasswordForEmail(email, { redirectTo: location.origin + "/connexion.html?reinit=1" });
   }
-  async function deconnexion() { await db.auth.signOut(); window.location.href = "/index.html"; }
+  async function deconnexion() { await db.auth.signOut(); window.location.replace("/index.html"); }
   async function majCompte(champs) { return await db.auth.updateUser(champs); }
 
   /* ---------------- carte d'annonce (réutilisée partout) ---------------- */
@@ -294,7 +332,9 @@ window.Homelia = (function () {
   }
 
   return {
-    actif: actif, db: db, init: init, auChangement: auChangement,
+    actif: actif, db: db, init: init, auChangement: auChangement, destination: destination,
+    pret: function () { return pret; }, enRecuperation: function () { return recuperation; },
+    reseauKo: function () { return reseauKo; },
     utilisateur: utilisateur, profil: function () { return profil; }, estResponsable: estResponsable,
     annonces: annonces, annonce: annonce, reprendreAnnonces: reprendreAnnonces, activerFavoris: activerFavoris, lien: lien, image: image, carte: carte,
     mesFavoris: mesFavoris, estFavori: estFavori, basculerFavori: basculerFavori,
@@ -305,4 +345,8 @@ window.Homelia = (function () {
   };
 })();
 
-document.addEventListener("DOMContentLoaded", function () { window.Homelia.init(); });
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", function () { window.Homelia.init(); });
+} else {
+  window.Homelia.init();
+}

@@ -54,6 +54,7 @@
       <button role="tab" aria-selected="true" data-onglet="favoris">Mes favoris</button>
       <button role="tab" aria-selected="false" data-onglet="messages">Mes demandes</button>
       <button role="tab" aria-selected="false" data-onglet="profil">Mon profil</button>
+      <a class="btn btn-sm btn-ghost" id="vers-admin" href="/admin.html" style="margin-left:auto" hidden>Espace responsable</a>
     </div>
 
     <div class="tabpanel" data-panneau="favoris">
@@ -102,8 +103,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   H.auChangement(async function (session, profil) {
     if (!H.actif) { $("#acces").textContent = "Les comptes ne sont pas encore activés sur ce site."; return; }
-    if (!session) { window.location.href = "/connexion.html?retour=/espace.html"; return; }
+    if (!session) {
+      if (H.reseauKo()) {
+        $("#acces").textContent = "Impossible de vérifier votre session : vérifiez votre connexion, puis rechargez la page.";
+        return;
+      }
+      window.location.replace("/connexion.html?retour=/espace.html");
+      return;
+    }
     $("#acces").hidden = true;
+    $("#vers-admin").hidden = !H.estResponsable();
     $("#contenu").hidden = false;
     var nom = (profil && profil.nom) || session.user.email.split("@")[0];
     $("#bonjour").textContent = "Bonjour " + nom;

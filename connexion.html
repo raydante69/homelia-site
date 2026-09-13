@@ -49,6 +49,7 @@
     <div class="tabs" role="tablist">
       <button role="tab" aria-selected="true" data-onglet="connexion">Se connecter</button>
       <button role="tab" aria-selected="false" data-onglet="inscription">Créer un compte</button>
+      <button role="tab" aria-selected="false" data-onglet="reinit" id="onglet-reinit" hidden>Nouveau mot de passe</button>
     </div>
     <div class="alerte" id="alerte"></div>
 
@@ -58,6 +59,15 @@
         <div class="fw"><label for="c-mdp">Mot de passe</label><input id="c-mdp" type="password" autocomplete="current-password" required></div>
         <div><button class="btn" type="submit">Se connecter</button></div>
         <p class="note" style="margin:0"><a href="#" id="oubli">Mot de passe oublié ?</a></p>
+      </form>
+    </div>
+
+    <div class="tabpanel" data-panneau="reinit" hidden>
+      <form class="form" id="f-reinit" novalidate>
+        <p class="note" style="margin:0 0 10px">Choisissez un nouveau mot de passe pour votre compte.</p>
+        <div class="fw"><label for="r-mdp">Nouveau mot de passe</label><input id="r-mdp" type="password" autocomplete="new-password" minlength="8" required></div>
+        <div class="fw"><label for="r-mdp2">Confirmation</label><input id="r-mdp2" type="password" autocomplete="new-password" minlength="8" required></div>
+        <div><button class="btn" type="submit">Enregistrer le nouveau mot de passe</button></div>
       </form>
     </div>
 
@@ -93,17 +103,43 @@ document.addEventListener("DOMContentLoaded", function () {
     H.$$(".bloc form button").forEach(function (b) { b.disabled = true; });
     dire("Connexion indisponible : la base de données n'est pas encore configurée.", false);
   }
-  H.$$("[data-onglet]").forEach(function (t) {
-    t.addEventListener("click", function () {
-      H.$$("[data-onglet]").forEach(function (o) { o.setAttribute("aria-selected", String(o === t)); });
-      H.$$("[data-panneau]").forEach(function (p) { p.hidden = p.dataset.panneau !== t.dataset.onglet; });
-    });
-  });
-  function apresConnexion() {
-    var retour = new URLSearchParams(location.search).get("retour");
-    window.location.href = retour || (H.estResponsable() ? "/admin.html" : "/espace.html");
+  function montrerOnglet(nom) {
+    H.$$("[data-onglet]").forEach(function (o) { o.setAttribute("aria-selected", String(o.dataset.onglet === nom)); });
+    H.$$("[data-panneau]").forEach(function (p) { p.hidden = p.dataset.panneau !== nom; });
   }
-  H.auChangement(function (s) { if (s && !location.search.includes("reinit")) apresConnexion(); });
+  H.$$("[data-onglet]").forEach(function (t) {
+    t.addEventListener("click", function () { montrerOnglet(t.dataset.onglet); });
+  });
+  var reinit = new URLSearchParams(location.search).has("reinit");
+
+  function apresConnexion() {
+    var cible = H.destination(H.estResponsable() ? "/admin.html" : "/espace.html");
+    /* un membre renvoyé vers l'administration atterrirait sur un mur : on corrige */
+    if (cible === "/admin.html" && !H.estResponsable()) cible = "/espace.html";
+    window.location.replace(cible);
+  }
+
+  /* Le rappel n'est déclenché qu'une fois la session chargée : plus d'aller-retour
+     entre cette page et l'espace demandé. */
+  H.auChangement(function (s) {
+    if (!s) return;
+    if (reinit || H.enRecuperation()) {
+      $("#onglet-reinit").hidden = false;
+      montrerOnglet("reinit");
+      dire("Vous êtes identifié. Choisissez votre nouveau mot de passe.", true);
+      return;
+    }
+    apresConnexion();
+  });
+
+  $("#f-reinit").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    if ($("#r-mdp").value !== $("#r-mdp2").value) { dire("Les deux mots de passe ne correspondent pas.", false); return; }
+    var r = await H.majCompte({ password: $("#r-mdp").value });
+    if (r.error) { dire("Changement impossible : " + r.error.message, false); return; }
+    dire("Mot de passe enregistré. Redirection…", true);
+    setTimeout(apresConnexion, 900);
+  });
 
   $("#f-connexion").addEventListener("submit", async function (e) {
     e.preventDefault();
