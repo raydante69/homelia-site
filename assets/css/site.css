@@ -529,6 +529,9 @@ td.num,th.num{ text-align:right; }
   padding:11px 0; border-bottom:1px solid rgba(15,29,36,.08); font-size:14.5px; color:#3C4F58; }
 .ligne-calc b{ font-family:"Schibsted Grotesk",system-ui,sans-serif; font-size:19px; color:var(--ink); }
 .ligne-calc.total{ border-bottom:none; border-top:2px solid var(--deep); margin-top:6px; padding-top:14px; }
+/* la ligne précédant le total n'a pas besoin de son filet clair : le trait
+   foncé du total sert déjà de séparation, les deux se doublaient */
+.ligne-calc:has(+ .ligne-calc.total){ border-bottom:none; }
 .ligne-calc.total b{ font-size:28px; letter-spacing:-.03em; }
 .ligne-calc.total span{ font-weight:500; color:var(--ink); }
 #sim-mens .form-grid{ gap:14px 16px; }
