@@ -157,6 +157,7 @@ section{ padding-block:92px; }
 .sim{ background:var(--paper); border:1px solid var(--line); border-radius:20px; margin-top:-58px; position:relative; z-index:5;
   padding:32px; display:grid; grid-template-columns:1.1fr .9fr; gap:36px; box-shadow:0 22px 50px rgba(15,29,36,.1); }
 .sim.flat{ margin-top:0; }
+.sim-bas .sim{ margin-top:-18px; }
 .sim h2{ font-size:25px; }
 .sim .hint{ font-size:13.5px; color:var(--mut); margin:6px 0 22px; max-width:52ch; }
 .field{ margin-bottom:20px; }
