@@ -21,13 +21,19 @@
 
 
   /* ---- annonces du hero : défilement automatique ---- */
-  var timer = null;
+  /* Les annonces sont remplacées par app.js dès que la base a répondu, ce qui
+     relance ce carrousel. Chaque relance porte un numéro : les écouteurs posés
+     sur document et window par les générations précédentes se taisent, sinon
+     ils pilotaient des diapositives détachées et le hero restait figé. */
+  var timer = null, generation = 0;
   window.homeliaInitRotator = function () {
     var rotator = $("#heroRotator");
     if (!rotator) return;
     clearInterval(timer);
+    var moi = ++generation;
+    var perime = function () { return moi !== generation; };
     var slides = $$(".slide", rotator), dots = $("#hDots"),
-        idx = 0, paused = reduce, DELAY = 4200;
+        idx = 0, paused = reduce, DELAY = 3000;
     dots.innerHTML = "";
     slides.forEach(function (sl, i) {
       var b = document.createElement("button");
@@ -57,7 +63,8 @@
     }
     function restart() {
       clearInterval(timer);
-      if (!paused) timer = setInterval(function () { go(idx + 1); }, DELAY);
+      if (perime() || paused) return;
+      timer = setInterval(function () { go(idx + 1); }, DELAY);
     }
     function setPaused(v) {
       paused = v;
@@ -72,23 +79,27 @@
     $("#hNext").addEventListener("click", function () { go(idx + 1); restart(); });
     $("#hPrev").addEventListener("click", function () { go(idx - 1); restart(); });
     $("#hPause").addEventListener("click", function () { setPaused(!paused); });
-    rotator.addEventListener("mouseenter", function () { clearInterval(timer); dots.classList.add("paused"); });
-    rotator.addEventListener("mouseleave", function () { if (!paused) { dots.classList.remove("paused"); restart(); } });
+    /* Le survol ne met plus le carrousel en pause : le pointeur reste souvent
+       posé sur le hero, et le défilement semblait alors bloqué. Seuls le bouton
+       pause et le focus clavier l'arrêtent. */
     /* Même égard au clavier qu'à la souris : le défilement s'arrête tant que le
        focus est dans le carrousel, sinon le contenu bouge sous les doigts. */
     function zone(e) { return rotator.contains(e.target) || dots.contains(e.target); }
     document.addEventListener("focusin", function (e) {
-      if (zone(e)) { clearInterval(timer); dots.classList.add("paused"); }
+      if (perime() || !zone(e)) return;
+      clearInterval(timer); dots.classList.add("paused");
     });
     document.addEventListener("focusout", function (e) {
-      if (zone(e) && !paused) { dots.classList.remove("paused"); restart(); }
+      if (perime() || !zone(e) || paused) return;
+      dots.classList.remove("paused"); restart();
     });
     document.addEventListener("keydown", function (e) {
-      if (!zone(e)) return;
+      if (perime() || !zone(e)) return;
       if (e.key === "ArrowLeft") { go(idx - 1); restart(); }
       if (e.key === "ArrowRight") { go(idx + 1); restart(); }
     });
     document.addEventListener("visibilitychange", function () {
+      if (perime()) return;
       if (document.hidden) clearInterval(timer); else restart();
     });
     if (reduce) setPaused(true); else restart();
@@ -166,8 +177,48 @@
       if (prev) prev.disabled = rail.scrollLeft < 8;
       if (next) next.disabled = rail.scrollLeft > rail.scrollWidth - rail.clientWidth - 8;
     };
-    if (prev) prev.addEventListener("click", function () { rail.scrollBy({ left: -step(), behavior: "smooth" }); });
-    if (next) next.addEventListener("click", function () { rail.scrollBy({ left: step(), behavior: "smooth" }); });
+    /* Un clic avance d'une carte ; un appui maintenu fait défiler en continu
+       jusqu'au relâchement. */
+    var course = null, maintenu = false;
+    function stopper() {
+      if (!course) return;
+      clearInterval(course);
+      course = null;
+      /* le rail retrouve son magnétisme et se recale sur la carte la plus proche */
+      rail.classList.remove("libre");
+      /* appui trop bref pour avoir bougé : c'est un clic, on laisse faire */
+      if (maintenu) rail.scrollTo({ left: Math.round(rail.scrollLeft / step()) * step(), behavior: "smooth" });
+    }
+    function lancer(sens) {
+      var debut = Date.now();
+      maintenu = false;
+      stopper();
+      course = setInterval(function () {
+        if (Date.now() - debut < 240) return;   /* en deçà, c'est un clic : on ne bouge pas */
+        if (!maintenu) {
+          maintenu = true;
+          /* sans cela le magnétisme (scroll-snap) ramène le rail à chaque image */
+          rail.classList.add("libre");
+        }
+        rail.scrollLeft += sens * 10;
+      }, 16);
+    }
+    function flecher(bouton, sens) {
+      if (!bouton) return;
+      bouton.addEventListener("click", function () {
+        if (maintenu) { maintenu = false; return; }   /* le maintien a déjà fait défiler */
+        rail.scrollBy({ left: sens * step(), behavior: "smooth" });
+      });
+      bouton.addEventListener("pointerdown", function () { lancer(sens); });
+      bouton.addEventListener("pointerleave", stopper);
+    }
+    flecher(prev, -1);
+    flecher(next, 1);
+    /* Le relâchement compte où qu'il ait lieu : le bouton peut se désactiver
+       en cours de course quand on atteint le bout du rail. */
+    window.addEventListener("pointerup", stopper);
+    window.addEventListener("pointercancel", stopper);
+    window.addEventListener("blur", stopper);
     rail.addEventListener("scroll", sync, { passive: true });
     window.addEventListener("resize", sync);
     sync();
@@ -475,7 +526,6 @@
     var pieces = $$(".piece", chantier),
         fumee = $(".fumee", chantier),
         lueurs = $$(".lueur", chantier),
-        jauge = $("#chantier-jauge"),
         posees = -1,
         attente = false;
 
@@ -498,7 +548,6 @@
       }
       chantier.classList.toggle("visible", window.scrollY > 160);
       chantier.classList.toggle("fini", p > 0.97);
-      jauge.style.width = (p * 100).toFixed(1) + "%";
     }
 
     window.addEventListener("scroll", function () {
