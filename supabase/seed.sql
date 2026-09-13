@@ -1,5 +1,5 @@
 -- =============================================================================
--- Homelia — chargement des 9 annonces existantes
+-- Homelia — chargement des 12 annonces
 -- À exécuter APRÈS schema.sql, dans l'éditeur SQL de Supabase.
 -- Relançable sans risque : les lignes déjà présentes sont mises à jour.
 -- =============================================================================

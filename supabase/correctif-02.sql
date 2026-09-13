@@ -25,6 +25,6 @@ update public.annonces set lat = 45.98883, lon = 4.69715, prix_num = 277000 wher
 update public.annonces set lat = 45.89016, lon = 4.74329, prix_num = 159400 where slug = 'les-cheres';
 update public.annonces set lat = 48.15352, lon = -1.58002, prix_num = 159900 where slug = 'thorigne-fouillard';
 
--- Vérification : les neuf programmes doivent avoir des coordonnées
+-- Vérification : les 12 programmes doivent avoir des coordonnées
 select slug, ville, lat, lon, prix_num, surface_ref, redevance_m2
 from public.annonces order by ordre, nom;
