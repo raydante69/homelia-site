@@ -29,7 +29,7 @@
   window.homeliaInitRotator = function () {
     var rotator = $("#heroRotator");
     if (!rotator) return;
-    clearInterval(timer);
+    clearTimeout(timer);
     var moi = ++generation;
     var perime = function () { return moi !== generation; };
     var slides = $$(".slide", rotator), dots = $("#hDots"),
@@ -54,27 +54,29 @@
     function go(i) {
       idx = (i + slides.length) % slides.length;
       slides.forEach(function (sl, n) {
-        /* position relative à l'annonce active, par le plus court chemin :
-           0 devant, ±1 et ±2 en retrait et floutées, au-delà hors champ */
-        var o = n - idx;
-        if (o > slides.length / 2) o -= slides.length;
-        if (o < -slides.length / 2) o += slides.length;
-        if (Math.abs(o) <= 2) sl.dataset.pos = o; else sl.removeAttribute("data-pos");
         sl.classList.toggle("on", n === idx);
         sl.setAttribute("aria-hidden", n === idx ? "false" : "true");
       });
       bullets.forEach(function (b, n) {
         b.setAttribute("aria-current", n === idx ? "true" : "false");
-        var bar = b.firstChild;           /* relance la barre de progression */
+      });
+    }
+
+    /* La barre repart de zéro exactement au moment où le minuteur est armé :
+       les deux partagent la même horloge, elle ne peut plus dériver. */
+    function barre() {
+      bullets.forEach(function (b) {
+        var bar = b.firstChild;
         bar.style.animation = "none";
         void bar.offsetWidth;
         bar.style.animation = "";
       });
     }
     function restart() {
-      clearInterval(timer);
+      clearTimeout(timer);
       if (perime() || paused) return;
-      timer = setInterval(function () { go(idx + 1); }, DELAY);
+      barre();
+      timer = setTimeout(function () { go(idx + 1); restart(); }, DELAY);
     }
     function setPaused(v) {
       paused = v;
@@ -97,7 +99,7 @@
     function zone(e) { return rotator.contains(e.target) || dots.contains(e.target); }
     document.addEventListener("focusin", function (e) {
       if (perime() || !zone(e)) return;
-      clearInterval(timer); dots.classList.add("paused");
+      clearTimeout(timer); dots.classList.add("paused");
     });
     document.addEventListener("focusout", function (e) {
       if (perime() || !zone(e) || paused) return;
@@ -110,7 +112,7 @@
     });
     document.addEventListener("visibilitychange", function () {
       if (perime()) return;
-      if (document.hidden) clearInterval(timer); else restart();
+      if (document.hidden) clearTimeout(timer); else restart();
     });
     go(0);
     if (reduce) setPaused(true); else restart();
