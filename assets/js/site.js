@@ -27,7 +27,7 @@
     if (!rotator) return;
     clearInterval(timer);
     var slides = $$(".slide", rotator), dots = $("#hDots"),
-        idx = 0, paused = reduce, DELAY = 7000;
+        idx = 0, paused = reduce, DELAY = 4200;
     dots.innerHTML = "";
     slides.forEach(function (sl, i) {
       var b = document.createElement("button");
@@ -103,17 +103,11 @@
       burger.setAttribute("aria-expanded", String(!open));
       drawer.classList.toggle("open", !open);
     });
-    function fermer() {
-      burger.setAttribute("aria-expanded", "false");
-      drawer.classList.remove("open");
-    }
-    drawer.addEventListener("click", function (e) { if (e.target.closest("a")) fermer(); });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && drawer.classList.contains("open")) { fermer(); burger.focus(); }
-    });
-    document.addEventListener("click", function (e) {
-      if (!drawer.classList.contains("open")) return;
-      if (!drawer.contains(e.target) && !burger.contains(e.target)) fermer();
+    drawer.addEventListener("click", function (e) {
+      if (e.target.closest("a")) {
+        burger.setAttribute("aria-expanded", "false");
+        drawer.classList.remove("open");
+      }
     });
   }
 
@@ -472,6 +466,48 @@
     });
     window.homeliaFiltrer = filtrer;   /* rappelé après ajout d'annonces depuis la base */
     filtrer();
+  }
+
+
+  /* ---- le chantier : la maison se construit au fil du défilement ---- */
+  var chantier = $("#chantier");
+  if (chantier) {
+    var pieces = $$(".piece", chantier),
+        fumee = $(".fumee", chantier),
+        lueurs = $$(".lueur", chantier),
+        jauge = $("#chantier-jauge"),
+        pourcent = $("#chantier-pct"),
+        posees = -1,
+        attente = false;
+
+    function avancement() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      return h > 40 ? Math.min(Math.max(window.scrollY / h, 0), 1) : 1;
+    }
+
+    function batir() {
+      attente = false;
+      var p = avancement();
+      /* la dernière pièce se pose un peu avant le bas de page, pour que la
+         maison soit finie quand on arrive au pied de page */
+      var n = Math.min(Math.round(p * (pieces.length + 0.6)), pieces.length);
+      if (n !== posees) {
+        posees = n;
+        pieces.forEach(function (g, i) { g.classList.toggle("posee", i < n); });
+        fumee.classList.toggle("posee", n > 5);
+        lueurs.forEach(function (r) { r.style.fill = n >= pieces.length ? "#F6DFA8" : "#EEF3F4"; });
+      }
+      chantier.classList.toggle("visible", window.scrollY > 160);
+      chantier.classList.toggle("fini", p > 0.97);
+      jauge.style.width = (p * 100).toFixed(1) + "%";
+      pourcent.textContent = Math.round(p * 100) + " %";
+    }
+
+    window.addEventListener("scroll", function () {
+      if (!attente) { attente = true; requestAnimationFrame(batir); }
+    }, { passive: true });
+    window.addEventListener("resize", batir);
+    batir();
   }
 
   /* ---- ancres avec décalage de l'en-tête ---- */
