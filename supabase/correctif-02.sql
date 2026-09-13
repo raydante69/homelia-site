@@ -21,6 +21,9 @@ update public.annonces set lat = 46.02533, lon = 4.65228, prix_num = 257500, sur
 update public.annonces set lat = 46.21102, lon = 4.75552, prix_num = 185000, surface_ref = 85 where slug = 'la-chapelle-de-guinchay';
 update public.annonces set lat = 45.5816, lon = 5.9408, prix_num = 153000, surface_ref = 45 where slug = 'bassens';
 update public.annonces set lat = 48.92298, lon = 2.44552, prix_num = 169000, surface_ref = 45 where slug = 'drancy';
+update public.annonces set lat = 45.98883, lon = 4.69715, prix_num = 277000 where slug = 'gleize';
+update public.annonces set lat = 45.89016, lon = 4.74329, prix_num = 159400 where slug = 'les-cheres';
+update public.annonces set lat = 48.15352, lon = -1.58002, prix_num = 159900 where slug = 'thorigne-fouillard';
 
 -- Vérification : les neuf programmes doivent avoir des coordonnées
 select slug, ville, lat, lon, prix_num, surface_ref, redevance_m2

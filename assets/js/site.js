@@ -476,7 +476,6 @@
         fumee = $(".fumee", chantier),
         lueurs = $$(".lueur", chantier),
         jauge = $("#chantier-jauge"),
-        pourcent = $("#chantier-pct"),
         posees = -1,
         attente = false;
 
@@ -500,7 +499,6 @@
       chantier.classList.toggle("visible", window.scrollY > 160);
       chantier.classList.toggle("fini", p > 0.97);
       jauge.style.width = (p * 100).toFixed(1) + "%";
-      pourcent.textContent = Math.round(p * 100) + " %";
     }
 
     window.addEventListener("scroll", function () {

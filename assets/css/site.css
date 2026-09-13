@@ -148,6 +148,7 @@ section{ padding-block:92px; }
 .phead h1{ font-size:clamp(30px,3.6vw,46px); line-height:1.08; margin:12px 0 0; font-weight:500; max-width:none; }
 .phead p{ color:rgba(255,255,255,.78); max-width:70ch; margin:16px 0 0; }
 .phead .eyebrow{ color:var(--sand); }
+.phead.chapeau-large p{ max-width:none; }
 .crumb{ font-size:12.5px; color:rgba(255,255,255,.6); margin:0 0 6px; }
 .crumb a:hover{ color:#fff; }
 
@@ -293,6 +294,11 @@ input[type=range]{ width:100%; accent-color:var(--deep2); }
 .prose ul,.prose ol{ margin:0 0 20px; padding-left:20px; color:#33454E; }
 .prose li{ margin-bottom:8px; }
 .prose a{ color:var(--deep2); text-decoration:underline; text-underline-offset:3px; }
+.prose a.btn{ color:#fff; text-decoration:none; }
+.prose a.btn:hover{ text-decoration:none; }
+.prose a.btn-ghost,.prose a.btn-blanc{ color:var(--ink); }
+.prose a.btn-sand{ color:#2A2113; }
+.terr-nom{ font-size:clamp(23px,2.6vw,31px); line-height:1.12; font-weight:500; margin:0 0 16px; }
 .prose strong{ font-weight:600; color:var(--ink); }
 .prose > :first-child{ margin-top:0; }
 .lead{ font-size:18px; color:#2B3C45; }
@@ -664,7 +670,7 @@ td.num,th.num{ text-align:right; }
 @keyframes pose{ from{ transform:translateY(-8px) rotate(-8deg); opacity:0 } to{ transform:none; opacity:1 } }
 
 /* ---------- le chantier ---------- */
-.chantier{ position:fixed; right:20px; bottom:20px; z-index:70; width:108px;
+.chantier{ position:fixed; right:20px; bottom:6px; z-index:70; width:108px;
   pointer-events:none; opacity:0; transform:translateY(10px);
   transition:opacity .5s var(--ease), transform .5s var(--ease); }
 .chantier.visible{ opacity:1; transform:none; }
@@ -680,14 +686,12 @@ td.num,th.num{ text-align:right; }
   100%{ transform:translate(-5px,-16px) scale(1.25); opacity:0 }
 }
 .chantier .lueur{ transition:fill .5s var(--ease); }
-.chantier-socle{ margin-top:8px; background:var(--paper); border:1px solid var(--line);
+.chantier-socle{ margin-top:6px; background:var(--paper); border:1px solid var(--line);
   border-radius:100px; padding:5px 10px; display:flex; align-items:center; gap:7px;
   box-shadow:0 6px 18px rgba(15,29,36,.12); }
 .chantier-jauge{ flex:1; height:4px; border-radius:100px; background:var(--surf); overflow:hidden; }
 .chantier-jauge i{ display:block; height:100%; width:0; background:var(--sand); border-radius:100px;
   transition:width .25s linear; }
-.chantier-pct{ font-family:"Schibsted Grotesk",system-ui,sans-serif; font-size:10.5px; font-weight:600;
-  color:var(--mut); font-variant-numeric:tabular-nums; }
 .chantier-texte{ position:absolute; right:0; bottom:100%; margin-bottom:8px; white-space:nowrap;
   background:var(--deep); color:#fff; font-size:11px; padding:5px 10px; border-radius:8px;
   opacity:0; transform:translateY(4px); transition:.35s var(--ease); }
