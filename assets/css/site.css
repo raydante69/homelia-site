@@ -698,3 +698,58 @@ td.num,th.num{ text-align:right; }
   .chantier .piece{ opacity:1 !important; transform:none !important; }
   .chantier .fumee{ animation:none !important; }
 }
+
+/* ==========================================================================
+   Carte des territoires
+   ========================================================================== */
+.carte-terr{ position:relative; background:var(--surf); border:1px solid var(--line);
+  border-radius:20px; padding:18px; overflow:hidden; }
+.carte-terr > svg{ width:100%; height:auto; display:block; max-height:560px; }
+.carte-info svg{ width:14px; height:14px; flex:0 0 auto; }
+.carte-terr .fond path{ fill:#DFE7EA; stroke:#fff; stroke-width:2; }
+.carte-terr .zone path{ fill:#E85742; fill-opacity:0; stroke:#E85742; stroke-width:3.5;
+  stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:1;
+  transition:fill-opacity .25s var(--ease), stroke-width .25s var(--ease); cursor:pointer; }
+.carte-terr .zone{ outline:none; }
+.carte-terr .zone:hover path,.carte-terr .zone:focus-visible path{ fill-opacity:.34; stroke-width:5; }
+.carte-terr .zone.courant path{ fill-opacity:.45; stroke-width:5; }
+.carte-terr .zone:focus-visible path{ stroke:#1E3A48; }
+
+/* le contour se trace, puis la surface se remplit */
+.carte-terr.in .zone path{ animation:tracer .9s ease forwards var(--d), remplir .5s ease forwards calc(var(--d) + 700ms); }
+.carte-terr.in .zone.courant path{ animation:tracer .9s ease forwards var(--d), remplir-fort .5s ease forwards calc(var(--d) + 700ms); }
+@keyframes tracer{ to{ stroke-dashoffset:0 } }
+@keyframes remplir{ to{ fill-opacity:.16 } }
+@keyframes remplir-fort{ to{ fill-opacity:.45 } }
+.carte-terr:not(.in) .zone path{ stroke-dashoffset:0; fill-opacity:.16; }
+
+.carte-info{ position:absolute; top:24px; right:24px; background:var(--paper); border:1px solid var(--line);
+  border-radius:16px; padding:16px 18px; min-width:196px; box-shadow:0 14px 34px rgba(15,29,36,.16);
+  opacity:0; transform:translateY(-6px) scale(.97); pointer-events:none;
+  transition:opacity .25s var(--ease), transform .3s var(--ease); }
+.carte-info.on{ opacity:1; transform:none; }
+.carte-info p{ margin:0; }
+.carte-info-nom{ font-family:"Schibsted Grotesk",system-ui,sans-serif; font-weight:600; font-size:18px;
+  letter-spacing:-.02em; }
+.carte-info-nb{ font-size:13.5px; color:var(--mut); margin-top:2px !important; }
+.carte-info-lien{ display:flex; align-items:center; gap:7px; font-size:13px; color:var(--deep2);
+  font-weight:500; margin-top:12px !important; padding-top:10px; border-top:1px solid var(--line); }
+.carte-credit{ position:absolute; left:20px; bottom:14px; margin:0; font-size:11.5px; color:var(--mut); }
+
+.pastilles{ display:flex; flex-wrap:wrap; gap:9px; }
+.pastille{ display:inline-flex; align-items:baseline; gap:8px; background:var(--paper);
+  border:1px solid var(--line); border-radius:100px; padding:9px 16px; font-size:14px; font-weight:500;
+  transition:.22s var(--ease); }
+.pastille span{ font-size:12.5px; color:var(--mut); font-weight:400; }
+.pastille:hover{ border-color:var(--deep2); transform:translateY(-2px); box-shadow:0 8px 18px rgba(15,29,36,.08); }
+
+@media (max-width:820px){
+  .carte-terr{ padding:12px; }
+  .carte-info{ position:static; opacity:1; transform:none; margin-top:12px; box-shadow:none;
+    min-width:0; display:none; }
+  .carte-info.on{ display:block; }
+  .carte-credit{ position:static; margin-top:10px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .carte-terr .zone path{ stroke-dashoffset:0 !important; fill-opacity:.16 !important; animation:none !important; }
+}

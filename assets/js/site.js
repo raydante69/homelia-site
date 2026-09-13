@@ -510,6 +510,39 @@
     batir();
   }
 
+
+  /* ---- carte des territoires : encart au survol ---- */
+  var carteTerr = $("#carte-terr");
+  if (carteTerr) {
+    var info = $("#carte-info"),
+        nom = $(".carte-info-nom", info),
+        nb = $(".carte-info-nb", info),
+        sortie = null;
+
+    function montrer(zone) {
+      clearTimeout(sortie);
+      nom.textContent = zone.dataset.nom;
+      nb.textContent = zone.dataset.nb + " · " + zone.dataset.region;
+      info.classList.add("on");
+    }
+    function cacher() {
+      sortie = setTimeout(function () { info.classList.remove("on"); }, 160);
+    }
+    $$(".zone", carteTerr).forEach(function (zone) {
+      zone.addEventListener("mouseenter", function () { montrer(zone); });
+      zone.addEventListener("mouseleave", cacher);
+      zone.addEventListener("focus", function () { montrer(zone); });
+      zone.addEventListener("blur", cacher);
+      /* au doigt, le premier contact affiche la fiche sans ouvrir la page */
+      zone.addEventListener("touchstart", function (e) {
+        if (!info.classList.contains("on") || nom.textContent !== zone.dataset.nom) {
+          e.preventDefault();
+          montrer(zone);
+        }
+      }, { passive: false });
+    });
+  }
+
   /* ---- ancres avec décalage de l'en-tête ---- */
   $$('a[href^="#"]:not([href="#"])').forEach(function (a) {
     a.addEventListener("click", function (e) {
