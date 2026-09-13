@@ -34,6 +34,10 @@
     var perime = function () { return moi !== generation; };
     var slides = $$(".slide", rotator), dots = $("#hDots"),
         idx = 0, paused = reduce, DELAY = 3000;
+    /* la barre de progression et le zoom lent de l'image durent exactement le
+       temps d'affichage d'une annonce : la barre arrive au bout quand on change */
+    rotator.style.setProperty("--defile", DELAY + "ms");
+    dots.style.setProperty("--defile", DELAY + "ms");
     dots.innerHTML = "";
     slides.forEach(function (sl, i) {
       var b = document.createElement("button");
@@ -50,6 +54,12 @@
     function go(i) {
       idx = (i + slides.length) % slides.length;
       slides.forEach(function (sl, n) {
+        /* position relative à l'annonce active, par le plus court chemin :
+           0 devant, ±1 et ±2 en retrait et floutées, au-delà hors champ */
+        var o = n - idx;
+        if (o > slides.length / 2) o -= slides.length;
+        if (o < -slides.length / 2) o += slides.length;
+        if (Math.abs(o) <= 2) sl.dataset.pos = o; else sl.removeAttribute("data-pos");
         sl.classList.toggle("on", n === idx);
         sl.setAttribute("aria-hidden", n === idx ? "false" : "true");
       });
@@ -102,6 +112,7 @@
       if (perime()) return;
       if (document.hidden) clearInterval(timer); else restart();
     });
+    go(0);
     if (reduce) setPaused(true); else restart();
   };
   window.homeliaInitRotator();
