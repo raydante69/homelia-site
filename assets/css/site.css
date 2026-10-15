@@ -53,8 +53,8 @@ section{ padding-block:92px; }
 .nav-in{ display:flex; align-items:center; gap:26px; padding-block:14px; color:#fff; transition:padding .3s var(--ease); }
 .nav.stuck .nav-in{ padding-block:9px; }
 .logo{ display:flex; align-items:center; flex:0 0 auto; }
-.logo img{ height:68px; width:auto; filter:brightness(0) invert(1); transition:height .3s var(--ease); }
-.nav.stuck .logo img{ height:54px; }
+.logo img{ height:58px; width:auto; filter:brightness(0) invert(1); transition:height .3s var(--ease); }
+.nav.stuck .logo img{ height:46px; }
 .nav-links{ display:flex; gap:24px; margin-inline:auto; font-size:14.5px; color:rgba(255,255,255,.84); }
 .nav-links > li{ list-style:none; position:relative; }
 .nav-links a{ position:relative; padding-block:6px; display:inline-flex; align-items:center; gap:5px; }
