@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
@@ -32,14 +32,22 @@
     <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
   </div>
-  <div class="drawer" id="drawer"><div><div class="in"><a href="/index.html">Accueil</a><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/actualites.html">Actualités</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/territoires/rhone.html">Rhône <span style="opacity:.55">· 4 programmes</span></a><a class="sub" href="/territoires/ain.html">Ain <span style="opacity:.55">· 3 programmes</span></a><a class="sub" href="/territoires/isere.html">Isère <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/savoie.html">Savoie <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/saone-et-loire.html">Saône-et-Loire <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/seine-saint-denis.html">Seine-Saint-Denis <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine <span style="opacity:.55">· 1 programme</span></a>
-    <a data-compte href="/connexion.html" hidden>Connexion</a>
-    <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
-  </div></div></div>
   <i class="progress" id="progress"></i>
 </header>
+<div class="drawer" id="drawer"><div class="in">
+  <a href="/index.html">Accueil</a>
+  <button class="tiroir-ouvrir" type="button" aria-expanded="false" aria-controls="tiroir-prog">Programmes <i aria-hidden="true"></i></button>
+  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/programmes.html"><strong>Tous les programmes</strong><span>12</span></a><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a></div></div>
+  <a href="/guide-du-brs.html">Le BRS</a>
+  <a href="/eligibilite.html">Éligibilité</a>
+  <a href="/accompagnement.html">Accompagnement</a>
+  <a href="/actualites.html">Actualités</a>
+  <a href="/nous-connaitre.html">Nous connaître</a>
+  <a data-compte href="/connexion.html" hidden>Connexion</a>
+  <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
+</div></div>
 <main id="main">
-<section class="phead" style="padding-block:80px 90px"><div class="wrap">
+<section class="phead"><div class="wrap">
   <p class="eyebrow">Erreur 404</p>
   <h1>Cette page n'existe plus</h1>
   <p>Le programme que vous cherchez a peut-être été commercialisé, ou l'adresse a changé. Voici par où continuer.</p>
@@ -49,29 +57,35 @@
   </div>
 </div></section>
 <section><div class="wrap"><div class="cards"><a class="card" href="/programmes/communay.html">
-      <div class="card-img"><span class="chip">En vente · T3 · T4</span>
-        <img src="/assets/img/communay-1.jpg" alt="Le 16 Télégraphe à Communay (69)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>Le 16 Télégraphe</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Communay · Rhône (69)</div></div>
-        <span class="price">199 000 €<small>à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
+        <div class="card-titre"><h3>Le 16 Télégraphe</h3><p class="loc">Communay · Rhône (69)</p></div>
       </div>
-      <div class="card-specs"><span>12 logements</span><span>T3 et T4</span><span>Jardin privatif</span><span>2 stationnements</span></div>
+      <ul class="card-infos"><li class="typo">T3 · T4</li><li>12 logements</li><li>Jardin privatif</li><li>2 stationnements</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/communay-1.jpg" alt="Le 16 Télégraphe à Communay (69)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>à partir de</small><b>199&nbsp;000&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a><a class="card" href="/programmes/coublevie.html">
-      <div class="card-img"><span class="chip">En vente · T2 à T5</span>
-        <img src="/assets/img/coublevie-1.jpg" alt="Les Terrasses des 3 Parcs à Coublevie (38)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>Les Terrasses des 3 Parcs</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Coublevie · Isère (38)</div></div>
-        <span class="price">129 000 €<small>T2 à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Appartements"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h1.5M13.5 7.5H15M9 11h1.5M13.5 11H15M9 14.5h1.5M13.5 14.5H15M10.5 20.5V18h3v2.5"/></svg><span class="vh">Appartements</span></span>
+        <div class="card-titre"><h3>Les Terrasses des 3 Parcs</h3><p class="loc">Coublevie · Isère (38)</p></div>
       </div>
-      <div class="card-specs"><span>T2 à T5</span><span>Espaces extérieurs</span><span>Verger partagé</span><span>Proche Voiron</span></div>
+      <ul class="card-infos"><li class="typo">T2 à T5</li><li>Espaces extérieurs</li><li>Verger partagé</li><li>Proche Voiron</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/coublevie-1.jpg" alt="Les Terrasses des 3 Parcs à Coublevie (38)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>T2 à partir de</small><b>129&nbsp;000&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a><a class="card" href="/programmes/bourg-saint-christophe.html">
-      <div class="card-img"><span class="chip">En vente · T4 en duplex</span>
-        <img src="/assets/img/bourg-st-christophe.jpg" alt="Le Domaine des Chênes 2 à Bourg-Saint-Christophe (01)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>Le Domaine des Chênes 2</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Bourg-Saint-Christophe · Ain (01)</div></div>
-        <span class="price">235 500 €<small>à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
+        <div class="card-titre"><h3>Le Domaine des Chênes 2</h3><p class="loc">Bourg-Saint-Christophe · Ain (01)</p></div>
       </div>
-      <div class="card-specs"><span>T4 duplex</span><span>Près de 90 m²</span><span>Jardin privatif</span><span>Garage individuel</span></div>
+      <ul class="card-infos"><li class="typo">T4 en duplex</li><li>Près de 90 m²</li><li>Jardin privatif</li><li>Garage individuel</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/bourg-st-christophe.jpg" alt="Le Domaine des Chênes 2 à Bourg-Saint-Christophe (01)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>à partir de</small><b>235&nbsp;500&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a></div></div></section>
 </main>
 <footer class="site-foot">
@@ -86,7 +100,7 @@
       <div><h4>Programmes</h4><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe <span style="opacity:.6">· Communay</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs <span style="opacity:.6">· Coublevie</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 <span style="opacity:.6">· Bourg-Saint-Christophe</span></a></li><li><a href="/programmes/frans.html">Green Parc <span style="opacity:.6">· Frans</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs <span style="opacity:.6">· Savigneux</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></div>
       <div><h4>Comprendre</h4><ul>
         <li><a href="/guide-du-brs.html">Guide du BRS</a></li>
-        <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
+        <li><a href="/eligibilite.html">Suis-je éligible&nbsp;?</a></li>
         <li><a href="/accompagnement.html">Notre accompagnement</a></li>
         <li><a href="/guide-du-brs.html#revente">Revendre son BRS</a></li></ul></div>
       <div><h4>Homelia</h4><ul>
@@ -102,7 +116,7 @@
       <a href="/cookies.html">Politique de cookies</a><span class="sep">·</span>
       <a href="/plan-du-site.html">Plan du site</a>
     </div>
-    <p class="legal">SIREN 944 647 403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
+    <p class="legal">SIREN 944&nbsp;647&nbsp;403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
     Vente soumise aux conditions du Bail Réel Solidaire et aux plafonds de ressources en vigueur. Les visuels sont non contractuels.</p>
   </div>
 </footer>

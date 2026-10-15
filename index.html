@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
@@ -32,24 +32,32 @@
     <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
   </div>
-  <div class="drawer" id="drawer"><div><div class="in"><a href="/index.html">Accueil</a><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/actualites.html">Actualités</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/territoires/rhone.html">Rhône <span style="opacity:.55">· 4 programmes</span></a><a class="sub" href="/territoires/ain.html">Ain <span style="opacity:.55">· 3 programmes</span></a><a class="sub" href="/territoires/isere.html">Isère <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/savoie.html">Savoie <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/saone-et-loire.html">Saône-et-Loire <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/seine-saint-denis.html">Seine-Saint-Denis <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine <span style="opacity:.55">· 1 programme</span></a>
-    <a data-compte href="/connexion.html" hidden>Connexion</a>
-    <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
-  </div></div></div>
   <i class="progress" id="progress"></i>
 </header>
+<div class="drawer" id="drawer"><div class="in">
+  <a href="/index.html">Accueil</a>
+  <button class="tiroir-ouvrir" type="button" aria-expanded="false" aria-controls="tiroir-prog">Programmes <i aria-hidden="true"></i></button>
+  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/programmes.html"><strong>Tous les programmes</strong><span>12</span></a><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a></div></div>
+  <a href="/guide-du-brs.html">Le BRS</a>
+  <a href="/eligibilite.html">Éligibilité</a>
+  <a href="/accompagnement.html">Accompagnement</a>
+  <a href="/actualites.html">Actualités</a>
+  <a href="/nous-connaitre.html">Nous connaître</a>
+  <a data-compte href="/connexion.html" hidden>Connexion</a>
+  <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
+</div></div>
 <main id="main">
 <section class="hero">
   <div class="wrap hero-in">
     <div>
       <p class="eyebrow anim d1">Bail Réel Solidaire · 12 programmes</p>
       <h1 class="anim d2">Devenir propriétaire,<br><em class="it">au juste prix</em>.</h1>
-      <p class="sub anim d3">Homelia commercialise des logements neufs en BRS — 30 à 50 % sous le prix du marché — et accompagne chaque ménage de l'étude d'éligibilité jusqu'à la signature chez le notaire.</p>
+      <p class="sub anim d3">Homelia commercialise des logements neufs en BRS — 30 à 50&nbsp;% sous le prix du marché — et accompagne chaque ménage de l'étude d'éligibilité jusqu'à la signature chez le notaire.</p>
       <div class="hero-cta anim d4">
         <a class="btn btn-sand" href="/programmes.html">Voir les programmes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
-        <a class="btn btn-line" href="/eligibilite.html">Suis-je éligible ?</a>
+        <a class="btn btn-line" href="/eligibilite.html">Suis-je éligible&nbsp;?</a>
       </div>
-      <p class="pulse anim d5"><i></i>Nouveau : Le 16 Télégraphe, Communay (69) — 12 logements en commercialisation</p>
+      <p class="pulse anim d5"><i></i>Nouveau&nbsp;: Le 16 Télégraphe, Communay (69) — 12 logements en commercialisation</p>
     </div>
     <div class="hero-visual anim d3">
       <div class="hero-frame" id="heroRotator">
@@ -62,7 +70,7 @@
               <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Communay · Rhône (69)</div>
               <p class="meta">12 logements · T3 et T4 · Jardin privatif</p>
             </div>
-            <div class="tarif"><b class="tabnum">199 000 €</b><span>à partir de</span></div>
+            <div class="tarif"><b class="tabnum">199&nbsp;000&nbsp;€</b><span>à partir de</span></div>
             <a class="btn" href="/programmes/communay.html">Voir l'annonce <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
           </div>
         </article>
@@ -75,7 +83,7 @@
               <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Coublevie · Isère (38)</div>
               <p class="meta">T2 à T5 · Espaces extérieurs · Verger partagé</p>
             </div>
-            <div class="tarif"><b class="tabnum">129 000 €</b><span>T2 à partir de</span></div>
+            <div class="tarif"><b class="tabnum">129&nbsp;000&nbsp;€</b><span>T2 à partir de</span></div>
             <a class="btn" href="/programmes/coublevie.html">Voir l'annonce <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
           </div>
         </article>
@@ -88,7 +96,7 @@
               <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Bourg-Saint-Christophe · Ain (01)</div>
               <p class="meta">T4 duplex · Près de 90 m² · Jardin privatif</p>
             </div>
-            <div class="tarif"><b class="tabnum">235 500 €</b><span>à partir de</span></div>
+            <div class="tarif"><b class="tabnum">235&nbsp;500&nbsp;€</b><span>à partir de</span></div>
             <a class="btn" href="/programmes/bourg-saint-christophe.html">Voir l'annonce <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
           </div>
         </article>
@@ -101,7 +109,7 @@
               <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Frans · Ain (01)</div>
               <p class="meta">14 pavillons · T4 duplex · Jardin et terrasse</p>
             </div>
-            <div class="tarif"><b class="tabnum">219 000 €</b><span>à partir de</span></div>
+            <div class="tarif"><b class="tabnum">219&nbsp;000&nbsp;€</b><span>à partir de</span></div>
             <a class="btn" href="/programmes/frans.html">Voir l'annonce <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
           </div>
         </article>
@@ -114,7 +122,7 @@
               <div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Savigneux · Ain (01)</div>
               <p class="meta">T4 · Terrasse · Jardin privatif</p>
             </div>
-            <div class="tarif"><b class="tabnum">225 000 €</b><span>à partir de</span></div>
+            <div class="tarif"><b class="tabnum">225&nbsp;000&nbsp;€</b><span>à partir de</span></div>
             <a class="btn" href="/programmes/savigneux.html">Voir l'annonce <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
           </div>
         </article>
@@ -131,8 +139,8 @@
 
 <section class="sim-band" id="sim"><div class="wrap"><div class="sim" id="sim-form">
   <div>
-    <h2>Suis-je éligible au BRS ?</h2>
-    <p class="hint">Deux informations suffisent : la taille de votre foyer et votre revenu fiscal de référence N−2 (ligne 25 de votre avis d'imposition).</p>
+    <h2>Suis-je éligible au BRS&nbsp;?</h2>
+    <p class="hint">Deux informations suffisent&nbsp;: la taille de votre foyer et votre revenu fiscal de référence N−2 (ligne 25 de votre avis d'imposition).</p>
     <div class="field">
       <label id="lbl-foyer">Composition du foyer</label>
       <div class="seg" id="seg" role="group" aria-labelledby="lbl-foyer">
@@ -145,88 +153,100 @@
       </div>
     </div>
     <div class="field">
-      <div class="rfr-head"><label for="rfr" style="margin:0">Revenu fiscal de référence</label><b class="tabnum" id="rfrVal">44 000 €</b></div>
+      <div class="rfr-head"><label for="rfr" style="margin:0">Revenu fiscal de référence</label><b class="tabnum" id="rfrVal">44&nbsp;000&nbsp;€</b></div>
       <input type="range" id="rfr" min="10000" max="110000" step="500" value="44000">
     </div>
-    <p style="font-size:12px;color:var(--mut);margin:0">Plafonds de la zone B1, celle du programme de Communay. Le zonage varie d'une commune à l'autre : indiquez-nous la vôtre, nous vous communiquons le plafond exact.</p>
+    <p style="font-size:12px;color:var(--mut);margin:0">Plafonds de la zone B1, celle du programme de Communay. Le zonage varie d'une commune à l'autre&nbsp;: indiquez-nous la vôtre, nous vous communiquons le plafond exact.</p>
   </div>
   <div class="verdict" id="verdict">
     <span class="state" id="vState"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5"/></svg>Éligible</span>
     <div class="gauge">
       <div class="gauge-track"><i class="gauge-fill" id="gFill"></i></div>
-      <div class="gauge-legend"><span>Votre RFR</span><span class="tabnum" id="gCap">Plafond 60 543 €</span></div>
+      <div class="gauge-legend"><span>Votre RFR</span><span class="tabnum" id="gCap">Plafond 60&nbsp;543&nbsp;€</span></div>
     </div>
-    <div class="big tabnum" id="vBig">16 543 € de marge</div>
+    <div class="big tabnum" id="vBig">16&nbsp;543&nbsp;€ de marge</div>
     <p id="vText">Votre foyer de 3 personnes reste sous le plafond de la zone B1.</p>
     <small>Simulation indicative. Seule l'analyse de votre avis d'imposition par l'Organisme de Foncier Solidaire vaut décision d'éligibilité.</small>
   </div>
 </div></div></section>
 
-<section style="padding-block:62px 92px"><div class="wrap">
+<section><div class="wrap">
   <div class="stats reveal">
     <div class="stat"><strong class="tabnum" data-count="12">12</strong><span>programmes en commercialisation</span></div>
-    <div class="stat"><strong>−30 à 50 %</strong><span>sous le prix du marché libre</span></div>
-    <div class="stat"><strong class="tabnum" data-count="1.15" data-dec="2" data-suffix=" €">1,15 €</strong><span>par m² et par mois de redevance</span></div>
-    <div class="stat"><strong class="tabnum" data-count="87" data-suffix=" %">87 %</strong><span>des ménages français éligibles</span></div>
+    <div class="stat"><strong>−30 à 50&nbsp;%</strong><span>sous le prix du marché libre</span></div>
+    <div class="stat"><strong class="tabnum" data-count="1.15" data-dec="2" data-suffix=" €">1,15&nbsp;€</strong><span>par m² et par mois de redevance</span></div>
+    <div class="stat"><strong class="tabnum" data-count="87" data-suffix="&nbsp;%">87&nbsp;%</strong><span>des ménages français éligibles</span></div>
   </div>
 </div></section>
 
-<section id="programmes" style="padding-top:0"><div class="wrap">
+<section id="programmes"><div class="wrap">
   <div class="sec-head reveal">
-    <div><p class="eyebrow">Nos programmes</p><h2>Trouvez votre futur logement</h2></div>
+    <div><p class="eyebrow">Nos programmes</p><h2 class="titre">Trouvez votre futur logement</h2></div>
     <div class="rail-nav">
       <button type="button" id="prev" aria-label="Programmes précédents"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
       <button type="button" id="next" aria-label="Programmes suivants"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg></button>
     </div>
   </div>
   <div class="rail reveal" id="rail"><a class="card" href="/programmes/communay.html">
-      <div class="card-img"><span class="chip">En vente · T3 · T4</span>
-        <img src="/assets/img/communay-1.jpg" alt="Le 16 Télégraphe à Communay (69)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>Le 16 Télégraphe</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Communay · Rhône (69)</div></div>
-        <span class="price">199 000 €<small>à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
+        <div class="card-titre"><h3>Le 16 Télégraphe</h3><p class="loc">Communay · Rhône (69)</p></div>
       </div>
-      <div class="card-specs"><span>12 logements</span><span>T3 et T4</span><span>Jardin privatif</span><span>2 stationnements</span></div>
+      <ul class="card-infos"><li class="typo">T3 · T4</li><li>12 logements</li><li>Jardin privatif</li><li>2 stationnements</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/communay-1.jpg" alt="Le 16 Télégraphe à Communay (69)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>à partir de</small><b>199&nbsp;000&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a><a class="card" href="/programmes/coublevie.html">
-      <div class="card-img"><span class="chip">En vente · T2 à T5</span>
-        <img src="/assets/img/coublevie-1.jpg" alt="Les Terrasses des 3 Parcs à Coublevie (38)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>Les Terrasses des 3 Parcs</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Coublevie · Isère (38)</div></div>
-        <span class="price">129 000 €<small>T2 à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Appartements"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h1.5M13.5 7.5H15M9 11h1.5M13.5 11H15M9 14.5h1.5M13.5 14.5H15M10.5 20.5V18h3v2.5"/></svg><span class="vh">Appartements</span></span>
+        <div class="card-titre"><h3>Les Terrasses des 3 Parcs</h3><p class="loc">Coublevie · Isère (38)</p></div>
       </div>
-      <div class="card-specs"><span>T2 à T5</span><span>Espaces extérieurs</span><span>Verger partagé</span><span>Proche Voiron</span></div>
+      <ul class="card-infos"><li class="typo">T2 à T5</li><li>Espaces extérieurs</li><li>Verger partagé</li><li>Proche Voiron</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/coublevie-1.jpg" alt="Les Terrasses des 3 Parcs à Coublevie (38)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>T2 à partir de</small><b>129&nbsp;000&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a><a class="card" href="/programmes/bourg-saint-christophe.html">
-      <div class="card-img"><span class="chip">En vente · T4 en duplex</span>
-        <img src="/assets/img/bourg-st-christophe.jpg" alt="Le Domaine des Chênes 2 à Bourg-Saint-Christophe (01)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>Le Domaine des Chênes 2</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Bourg-Saint-Christophe · Ain (01)</div></div>
-        <span class="price">235 500 €<small>à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
+        <div class="card-titre"><h3>Le Domaine des Chênes 2</h3><p class="loc">Bourg-Saint-Christophe · Ain (01)</p></div>
       </div>
-      <div class="card-specs"><span>T4 duplex</span><span>Près de 90 m²</span><span>Jardin privatif</span><span>Garage individuel</span></div>
+      <ul class="card-infos"><li class="typo">T4 en duplex</li><li>Près de 90 m²</li><li>Jardin privatif</li><li>Garage individuel</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/bourg-st-christophe.jpg" alt="Le Domaine des Chênes 2 à Bourg-Saint-Christophe (01)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>à partir de</small><b>235&nbsp;500&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a><a class="card" href="/programmes/frans.html">
-      <div class="card-img"><span class="chip">En vente · T4</span>
-        <img src="/assets/img/frans.jpg" alt="Green Parc à Frans (01)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>Green Parc</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Frans · Ain (01)</div></div>
-        <span class="price">219 000 €<small>à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
+        <div class="card-titre"><h3>Green Parc</h3><p class="loc">Frans · Ain (01)</p></div>
       </div>
-      <div class="card-specs"><span>14 pavillons</span><span>T4 duplex</span><span>Jardin et terrasse</span><span>Aire de jeux</span></div>
+      <ul class="card-infos"><li class="typo">T4 duplex</li><li>14 pavillons</li><li>Jardin et terrasse</li><li>Aire de jeux</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/frans.jpg" alt="Green Parc à Frans (01)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>à partir de</small><b>219&nbsp;000&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a><a class="card" href="/programmes/savigneux.html">
-      <div class="card-img"><span class="chip">En vente · T4</span>
-        <img src="/assets/img/savigneux.jpg" alt="L'Orée des champs à Savigneux (01)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>L'Orée des champs</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Savigneux · Ain (01)</div></div>
-        <span class="price">225 000 €<small>à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
+        <div class="card-titre"><h3>L'Orée des champs</h3><p class="loc">Savigneux · Ain (01)</p></div>
       </div>
-      <div class="card-specs"><span>T4</span><span>Terrasse</span><span>Jardin privatif</span><span>2 stationnements</span></div>
+      <ul class="card-infos"><li class="typo">T4</li><li>Terrasse</li><li>Jardin privatif</li><li>2 stationnements</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/savigneux.jpg" alt="L'Orée des champs à Savigneux (01)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>à partir de</small><b>225&nbsp;000&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a><a class="card" href="/programmes/saint-julien.html">
-      <div class="card-img"><span class="chip">En vente · T4 en duplex</span>
-        <img src="/assets/img/st-julien.jpg" alt="Le Clos Chopin à Saint-Julien (69)" loading="lazy" width="1500" height="950"></div>
-      <div class="card-bar">
-        <div><h3>Le Clos Chopin</h3><div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>Saint-Julien · Rhône (69)</div></div>
-        <span class="price">257 500 €<small>à partir de</small></span>
+      <div class="card-tete">
+        <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
+        <div class="card-titre"><h3>Le Clos Chopin</h3><p class="loc">Saint-Julien · Rhône (69)</p></div>
       </div>
-      <div class="card-specs"><span>8 logements</span><span>Près de 100 m²</span><span>Parcelles jusqu'à 450 m²</span><span>Garage</span></div>
+      <ul class="card-infos"><li class="typo">T4 en duplex</li><li>8 logements</li><li>Près de 100 m²</li><li>Parcelles jusqu'à 450 m²</li><li>Garage</li></ul>
+      <div class="card-img"><span class="chip">En vente</span>
+        <img src="/assets/img/st-julien.jpg" alt="Le Clos Chopin à Saint-Julien (69)" loading="lazy" width="1500" height="950">
+        <span class="card-prix"><span><small>à partir de</small><b>257&nbsp;500&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
+      </div>
     </a></div>
   <div class="dots" id="dots" aria-hidden="true"></div>
   <p style="margin-top:26px"><a class="btn btn-ghost" href="/programmes.html">Voir les 12 programmes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a></p>
@@ -234,12 +254,12 @@
 
 <section class="why"><div class="wrap">
   <p class="eyebrow reveal">Pourquoi Homelia</p>
-  <h2 class="reveal">Un dispositif complexe, rendu simple</h2>
+  <h2 class="reveal titre">Un dispositif complexe, rendu simple</h2>
   <div class="grid4 reveal"><div>
       <div class="tile"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg></div>
-      <h3>Étude d'éligibilité</h3><p>Plafonds, zone, composition du foyer : une réponse claire et écrite sous 48 h.</p></div><div>
+      <h3>Étude d'éligibilité</h3><p>Plafonds, zone, composition du foyer&nbsp;: une réponse claire et écrite sous 48 h.</p></div><div>
       <div class="tile"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/><path d="M3 11h18"/><path d="M8 7V5h8v2"/></svg></div>
-      <h3>Montage financier</h3><p>PTZ, prêt conventionné, redevance OFS : nous chiffrons votre mensualité réelle.</p></div><div>
+      <h3>Montage financier</h3><p>PTZ, prêt conventionné, redevance OFS&nbsp;: nous chiffrons votre mensualité réelle.</p></div><div>
       <div class="tile"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
       <h3>Sécurité juridique</h3><p>Le bail, l'agrément de l'OFS et l'acte notarié relus et expliqués, ligne par ligne.</p></div><div>
       <div class="tile"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9.5" cy="7" r="3.5"/><path d="M22 21v-2a4 4 0 00-3-3.9"/></svg></div>
@@ -249,37 +269,37 @@
 <section id="mecanisme"><div class="wrap mech-in">
   <div class="reveal">
     <p class="eyebrow">Le mécanisme</p>
-    <h2 style="font-size:clamp(27px,3.4vw,40px);line-height:1.1;margin:10px 0 16px">Où passe la différence de prix</h2>
-    <p style="color:#3C4F58;max-width:42ch;margin:0">Dans un achat classique, le terrain pèse une part croissante du prix, surtout en métropole. En BRS, il sort du prix d'achat : l'Organisme de Foncier Solidaire le conserve, et vous en avez l'usage contre une redevance mensuelle.</p>
+    <h2 class="titre">Où passe la différence de prix</h2>
+    <p style="color:#3C4F58;margin:0">Dans un achat classique, le terrain pèse une part croissante du prix, surtout en métropole. En BRS, il sort du prix d'achat&nbsp;: l'Organisme de Foncier Solidaire le conserve, et vous en avez l'usage contre une redevance mensuelle.</p>
     <p style="margin:24px 0 0"><a class="btn btn-ghost" href="/guide-du-brs.html">Lire le guide du BRS <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a></p>
   </div>
   <div class="bars reveal" id="bars">
     <div class="bar">
-      <h3>Achat classique <span>≈ 310 000 € pour un T3 équivalent</span></h3>
+      <h3>Achat classique <span>≈ 310&nbsp;000&nbsp;€ pour un T3 équivalent</span></h3>
       <div class="track"><i data-w="58" style="background:#2C566E"></i><i data-w="42" style="background:#D9B27C"></i></div>
       <div class="legend"><span><b style="background:#2C566E"></b>Bâti</span><span><b style="background:#D9B27C"></b>Foncier acheté</span></div>
     </div>
     <div class="bar">
-      <h3>En BRS <span>199 000 € au 16 Télégraphe</span></h3>
+      <h3>En BRS <span>199&nbsp;000&nbsp;€ au 16 Télégraphe</span></h3>
       <div class="track"><i data-w="58" style="background:#2C566E"></i><i data-w="42" style="background:repeating-linear-gradient(45deg,#E4EBEE,#E4EBEE 5px,#F4F7F8 5px,#F4F7F8 10px)"></i></div>
       <div class="legend"><span><b style="background:#2C566E"></b>Bâti acheté</span><span><b style="background:#E4EBEE"></b>Foncier porté par l'OFS</span></div>
-      <p>Le foncier devient une redevance de 1,15 €/m² par mois, soit environ 70 € pour un T3 de 60 m².</p>
+      <p>Le foncier devient une redevance de 1,15&nbsp;€/m² par mois, soit environ 70&nbsp;€ pour un T3 de 60 m².</p>
     </div>
   </div>
 </div></section>
 
-<section id="faq" style="padding-top:0"><div class="wrap"><div class="faq">
+<section id="faq"><div class="wrap"><div class="faq">
   <p class="eyebrow reveal">Questions fréquentes</p>
-  <h2 class="reveal" style="font-size:clamp(27px,3.4vw,38px);margin:10px 0 24px">Ce que les acquéreurs nous demandent</h2>
-  <div class="reveal"><div class="q"><button type="button" aria-expanded="true"><span>Suis-je vraiment propriétaire ?</span><span class="ico"></span></button>
-      <div class="panel open"><div><p>Oui. Vous détenez un droit réel sur le logement, inscrit chez le notaire : vous l'occupez, vous le transmettez à vos héritiers, vous le revendez et, sous conditions, vous le louez. Seul le terrain reste la propriété de l'Organisme de Foncier Solidaire.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Que se passe-t-il si je revends ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Vous revendez à un ménage lui aussi éligible, à un prix encadré par la formule inscrite au bail. Vous récupérez votre apport et une plus-value plafonnée — le logement, lui, reste accessible au ménage suivant. L'OFS vous accompagne et garantit le rachat.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Puis-je cumuler le BRS avec un PTZ ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Oui. Le BRS est éligible au Prêt à Taux Zéro et aux prêts conventionnés, avec une TVA à 5,5 % au lieu de 20 % et des frais de notaire réduits.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Combien coûte la redevance ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Elle dépend de l'OFS et du programme. Au 16 Télégraphe à Communay, elle s'élève à 1,15 €/m² habitable par mois, soit environ 70 € pour un T3 de 60 m² et 97 € pour un T4 de 84 m².</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Et si mes revenus augmentent après l'achat ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Les plafonds ne sont vérifiés qu'au moment de l'acquisition. Une fois propriétaire, votre situation peut évoluer librement : vous restez chez vous, aux mêmes conditions.</p></div></div></div></div>
+  <h2 class="reveal titre">Ce que les acquéreurs nous demandent</h2>
+  <div class="reveal"><div class="q"><button type="button" aria-expanded="false"><span>Suis-je vraiment propriétaire&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Oui. Vous détenez un droit réel sur le logement, inscrit chez le notaire&nbsp;: vous l'occupez, vous le transmettez à vos héritiers, vous le revendez et, sous conditions, vous le louez. Seul le terrain reste la propriété de l'Organisme de Foncier Solidaire.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Que se passe-t-il si je revends&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Vous revendez à un ménage lui aussi éligible, à un prix encadré par la formule inscrite au bail. Vous récupérez votre apport et une plus-value plafonnée — le logement, lui, reste accessible au ménage suivant. L'OFS vous accompagne et garantit le rachat.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Puis-je cumuler le BRS avec un PTZ&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Oui. Le BRS est éligible au Prêt à Taux Zéro et aux prêts conventionnés, avec une TVA à 5,5&nbsp;% au lieu de 20&nbsp;% et des frais de notaire réduits.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Combien coûte la redevance&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Elle dépend de l'OFS et du programme. Au 16 Télégraphe à Communay, elle s'élève à 1,15&nbsp;€/m² habitable par mois, soit environ 70&nbsp;€ pour un T3 de 60 m² et 97&nbsp;€ pour un T4 de 84 m².</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Et si mes revenus augmentent après l'achat&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Les plafonds ne sont vérifiés qu'au moment de l'acquisition. Une fois propriétaire, votre situation peut évoluer librement&nbsp;: vous restez chez vous, aux mêmes conditions.</p></div></div></div></div>
   <p style="margin-top:26px"><a class="btn btn-ghost" href="/guide-du-brs.html">Toutes les questions sur le BRS <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a></p>
 </div></div></section>
-<section style="padding-top:0"><div class="wrap"><div class="final reveal">
+<section><div class="wrap"><div class="final reveal">
   <h2>Votre projet mérite<br>une <em class="it">vraie</em> réponse.</h2>
   <p>Un échange de vingt minutes suffit à savoir si le BRS correspond à votre situation. Sans engagement, réponse sous 24 h.</p>
   <div class="final-cta">
@@ -299,7 +319,7 @@
       <div><h4>Programmes</h4><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe <span style="opacity:.6">· Communay</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs <span style="opacity:.6">· Coublevie</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 <span style="opacity:.6">· Bourg-Saint-Christophe</span></a></li><li><a href="/programmes/frans.html">Green Parc <span style="opacity:.6">· Frans</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs <span style="opacity:.6">· Savigneux</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></div>
       <div><h4>Comprendre</h4><ul>
         <li><a href="/guide-du-brs.html">Guide du BRS</a></li>
-        <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
+        <li><a href="/eligibilite.html">Suis-je éligible&nbsp;?</a></li>
         <li><a href="/accompagnement.html">Notre accompagnement</a></li>
         <li><a href="/guide-du-brs.html#revente">Revendre son BRS</a></li></ul></div>
       <div><h4>Homelia</h4><ul>
@@ -315,7 +335,7 @@
       <a href="/cookies.html">Politique de cookies</a><span class="sep">·</span>
       <a href="/plan-du-site.html">Plan du site</a>
     </div>
-    <p class="legal">SIREN 944 647 403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
+    <p class="legal">SIREN 944&nbsp;647&nbsp;403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
     Vente soumise aux conditions du Bail Réel Solidaire et aux plafonds de ressources en vigueur. Les visuels sont non contractuels.</p>
   </div>
 </footer>

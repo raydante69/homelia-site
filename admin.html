@@ -17,7 +17,7 @@
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
@@ -33,12 +33,20 @@
     <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
   </div>
-  <div class="drawer" id="drawer"><div><div class="in"><a href="/index.html">Accueil</a><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/actualites.html">Actualités</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/territoires/rhone.html">Rhône <span style="opacity:.55">· 4 programmes</span></a><a class="sub" href="/territoires/ain.html">Ain <span style="opacity:.55">· 3 programmes</span></a><a class="sub" href="/territoires/isere.html">Isère <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/savoie.html">Savoie <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/saone-et-loire.html">Saône-et-Loire <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/seine-saint-denis.html">Seine-Saint-Denis <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine <span style="opacity:.55">· 1 programme</span></a>
-    <a data-compte href="/connexion.html" hidden>Connexion</a>
-    <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
-  </div></div></div>
   <i class="progress" id="progress"></i>
 </header>
+<div class="drawer" id="drawer"><div class="in">
+  <a href="/index.html">Accueil</a>
+  <button class="tiroir-ouvrir" type="button" aria-expanded="false" aria-controls="tiroir-prog">Programmes <i aria-hidden="true"></i></button>
+  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/programmes.html"><strong>Tous les programmes</strong><span>12</span></a><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a></div></div>
+  <a href="/guide-du-brs.html">Le BRS</a>
+  <a href="/eligibilite.html">Éligibilité</a>
+  <a href="/accompagnement.html">Accompagnement</a>
+  <a href="/actualites.html">Actualités</a>
+  <a href="/nous-connaitre.html">Nous connaître</a>
+  <a data-compte href="/connexion.html" hidden>Connexion</a>
+  <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
+</div></div>
 <main id="main">
 <section class="phead"><div class="wrap">
   <p class="crumb"><a href="/index.html">Accueil</a> · Administration</p>
@@ -72,7 +80,7 @@
           <div class="form-grid">
             <div class="fw"><label for="a-nom">Nom du programme *</label><input id="a-nom" required></div>
             <div class="fw"><label for="a-slug">Identifiant d'URL *</label><input id="a-slug" required pattern="[a-z0-9-]+">
-              <span class="note">Lettres minuscules et tirets : « les-terrasses ».</span></div>
+              <span class="note">Lettres minuscules et tirets&nbsp;: «&nbsp;les-terrasses&nbsp;».</span></div>
             <div class="fw"><label for="a-ville">Commune *</label><input id="a-ville" required></div>
             <div class="fw"><label for="a-dep">Département *</label><input id="a-dep" placeholder="69" required></div>
             <div class="fw"><label for="a-depnom">Nom du département</label><input id="a-depnom" placeholder="Rhône"></div>
@@ -89,9 +97,9 @@
             <div class="fw large"><label for="a-specs">Points clés</label><input id="a-specs" placeholder="12 logements, Jardin privatif, 2 stationnements">
               <span class="note">Séparés par des virgules.</span></div>
             <div class="fw large"><label for="a-prest">Prestations</label><textarea id="a-prest" placeholder="Jardin privatif | Jardin engazonné de 17 à 94 m²"></textarea>
-              <span class="note">Une par ligne, au format « Titre | Détail ».</span></div>
+              <span class="note">Une par ligne, au format «&nbsp;Titre | Détail&nbsp;».</span></div>
             <div class="fw large"><label for="a-loc">Localisation</label><textarea id="a-loc" placeholder="En voiture | Lyon : 25 min ; Accès A7"></textarea>
-              <span class="note">Une rubrique par ligne, au format « Titre | point ; point ».</span></div>
+              <span class="note">Une rubrique par ligne, au format «&nbsp;Titre | point&nbsp;; point&nbsp;».</span></div>
             <div class="fw"><label for="a-photo">Photo principale</label><input id="a-photo" type="file" accept="image/*">
               <span class="note" id="a-photo-etat"></span></div>
             <div class="fw"><label for="a-image">ou adresse de l'image</label><input id="a-image" placeholder="/assets/img/…"></div>
@@ -144,7 +152,7 @@
       </div>
       <div class="bloc" style="max-width:560px">
         <h2>Mot de passe</h2>
-        <p class="sub">Choisissez un mot de passe long et unique : il protège l'ensemble des annonces et des demandes reçues.</p>
+        <p class="sub">Choisissez un mot de passe long et unique&nbsp;: il protège l'ensemble des annonces et des demandes reçues.</p>
         <form class="form" id="f-mdp">
           <div class="fw"><label for="n-mdp">Nouveau mot de passe</label><input id="n-mdp" type="password" minlength="8" autocomplete="new-password" required></div>
           <div class="fw"><label for="n-mdp2">Confirmation</label><input id="n-mdp2" type="password" minlength="8" autocomplete="new-password" required></div>
@@ -427,7 +435,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <div><h4>Programmes</h4><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe <span style="opacity:.6">· Communay</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs <span style="opacity:.6">· Coublevie</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 <span style="opacity:.6">· Bourg-Saint-Christophe</span></a></li><li><a href="/programmes/frans.html">Green Parc <span style="opacity:.6">· Frans</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs <span style="opacity:.6">· Savigneux</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></div>
       <div><h4>Comprendre</h4><ul>
         <li><a href="/guide-du-brs.html">Guide du BRS</a></li>
-        <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
+        <li><a href="/eligibilite.html">Suis-je éligible&nbsp;?</a></li>
         <li><a href="/accompagnement.html">Notre accompagnement</a></li>
         <li><a href="/guide-du-brs.html#revente">Revendre son BRS</a></li></ul></div>
       <div><h4>Homelia</h4><ul>
@@ -443,7 +451,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <a href="/cookies.html">Politique de cookies</a><span class="sep">·</span>
       <a href="/plan-du-site.html">Plan du site</a>
     </div>
-    <p class="legal">SIREN 944 647 403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
+    <p class="legal">SIREN 944&nbsp;647&nbsp;403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
     Vente soumise aux conditions du Bail Réel Solidaire et aux plafonds de ressources en vigueur. Les visuels sont non contractuels.</p>
   </div>
 </footer>

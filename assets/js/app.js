@@ -330,22 +330,67 @@ window.Homelia = (function () {
   async function deconnexion() { await db.auth.signOut(); window.location.replace("/index.html"); }
   async function majCompte(champs) { return await db.auth.updateUser(champs); }
 
-  /* ---------------- carte d'annonce (réutilisée partout) ---------------- */
+  /* ---------------- carte d'annonce (réutilisée partout) ----------------
+     Même disposition que les cartes des pages statiques : le type de bien et
+     le nom en tête, les informations en pastilles, puis la photo avec la
+     bulle de prix en bas à droite. */
+  var ICONES = {
+    maison: '<svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>',
+    appartement: '<svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/>'
+      + '<path d="M9 7.5h1.5M13.5 7.5H15M9 11h1.5M13.5 11H15M9 14.5h1.5M13.5 14.5H15M10.5 20.5V18h3v2.5"/></svg>'
+  };
+  function typeDeBien(a) {
+    var t = [a.logements, a.typologies, a.accroche, a.nom].join(" ").toLowerCase();
+    if (/appartement/.test(t)) return "appartement";
+    if (/maison|pavillon|duplex|jumel/.test(t)) return "maison";
+    return "appartement";
+  }
+  /* La typologie d'abord, puis le reste, sans répéter la typologie. */
+  var VIDES = { "en": 1, "et": 1, "à": 1, "a": 1, "de": 1 };
+  var TYPES = { "maison": 1, "maisons": 1, "appartement": 1, "appartements": 1 };
+  function jetons(x) {
+    var j = {};
+    (String(x || "").toLowerCase().replace(/·/g, " ").match(/[\wéèêàâîôûç²]+/g) || [])
+      .forEach(function (m) { if (!VIDES[m]) j[m] = 1; });
+    return j;
+  }
+  function inclus(a, b) { for (var k in a) if (!b[k]) return false; return true; }
+  function infos(typo, specs) {
+    var jt = jetons(typo), garde = [];
+    specs.forEach(function (sp) {
+      var j = jetons(sp), estTypo = Object.keys(j).some(function (k) { return /^t\d$/.test(k); });
+      if (!estTypo) { garde.push(sp); return; }
+      if (inclus(j, jt)) return;                                   /* même information */
+      if (inclus(jt, j)) {
+        var reste = Object.keys(j).filter(function (k) { return !jt[k]; });
+        if (reste.every(function (k) { return TYPES[k]; })) return; /* « Maisons T4 » : l'icône le dit */
+        typo = sp; return;                                           /* « T4 duplex » précise « T4 » */
+      }
+      garde.push(sp);
+    });
+    return { typo: typo, reste: garde };
+  }
   function carte(a, options) {
     options = options || {};
-    var specs = (a.specs || []).slice(0, 4).map(function (s) { return "<span>" + echappe(s) + "</span>"; }).join("");
+    var genre = typeDeBien(a), libelle = genre === "maison" ? "Maisons" : "Appartements";
+    var i = infos(a.typologies || "", (a.specs || []).slice(0, 5));
+    var puces = (i.typo ? '<li class="typo">' + echappe(i.typo) + "</li>" : "")
+      + i.reste.slice(0, 4).map(function (s) { return "<li>" + echappe(s) + "</li>"; }).join("");
     var coeur = options.favori
       ? '<button class="fav" type="button" data-fav="' + a.id + '" aria-label="Ajouter aux favoris">'
         + '<svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.4A3.8 3.8 0 0112 8a3.8 3.8 0 017 2.6C19 15.4 12 20 12 20z"/></svg></button>'
       : "";
     return '<a class="card" href="' + lien(a) + '">'
-      + '<div class="card-img"><span class="chip">' + echappe(a.statut) + " · " + echappe(a.typologies || "") + "</span>" + coeur
-      + '<img src="' + echappe(image(a)) + '" alt="' + echappe(a.nom + " à " + a.ville) + '" loading="lazy"></div>'
-      + '<div class="card-bar"><div><h3>' + echappe(a.nom) + "</h3>"
-      + '<div class="loc"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z"/><circle cx="12" cy="11" r="2.5"/></svg>'
-      + echappe(a.ville) + " · " + echappe(a.departement_nom || "") + " (" + echappe(a.departement) + ")</div></div>"
-      + '<span class="price">' + echappe(a.prix || "Nous consulter") + "<small>" + echappe(a.prix_libelle || "") + "</small></span></div>"
-      + '<div class="card-specs">' + specs + "</div></a>";
+      + '<div class="card-tete"><span class="card-type" title="' + libelle + '">' + ICONES[genre]
+      + '<span class="vh">' + libelle + "</span></span>"
+      + '<div class="card-titre"><h3>' + echappe(a.nom) + '</h3><p class="loc">' + echappe(a.ville)
+      + " · " + echappe(a.departement_nom || "") + " (" + echappe(a.departement) + ")</p></div></div>"
+      + '<ul class="card-infos">' + puces + "</ul>"
+      + '<div class="card-img"><span class="chip">' + echappe(a.statut || "") + "</span>" + coeur
+      + '<img src="' + echappe(image(a)) + '" alt="' + echappe(a.nom + " à " + a.ville) + '" loading="lazy">'
+      + '<span class="card-prix"><span><small>' + echappe(a.prix_libelle || "") + "</small><b>"
+      + echappe(a.prix || "Nous consulter") + '</b></span><i aria-hidden="true">'
+      + '<svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span></div></a>';
   }
 
   return {

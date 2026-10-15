@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
@@ -32,19 +32,27 @@
     <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
   </div>
-  <div class="drawer" id="drawer"><div><div class="in"><a href="/index.html">Accueil</a><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/actualites.html">Actualités</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/territoires/rhone.html">Rhône <span style="opacity:.55">· 4 programmes</span></a><a class="sub" href="/territoires/ain.html">Ain <span style="opacity:.55">· 3 programmes</span></a><a class="sub" href="/territoires/isere.html">Isère <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/savoie.html">Savoie <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/saone-et-loire.html">Saône-et-Loire <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/seine-saint-denis.html">Seine-Saint-Denis <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine <span style="opacity:.55">· 1 programme</span></a>
-    <a data-compte href="/connexion.html" hidden>Connexion</a>
-    <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
-  </div></div></div>
   <i class="progress" id="progress"></i>
 </header>
+<div class="drawer" id="drawer"><div class="in">
+  <a href="/index.html">Accueil</a>
+  <button class="tiroir-ouvrir" type="button" aria-expanded="false" aria-controls="tiroir-prog">Programmes <i aria-hidden="true"></i></button>
+  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/programmes.html"><strong>Tous les programmes</strong><span>12</span></a><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a></div></div>
+  <a href="/guide-du-brs.html">Le BRS</a>
+  <a href="/eligibilite.html">Éligibilité</a>
+  <a href="/accompagnement.html">Accompagnement</a>
+  <a href="/actualites.html">Actualités</a>
+  <a href="/nous-connaitre.html">Nous connaître</a>
+  <a data-compte href="/connexion.html" hidden>Connexion</a>
+  <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
+</div></div>
 <main id="main"><section class="phead"><div class="wrap">
   <p class="crumb"><a href="/index.html">Accueil</a> · Politique de cookies</p><p class="eyebrow">Vos données</p>
   <h1>Politique de cookies</h1>
   <p>Ce site fonctionne sans cookie publicitaire ni traceur tiers. Cette page détaille ce qui est déposé sur votre appareil, pourquoi, et comment le maîtriser.</p>
 </div></section>
 <section><div class="wrap prose">
-  <h2 style="margin-top:0">1. Qu'est-ce qu'un cookie ?</h2>
+  <h2 style="margin-top:0">1. Qu'est-ce qu'un cookie&nbsp;?</h2>
   <p>Un cookie est un petit fichier texte déposé sur votre appareil — ordinateur, tablette, téléphone — lorsque vous consultez un site web. Il permet notamment de mémoriser vos préférences, de sécuriser votre navigation ou de mesurer l'audience du site.</p>
   <p>Le terme recouvre également d'autres technologies de stockage local, comme le <em>localStorage</em> de votre navigateur, soumises aux mêmes règles.</p>
 
@@ -53,12 +61,12 @@
     <thead><tr><th>Nom</th><th>Nature</th><th>Finalité</th><th>Durée</th></tr></thead>
     <tbody>
       <tr><td data-col="Nom"><code>homelia-cookies</code></td><td data-col="Nature">Stockage local (navigateur)</td><td data-col="Finalité">Mémoriser votre choix concernant les cookies, pour ne plus vous solliciter à chaque visite</td><td data-col="Durée">Jusqu'à effacement par vos soins</td></tr>
-      <tr><td data-col="Nom"><code>sb-…-auth-token</code></td><td data-col="Nature">Stockage local (navigateur)</td><td data-col="Finalité">Vous maintenir connecté à votre espace entre deux visites. Déposé uniquement si vous créez un compte et vous connectez ; supprimé à la déconnexion</td><td data-col="Durée">Jusqu'à la déconnexion</td></tr>
+      <tr><td data-col="Nom"><code>sb-…-auth-token</code></td><td data-col="Nature">Stockage local (navigateur)</td><td data-col="Finalité">Vous maintenir connecté à votre espace entre deux visites. Déposé uniquement si vous créez un compte et vous connectez&nbsp;; supprimé à la déconnexion</td><td data-col="Durée">Jusqu'à la déconnexion</td></tr>
       <tr><td data-col="Nom">Journaux techniques</td><td data-col="Nature">Hébergeur</td><td data-col="Finalité">Sécurité, prévention des abus et bon fonctionnement du site</td><td data-col="Durée">12 mois maximum</td></tr>
     </tbody>
   </table></div>
   <p>Aucun cookie publicitaire, aucun traceur de réseau social et aucun outil de mesure d'audience tiers n'est déposé sur ce site
-  à la date de dernière mise à jour. Le jeton de session n'est déposé que pour les personnes qui se créent un compte : il est
+  à la date de dernière mise à jour. Le jeton de session n'est déposé que pour les personnes qui se créent un compte&nbsp;: il est
   strictement nécessaire au fonctionnement de l'espace personnel et ne sert à aucun suivi publicitaire.</p>
 
   <div class="callout">
@@ -67,22 +75,22 @@
 
   <h2>3. Votre consentement</h2>
   <p>Lors de votre première visite, un bandeau vous informe et vous permet d'accepter ou de refuser les cookies non essentiels. Les cookies strictement nécessaires au fonctionnement du site ne requièrent pas votre consentement, conformément aux recommandations de la CNIL.</p>
-  <p>Vous pouvez modifier votre choix à tout moment en effaçant les données de site enregistrées par votre navigateur : le bandeau réapparaîtra lors de votre prochaine visite.</p>
+  <p>Vous pouvez modifier votre choix à tout moment en effaçant les données de site enregistrées par votre navigateur&nbsp;: le bandeau réapparaîtra lors de votre prochaine visite.</p>
 
   <h2>4. Paramétrer votre navigateur</h2>
-  <p>Vous pouvez configurer votre navigateur pour accepter, refuser ou supprimer les cookies. Les réglages se trouvent généralement dans le menu « Préférences », « Options » ou « Paramètres », rubrique « Confidentialité et sécurité » :</p>
+  <p>Vous pouvez configurer votre navigateur pour accepter, refuser ou supprimer les cookies. Les réglages se trouvent généralement dans le menu «&nbsp;Préférences&nbsp;», «&nbsp;Options&nbsp;» ou «&nbsp;Paramètres&nbsp;», rubrique «&nbsp;Confidentialité et sécurité&nbsp;»&nbsp;:</p>
   <ul>
-    <li><strong>Chrome :</strong> Paramètres › Confidentialité et sécurité › Cookies et autres données des sites</li>
-    <li><strong>Firefox :</strong> Paramètres › Vie privée et sécurité › Cookies et données de sites</li>
-    <li><strong>Safari :</strong> Réglages › Safari › Confidentialité et sécurité</li>
-    <li><strong>Edge :</strong> Paramètres › Cookies et autorisations de site</li>
+    <li><strong>Chrome&nbsp;:</strong> Paramètres › Confidentialité et sécurité › Cookies et autres données des sites</li>
+    <li><strong>Firefox&nbsp;:</strong> Paramètres › Vie privée et sécurité › Cookies et données de sites</li>
+    <li><strong>Safari&nbsp;:</strong> Réglages › Safari › Confidentialité et sécurité</li>
+    <li><strong>Edge&nbsp;:</strong> Paramètres › Cookies et autorisations de site</li>
   </ul>
   <p>Le refus des cookies strictement nécessaires peut altérer certaines fonctionnalités du site.</p>
 
   <h2>5. En savoir plus</h2>
-  <p>La CNIL publie une fiche pratique sur la maîtrise des cookies : <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs" rel="noopener noreferrer" target="_blank">cnil.fr</a>.</p>
-  <p>Pour toute question : <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a>. Voir également notre <a href="/confidentialite.html">politique de confidentialité</a>.</p>
-  <p class="note">Dernière mise à jour : 12 septembre 2026.</p>
+  <p>La CNIL publie une fiche pratique sur la maîtrise des cookies&nbsp;: <a href="https://www.cnil.fr/fr/cookies-et-autres-traceurs" rel="noopener noreferrer" target="_blank">cnil.fr</a>.</p>
+  <p>Pour toute question&nbsp;: <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a>. Voir également notre <a href="/confidentialite.html">politique de confidentialité</a>.</p>
+  <p class="note">Dernière mise à jour&nbsp;: 12 septembre 2026.</p>
 </div></section>
 </main>
 <footer class="site-foot">
@@ -97,7 +105,7 @@
       <div><h4>Programmes</h4><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe <span style="opacity:.6">· Communay</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs <span style="opacity:.6">· Coublevie</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 <span style="opacity:.6">· Bourg-Saint-Christophe</span></a></li><li><a href="/programmes/frans.html">Green Parc <span style="opacity:.6">· Frans</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs <span style="opacity:.6">· Savigneux</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></div>
       <div><h4>Comprendre</h4><ul>
         <li><a href="/guide-du-brs.html">Guide du BRS</a></li>
-        <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
+        <li><a href="/eligibilite.html">Suis-je éligible&nbsp;?</a></li>
         <li><a href="/accompagnement.html">Notre accompagnement</a></li>
         <li><a href="/guide-du-brs.html#revente">Revendre son BRS</a></li></ul></div>
       <div><h4>Homelia</h4><ul>
@@ -113,7 +121,7 @@
       <a href="/cookies.html">Politique de cookies</a><span class="sep">·</span>
       <a href="/plan-du-site.html">Plan du site</a>
     </div>
-    <p class="legal">SIREN 944 647 403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
+    <p class="legal">SIREN 944&nbsp;647&nbsp;403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
     Vente soumise aux conditions du Bail Réel Solidaire et aux plafonds de ressources en vigueur. Les visuels sont non contractuels.</p>
   </div>
 </footer>

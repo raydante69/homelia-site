@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
@@ -32,12 +32,20 @@
     <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
   </div>
-  <div class="drawer" id="drawer"><div><div class="in"><a href="/index.html">Accueil</a><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/actualites.html">Actualités</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/territoires/rhone.html">Rhône <span style="opacity:.55">· 4 programmes</span></a><a class="sub" href="/territoires/ain.html">Ain <span style="opacity:.55">· 3 programmes</span></a><a class="sub" href="/territoires/isere.html">Isère <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/savoie.html">Savoie <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/saone-et-loire.html">Saône-et-Loire <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/seine-saint-denis.html">Seine-Saint-Denis <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine <span style="opacity:.55">· 1 programme</span></a>
-    <a data-compte href="/connexion.html" hidden>Connexion</a>
-    <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
-  </div></div></div>
   <i class="progress" id="progress"></i>
 </header>
+<div class="drawer" id="drawer"><div class="in">
+  <a href="/index.html">Accueil</a>
+  <button class="tiroir-ouvrir" type="button" aria-expanded="false" aria-controls="tiroir-prog">Programmes <i aria-hidden="true"></i></button>
+  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/programmes.html"><strong>Tous les programmes</strong><span>12</span></a><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a></div></div>
+  <a href="/guide-du-brs.html">Le BRS</a>
+  <a href="/eligibilite.html">Éligibilité</a>
+  <a href="/accompagnement.html">Accompagnement</a>
+  <a href="/actualites.html">Actualités</a>
+  <a href="/nous-connaitre.html">Nous connaître</a>
+  <a data-compte href="/connexion.html" hidden>Connexion</a>
+  <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
+</div></div>
 <main id="main"><section class="phead"><div class="wrap">
   <p class="crumb"><a href="/index.html">Accueil</a> · Mentions légales</p><p class="eyebrow">Informations légales</p>
   <h1>Mentions légales</h1>
@@ -45,30 +53,30 @@
 </div></section>
 <section><div class="wrap prose">
   <div class="callout todo">
-  <p><strong>À compléter avant mise en ligne.</strong> Les éléments entre crochets doivent être renseignés par Homelia :
+  <p><strong>À compléter avant mise en ligne.</strong> Les éléments entre crochets doivent être renseignés par Homelia&nbsp;:
   ils n'ont pas pu être repris du site existant, qui ne les mentionnait pas. Ils sont signalés en gras dans le texte ci-dessous.</p>
 </div>
   <h2 style="margin-top:0">1. Éditeur du site</h2>
-  <p>Le présent site est édité par :</p>
+  <p>Le présent site est édité par&nbsp;:</p>
   <ul>
-    <li><strong>Dénomination sociale :</strong> Homelia</li>
-    <li><strong>Forme juridique :</strong> [forme juridique — SAS, SARL…]</li>
-    <li><strong>Capital social :</strong> [montant] €</li>
-    <li><strong>Siège social :</strong> 3 rue de Genève, 69006 Lyon</li>
-    <li><strong>SIREN :</strong> 944 647 403</li>
-    <li><strong>RCS :</strong> [ville d'immatriculation] [numéro]</li>
-    <li><strong>Numéro de TVA intracommunautaire :</strong> [FR00 000 000 000]</li>
-    <li><strong>Téléphone :</strong> <a href="tel:0465848711">04 65 84 87 11</a></li>
-    <li><strong>Courriel :</strong> <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a></li>
-    <li><strong>Directeur de la publication :</strong> [nom du représentant légal]</li>
+    <li><strong>Dénomination sociale&nbsp;:</strong> Homelia</li>
+    <li><strong>Forme juridique&nbsp;:</strong> [forme juridique — SAS, SARL…]</li>
+    <li><strong>Capital social&nbsp;:</strong> [montant] €</li>
+    <li><strong>Siège social&nbsp;:</strong> 3 rue de Genève, 69006 Lyon</li>
+    <li><strong>SIREN&nbsp;:</strong> 944&nbsp;647&nbsp;403</li>
+    <li><strong>RCS&nbsp;:</strong> [ville d'immatriculation] [numéro]</li>
+    <li><strong>Numéro de TVA intracommunautaire&nbsp;:</strong> [FR00&nbsp;000&nbsp;000&nbsp;000]</li>
+    <li><strong>Téléphone&nbsp;:</strong> <a href="tel:0465848711">04 65 84 87 11</a></li>
+    <li><strong>Courriel&nbsp;:</strong> <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a></li>
+    <li><strong>Directeur de la publication&nbsp;:</strong> [nom du représentant légal]</li>
   </ul>
 
   <h2>2. Activité réglementée</h2>
   <p>L'activité d'entremise et de gestion immobilières est encadrée par la loi n° 70-9 du 2 janvier 1970 (loi Hoguet) et son décret d'application n° 72-678 du 20 juillet 1972.</p>
   <ul>
-    <li><strong>Carte professionnelle :</strong> [numéro] — mention « Transactions sur immeubles et fonds de commerce », délivrée par la CCI de [ville]</li>
-    <li><strong>Garantie financière :</strong> [organisme, adresse, montant] — ou mention « ne reçoit ni fonds, effets ou valeurs »</li>
-    <li><strong>Assurance responsabilité civile professionnelle :</strong> [assureur, adresse, numéro de contrat]</li>
+    <li><strong>Carte professionnelle&nbsp;:</strong> [numéro] — mention «&nbsp;Transactions sur immeubles et fonds de commerce&nbsp;», délivrée par la CCI de [ville]</li>
+    <li><strong>Garantie financière&nbsp;:</strong> [organisme, adresse, montant] — ou mention «&nbsp;ne reçoit ni fonds, effets ou valeurs&nbsp;»</li>
+    <li><strong>Assurance responsabilité civile professionnelle&nbsp;:</strong> [assureur, adresse, numéro de contrat]</li>
   </ul>
 
   <h2>3. Hébergement</h2>
@@ -92,12 +100,12 @@
   <p>Le simulateur mis à disposition sur ce site fournit une estimation indicative, calculée à partir des plafonds de ressources communiqués pour la zone concernée. Il ne constitue ni un conseil personnalisé, ni un engagement, ni une décision d'éligibilité. Seul l'Organisme de Foncier Solidaire, après examen des pièces justificatives, se prononce sur l'éligibilité d'un ménage.</p>
 
   <h2>8. Droit applicable et médiation</h2>
-  <p>Les présentes mentions légales sont soumises au droit français. En cas de litige, et après démarche préalable auprès de Homelia restée infructueuse, le consommateur peut recourir gratuitement au médiateur de la consommation dont relève l'entreprise : [nom, adresse et site du médiateur].</p>
+  <p>Les présentes mentions légales sont soumises au droit français. En cas de litige, et après démarche préalable auprès de Homelia restée infructueuse, le consommateur peut recourir gratuitement au médiateur de la consommation dont relève l'entreprise&nbsp;: [nom, adresse et site du médiateur].</p>
   <p>Conformément au règlement (UE) n° 524/2013, une plateforme européenne de règlement en ligne des litiges est également accessible.</p>
 
   <h2>9. Contact</h2>
-  <p>Pour toute question relative aux présentes mentions légales : <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a> ou <a href="tel:0465848711">04 65 84 87 11</a>.</p>
-  <p class="note">Dernière mise à jour : 12 septembre 2026.</p>
+  <p>Pour toute question relative aux présentes mentions légales&nbsp;: <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a> ou <a href="tel:0465848711">04 65 84 87 11</a>.</p>
+  <p class="note">Dernière mise à jour&nbsp;: 12 septembre 2026.</p>
 </div></section>
 </main>
 <footer class="site-foot">
@@ -112,7 +120,7 @@
       <div><h4>Programmes</h4><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe <span style="opacity:.6">· Communay</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs <span style="opacity:.6">· Coublevie</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 <span style="opacity:.6">· Bourg-Saint-Christophe</span></a></li><li><a href="/programmes/frans.html">Green Parc <span style="opacity:.6">· Frans</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs <span style="opacity:.6">· Savigneux</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></div>
       <div><h4>Comprendre</h4><ul>
         <li><a href="/guide-du-brs.html">Guide du BRS</a></li>
-        <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
+        <li><a href="/eligibilite.html">Suis-je éligible&nbsp;?</a></li>
         <li><a href="/accompagnement.html">Notre accompagnement</a></li>
         <li><a href="/guide-du-brs.html#revente">Revendre son BRS</a></li></ul></div>
       <div><h4>Homelia</h4><ul>
@@ -128,7 +136,7 @@
       <a href="/cookies.html">Politique de cookies</a><span class="sep">·</span>
       <a href="/plan-du-site.html">Plan du site</a>
     </div>
-    <p class="legal">SIREN 944 647 403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
+    <p class="legal">SIREN 944&nbsp;647&nbsp;403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
     Vente soumise aux conditions du Bail Réel Solidaire et aux plafonds de ressources en vigueur. Les visuels sont non contractuels.</p>
   </div>
 </footer>

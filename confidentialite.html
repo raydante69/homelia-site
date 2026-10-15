@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
@@ -32,12 +32,20 @@
     <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
   </div>
-  <div class="drawer" id="drawer"><div><div class="in"><a href="/index.html">Accueil</a><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/actualites.html">Actualités</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/territoires/rhone.html">Rhône <span style="opacity:.55">· 4 programmes</span></a><a class="sub" href="/territoires/ain.html">Ain <span style="opacity:.55">· 3 programmes</span></a><a class="sub" href="/territoires/isere.html">Isère <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/savoie.html">Savoie <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/saone-et-loire.html">Saône-et-Loire <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/seine-saint-denis.html">Seine-Saint-Denis <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine <span style="opacity:.55">· 1 programme</span></a>
-    <a data-compte href="/connexion.html" hidden>Connexion</a>
-    <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
-  </div></div></div>
   <i class="progress" id="progress"></i>
 </header>
+<div class="drawer" id="drawer"><div class="in">
+  <a href="/index.html">Accueil</a>
+  <button class="tiroir-ouvrir" type="button" aria-expanded="false" aria-controls="tiroir-prog">Programmes <i aria-hidden="true"></i></button>
+  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/programmes.html"><strong>Tous les programmes</strong><span>12</span></a><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a></div></div>
+  <a href="/guide-du-brs.html">Le BRS</a>
+  <a href="/eligibilite.html">Éligibilité</a>
+  <a href="/accompagnement.html">Accompagnement</a>
+  <a href="/actualites.html">Actualités</a>
+  <a href="/nous-connaitre.html">Nous connaître</a>
+  <a data-compte href="/connexion.html" hidden>Connexion</a>
+  <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
+</div></div>
 <main id="main"><section class="phead"><div class="wrap">
   <p class="crumb"><a href="/index.html">Accueil</a> · Politique de confidentialité</p><p class="eyebrow">Vos données</p>
   <h1>Politique de confidentialité</h1>
@@ -45,24 +53,24 @@
 </div></section>
 <section><div class="wrap prose">
   <div class="callout todo">
-  <p><strong>À compléter avant mise en ligne.</strong> Les éléments entre crochets doivent être renseignés par Homelia :
+  <p><strong>À compléter avant mise en ligne.</strong> Les éléments entre crochets doivent être renseignés par Homelia&nbsp;:
   ils n'ont pas pu être repris du site existant, qui ne les mentionnait pas. Notamment le délégué à la protection des données, s'il en existe un.</p>
 </div>
   <h2 style="margin-top:0">1. Responsable du traitement</h2>
-  <p>Le responsable du traitement est <strong>Homelia</strong>, 3 rue de Genève, 69006 Lyon — SIREN 944 647 403.</p>
-  <p>Contact : <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a> — <a href="tel:0465848711">04 65 84 87 11</a>.</p>
+  <p>Le responsable du traitement est <strong>Homelia</strong>, 3 rue de Genève, 69006 Lyon — SIREN 944&nbsp;647&nbsp;403.</p>
+  <p>Contact&nbsp;: <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a> — <a href="tel:0465848711">04 65 84 87 11</a>.</p>
   <p>[Si un délégué à la protection des données a été désigné, indiquer ici son identité et ses coordonnées.]</p>
 
   <h2>2. Données collectées</h2>
-  <p>Nous ne collectons que les données nécessaires au traitement de votre demande :</p>
+  <p>Nous ne collectons que les données nécessaires au traitement de votre demande&nbsp;:</p>
   <ul>
-    <li><strong>Identité et coordonnées :</strong> nom, prénom, adresse e-mail, numéro de téléphone.</li>
-    <li><strong>Données relatives au projet :</strong> programme concerné, composition du foyer, revenu fiscal de référence, contenu de votre message.</li>
-    <li><strong>Données de navigation :</strong> adresse IP, pages consultées, date et durée de visite, type de navigateur — collectées par l'hébergeur à des fins de sécurité et de bon fonctionnement du site.</li>
-    <li><strong>Données de compte</strong>, si vous en créez un : adresse e-mail, mot de passe (stocké sous forme chiffrée,
+    <li><strong>Identité et coordonnées&nbsp;:</strong> nom, prénom, adresse e-mail, numéro de téléphone.</li>
+    <li><strong>Données relatives au projet&nbsp;:</strong> programme concerné, composition du foyer, revenu fiscal de référence, contenu de votre message.</li>
+    <li><strong>Données de navigation&nbsp;:</strong> adresse IP, pages consultées, date et durée de visite, type de navigateur — collectées par l'hébergeur à des fins de sécurité et de bon fonctionnement du site.</li>
+    <li><strong>Données de compte</strong>, si vous en créez un&nbsp;: adresse e-mail, mot de passe (stocké sous forme chiffrée,
       jamais en clair et jamais accessible à Homelia), nom, téléphone, programmes mis en favori et historique de vos demandes.</li>
   </ul>
-  <p>Les champs obligatoires sont signalés par un astérisque dans nos formulaires. Le revenu fiscal de référence est facultatif : il ne sert qu'à vous répondre plus précisément sur votre éligibilité.</p>
+  <p>Les champs obligatoires sont signalés par un astérisque dans nos formulaires. Le revenu fiscal de référence est facultatif&nbsp;: il ne sert qu'à vous répondre plus précisément sur votre éligibilité.</p>
 
   <h2>3. Finalités et bases légales</h2>
   <div class="table-wrap"><table>
@@ -76,15 +84,15 @@
       <tr><td data-col="Finalité">Respecter nos obligations comptables et légales</td><td data-col="Base légale">Obligation légale (art. 6.1.c RGPD)</td></tr>
     </tbody>
   </table></div>
-  <p>Aucune décision entièrement automatisée n'est prise à partir de vos données. Le simulateur d'éligibilité fonctionne intégralement dans votre navigateur : les valeurs que vous y saisissez ne nous sont pas transmises.</p>
+  <p>Aucune décision entièrement automatisée n'est prise à partir de vos données. Le simulateur d'éligibilité fonctionne intégralement dans votre navigateur&nbsp;: les valeurs que vous y saisissez ne nous sont pas transmises.</p>
 
   <h2>4. Destinataires</h2>
-  <p>Vos données sont traitées par les équipes de Homelia. Elles peuvent être transmises, uniquement lorsque votre dossier le nécessite et dans la limite de ce qui est utile :</p>
+  <p>Vos données sont traitées par les équipes de Homelia. Elles peuvent être transmises, uniquement lorsque votre dossier le nécessite et dans la limite de ce qui est utile&nbsp;:</p>
   <ul>
-    <li>à l'<strong>Organisme de Foncier Solidaire</strong> concerné, pour l'instruction de votre éligibilité et de l'agrément ;</li>
-    <li>au <strong>promoteur ou au vendeur</strong> du programme, pour la réservation ;</li>
-    <li>au <strong>notaire</strong> chargé de l'acte, et le cas échéant à votre banque ou à votre courtier, avec votre accord ;</li>
-    <li>à nos <strong>prestataires techniques</strong>, agissant en qualité de sous-traitants :
+    <li>à l'<strong>Organisme de Foncier Solidaire</strong> concerné, pour l'instruction de votre éligibilité et de l'agrément&nbsp;;</li>
+    <li>au <strong>promoteur ou au vendeur</strong> du programme, pour la réservation&nbsp;;</li>
+    <li>au <strong>notaire</strong> chargé de l'acte, et le cas échéant à votre banque ou à votre courtier, avec votre accord&nbsp;;</li>
+    <li>à nos <strong>prestataires techniques</strong>, agissant en qualité de sous-traitants&nbsp;:
       <strong>Vercel</strong> (hébergement des pages) et <strong>Supabase</strong> (base de données,
       gestion des comptes et stockage des photos).</li>
   </ul>
@@ -110,17 +118,17 @@
   </table></div>
 
   <h2>7. Vos droits</h2>
-  <p>Conformément au Règlement général sur la protection des données et à la loi « Informatique et Libertés », vous disposez des droits suivants : <strong>accès</strong>, <strong>rectification</strong>, <strong>effacement</strong>, <strong>limitation</strong> du traitement, <strong>portabilité</strong> de vos données, <strong>opposition</strong> au traitement, et retrait de votre consentement à tout moment lorsque le traitement repose sur celui-ci.</p>
+  <p>Conformément au Règlement général sur la protection des données et à la loi «&nbsp;Informatique et Libertés&nbsp;», vous disposez des droits suivants&nbsp;: <strong>accès</strong>, <strong>rectification</strong>, <strong>effacement</strong>, <strong>limitation</strong> du traitement, <strong>portabilité</strong> de vos données, <strong>opposition</strong> au traitement, et retrait de votre consentement à tout moment lorsque le traitement repose sur celui-ci.</p>
   <p>Vous pouvez exercer ces droits en écrivant à <a href="mailto:contact@homelia-accession.fr">contact@homelia-accession.fr</a> ou par courrier à l'adresse du siège, en justifiant de votre identité. Nous répondons dans un délai d'un mois.</p>
   <p>Vous pouvez également définir des directives relatives au sort de vos données après votre décès.</p>
   <p>Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez adresser une réclamation à la <strong>CNIL</strong> — 3 place de Fontenoy, TSA 80715, 75334 Paris Cedex 07 — <a href="https://www.cnil.fr" rel="noopener noreferrer" target="_blank">www.cnil.fr</a>.</p>
 
   <h2>8. Sécurité</h2>
-  <p>Nous mettons en œuvre les mesures techniques et organisationnelles appropriées pour protéger vos données contre la perte, l'altération et l'accès non autorisé : connexion chiffrée (HTTPS), accès restreints aux personnes habilitées, et sélection de sous-traitants présentant des garanties suffisantes.</p>
+  <p>Nous mettons en œuvre les mesures techniques et organisationnelles appropriées pour protéger vos données contre la perte, l'altération et l'accès non autorisé&nbsp;: connexion chiffrée (HTTPS), accès restreints aux personnes habilitées, et sélection de sous-traitants présentant des garanties suffisantes.</p>
 
   <h2>9. Modification de la présente politique</h2>
   <p>Cette politique peut être mise à jour pour tenir compte d'évolutions légales ou de nos pratiques. La date de dernière mise à jour figure ci-dessous.</p>
-  <p class="note">Dernière mise à jour : 12 septembre 2026. Voir également notre <a href="/cookies.html">politique de cookies</a>.</p>
+  <p class="note">Dernière mise à jour&nbsp;: 12 septembre 2026. Voir également notre <a href="/cookies.html">politique de cookies</a>.</p>
 </div></section>
 </main>
 <footer class="site-foot">
@@ -135,7 +143,7 @@
       <div><h4>Programmes</h4><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe <span style="opacity:.6">· Communay</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs <span style="opacity:.6">· Coublevie</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 <span style="opacity:.6">· Bourg-Saint-Christophe</span></a></li><li><a href="/programmes/frans.html">Green Parc <span style="opacity:.6">· Frans</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs <span style="opacity:.6">· Savigneux</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></div>
       <div><h4>Comprendre</h4><ul>
         <li><a href="/guide-du-brs.html">Guide du BRS</a></li>
-        <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
+        <li><a href="/eligibilite.html">Suis-je éligible&nbsp;?</a></li>
         <li><a href="/accompagnement.html">Notre accompagnement</a></li>
         <li><a href="/guide-du-brs.html#revente">Revendre son BRS</a></li></ul></div>
       <div><h4>Homelia</h4><ul>
@@ -151,7 +159,7 @@
       <a href="/cookies.html">Politique de cookies</a><span class="sep">·</span>
       <a href="/plan-du-site.html">Plan du site</a>
     </div>
-    <p class="legal">SIREN 944 647 403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
+    <p class="legal">SIREN 944&nbsp;647&nbsp;403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
     Vente soumise aux conditions du Bail Réel Solidaire et aux plafonds de ressources en vigueur. Les visuels sont non contractuels.</p>
   </div>
 </footer>

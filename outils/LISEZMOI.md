@@ -18,3 +18,16 @@ Pour régénérer après l'ajout d'un programme :
 Le script lit `progs.json` (slug, latitude, longitude de chaque
 programme) et met les tuiles en cache dans `tuiles/`, afin de ne pas
 les redemander à chaque exécution.
+
+## refonte-2026-10.py
+
+Applique aux pages HTML la refonte d'octobre 2026 : une seule famille de
+police, titres de section en deux colonnes, cartes d'annonce regroupées
+en un seul encart, menu mobile sorti de l'en-tête, FAQ fermées à
+l'arrivée, espaces insécables (« 199 000 € », « 7 à 8 % », « ? », « : »).
+
+Le script est idempotent : on peut le relancer sans risque, il ne touche
+que ce qui n'a pas encore été transformé. Utile après l'ajout d'une page
+écrite sur l'ancien modèle.
+
+    python3 outils/refonte-2026-10.py

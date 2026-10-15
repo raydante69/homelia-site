@@ -128,19 +128,41 @@
   };
   window.homeliaInitRotator();
 
-  /* ---- menu mobile ---- */
+  /* ---- menu mobile ----
+     Le panneau couvre l'écran sous la barre et défile seul : la page derrière
+     est immobilisée tant qu'il est ouvert, sinon le doigt la faisait glisser
+     à travers le menu et le bas de la liste restait hors d'atteinte. */
   var burger = $("#burger"), drawer = $("#drawer");
   if (burger && drawer) {
+    var ouvrirMenu = function (oui) {
+      burger.setAttribute("aria-expanded", String(oui));
+      burger.setAttribute("aria-label", oui ? "Fermer le menu" : "Ouvrir le menu");
+      if (oui && nav) drawer.style.setProperty("--haut-tiroir", Math.round(nav.getBoundingClientRect().bottom) + "px");
+      drawer.classList.toggle("open", oui);
+      document.documentElement.classList.toggle("menu-ouvert", oui);
+      if (oui) drawer.scrollTop = 0;
+    };
     burger.addEventListener("click", function () {
-      var open = burger.getAttribute("aria-expanded") === "true";
-      burger.setAttribute("aria-expanded", String(!open));
-      drawer.classList.toggle("open", !open);
+      ouvrirMenu(burger.getAttribute("aria-expanded") !== "true");
     });
     drawer.addEventListener("click", function (e) {
-      if (e.target.closest("a")) {
-        burger.setAttribute("aria-expanded", "false");
-        drawer.classList.remove("open");
-      }
+      if (e.target.closest("a")) ouvrirMenu(false);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && drawer.classList.contains("open")) { ouvrirMenu(false); burger.focus(); }
+    });
+    window.addEventListener("resize", function () {
+      if (window.innerWidth > 940 && drawer.classList.contains("open")) ouvrirMenu(false);
+    });
+    /* « Programmes » se déplie sur place, fermé à l'ouverture du menu */
+    $$(".tiroir-ouvrir", drawer).forEach(function (b) {
+      var sous = document.getElementById(b.getAttribute("aria-controls"));
+      if (!sous) return;
+      b.addEventListener("click", function () {
+        var oui = b.getAttribute("aria-expanded") !== "true";
+        b.setAttribute("aria-expanded", String(oui));
+        sous.classList.toggle("open", oui);
+      });
     });
   }
 
@@ -265,7 +287,7 @@
     var plafonds = { B1: { 1: 37581, 2: 50023, 3: 60543, 4: 70718, 5: 80183, 6: 90863 } };
     var foyer = 3, zone = "B1";
     var seg = $("#seg"), rfr = $("#rfr"), verdict = $("#verdict"), big = $("#vBig"), zoneSel = $("#zone");
-    var euro = function (n) { return Math.round(n).toLocaleString("fr-FR").replace(/ | /g, " ") + " €"; };
+    var euro = function (n) { return Math.round(n).toLocaleString("fr-FR").replace(/\u202F|\u00A0| /g, "\u00A0") + "\u00A0€"; };
     function render(pulse) {
       var v = Number(rfr.value), p = plafonds[zone][foyer], ok = v <= p;
       $("#rfrVal").textContent = euro(v);
@@ -431,7 +453,7 @@
   var mens = $("#sim-mens");
   if (mens) {
     var euro = function (n) {
-      return Math.round(n).toLocaleString("fr-FR").replace(/\u202F|\u00A0/g, " ") + " €";
+      return Math.round(n).toLocaleString("fr-FR").replace(/\u202F|\u00A0| /g, "\u00A0") + "\u00A0€";
     };
     var champs = {
       prix: $("#m-prix"), apport: $("#m-apport"), duree: $("#m-duree"),
@@ -451,7 +473,7 @@
           parM2 = Number(champs.redevance.value) || 0;
 
       $("#m-duree-val").textContent = annees + " ans";
-      $("#m-taux-val").textContent = taux.toFixed(2).replace(".", ",") + " %";
+      $("#m-taux-val").textContent = taux.toFixed(2).replace(".", ",") + "\u00A0%";
 
       var emprunt = Math.max(prix - apport, 0),
           t = taux / 100 / 12,
@@ -624,4 +646,35 @@
 
   /* ---- année du pied de page ---- */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
+  /* ---- encarts interactifs ----
+     Quand une valeur change, le champ frémit une fois ; quand on fait un
+     choix, le bouton rebondit. L'en-tête, le pied de page et le menu mobile
+     ne sont pas concernés : tout est limité à <main>. */
+  var rejouer = function (el, classe) {
+    el.classList.remove(classe);
+    void el.offsetWidth;
+    el.classList.add(classe);
+  };
+  var CHAMPS = "main input:not([type=range]):not([type=checkbox]):not([type=radio]), main select, main textarea";
+  document.addEventListener("change", function (e) {
+    if (e.target.matches && e.target.matches(CHAMPS)) rejouer(e.target, "fremit");
+  });
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("main .seg button, main .filters button, main .tabs button, main .pastille");
+    if (b) rejouer(b, "tapote");
+  });
+  document.addEventListener("animationend", function (e) {
+    if (e.animationName === "fremit" || e.animationName === "tapote") e.target.classList.remove("fremit", "tapote");
+  });
+  /* curseurs : la piste se remplit jusqu'à la valeur choisie */
+  var remplir = function (r) {
+    var min = parseFloat(r.min) || 0, max = parseFloat(r.max) || 100;
+    r.style.setProperty("--rempli", ((parseFloat(r.value) - min) / (max - min || 1) * 100).toFixed(2) + "%");
+  };
+  $$("main input[type=range]").forEach(function (r) {
+    remplir(r);
+    r.addEventListener("input", function () { remplir(r); });
+    r.addEventListener("change", function () { remplir(r); });
+  });
 })();

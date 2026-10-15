@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="/assets/img/logo-icone.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,300;1,9..144,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/vendor/supabase.js" defer></script>
 <script src="/assets/js/supabase-config.js" defer></script>
@@ -32,84 +32,90 @@
     <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
     <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Ouvrir le menu"><i></i></button>
   </div>
-  <div class="drawer" id="drawer"><div><div class="in"><a href="/index.html">Accueil</a><a href="/programmes.html">Programmes</a><a href="/guide-du-brs.html">Le BRS</a><a href="/eligibilite.html">Éligibilité</a><a href="/accompagnement.html">Accompagnement</a><a href="/actualites.html">Actualités</a><a href="/nous-connaitre.html">Nous connaître</a><a class="sub" href="/territoires/rhone.html">Rhône <span style="opacity:.55">· 4 programmes</span></a><a class="sub" href="/territoires/ain.html">Ain <span style="opacity:.55">· 3 programmes</span></a><a class="sub" href="/territoires/isere.html">Isère <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/savoie.html">Savoie <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/saone-et-loire.html">Saône-et-Loire <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/seine-saint-denis.html">Seine-Saint-Denis <span style="opacity:.55">· 1 programme</span></a><a class="sub" href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine <span style="opacity:.55">· 1 programme</span></a>
-    <a data-compte href="/connexion.html" hidden>Connexion</a>
-    <a class="btn btn-sand" style="justify-content:center;margin-top:12px" href="/contact.html">Être rappelé</a>
-  </div></div></div>
   <i class="progress" id="progress"></i>
 </header>
+<div class="drawer" id="drawer"><div class="in">
+  <a href="/index.html">Accueil</a>
+  <button class="tiroir-ouvrir" type="button" aria-expanded="false" aria-controls="tiroir-prog">Programmes <i aria-hidden="true"></i></button>
+  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/programmes.html"><strong>Tous les programmes</strong><span>12</span></a><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a></div></div>
+  <a href="/guide-du-brs.html" class="on">Le BRS</a>
+  <a href="/eligibilite.html">Éligibilité</a>
+  <a href="/accompagnement.html">Accompagnement</a>
+  <a href="/actualites.html">Actualités</a>
+  <a href="/nous-connaitre.html">Nous connaître</a>
+  <a data-compte href="/connexion.html" hidden>Connexion</a>
+  <a class="btn btn-sand" href="/contact.html">Être rappelé</a>
+</div></div>
 <main id="main"><section class="phead"><div class="wrap">
   <p class="crumb"><a href="/index.html">Accueil</a> · Le BRS</p><p class="eyebrow">Le dispositif</p>
   <h1>Le Bail Réel Solidaire, expliqué sans jargon</h1>
-  <p>Le BRS permet d'acheter un logement neuf 30 à 50 % moins cher que le marché libre, en dissociant la valeur du bâti de celle du terrain. Voici comment il fonctionne, ce qu'il implique, et ce qu'il ne permet pas.</p>
+  <p>Le BRS permet d'acheter un logement neuf 30 à 50&nbsp;% moins cher que le marché libre, en dissociant la valeur du bâti de celle du terrain. Voici comment il fonctionne, ce qu'il implique, et ce qu'il ne permet pas.</p>
 </div></section>
 <section><div class="wrap split">
   <div class="prose reveal">
-    <h2 style="margin-top:0">Qu'est-ce que le BRS ?</h2>
-    <p class="lead">Le Bail Réel Solidaire est un dispositif légal, créé par la loi ALUR et le décret de 2016, qui sépare deux choses que l'immobilier classique vend ensemble : <strong>le terrain</strong> et <strong>le logement</strong>.</p>
+    <h2 style="margin-top:0">Qu'est-ce que le BRS&nbsp;?</h2>
+    <p class="lead">Le Bail Réel Solidaire est un dispositif légal, créé par la loi ALUR et le décret de 2016, qui sépare deux choses que l'immobilier classique vend ensemble&nbsp;: <strong>le terrain</strong> et <strong>le logement</strong>.</p>
     <p>Un <strong>Organisme de Foncier Solidaire</strong> (OFS), agréé par l'État et à but non lucratif, acquiert le terrain et le conserve durablement. Vous achetez uniquement le bâti — les murs, le jardin, le stationnement — et vous versez à l'OFS une redevance mensuelle pour l'usage du sol.</p>
-    <p>Comme le foncier représente l'essentiel de l'inflation immobilière des vingt dernières années, le sortir du prix d'achat fait chuter la facture : c'est ce qui explique un écart de 30 à 50 % avec le marché libre comparable.</p>
+    <p>Comme le foncier représente l'essentiel de l'inflation immobilière des vingt dernières années, le sortir du prix d'achat fait chuter la facture&nbsp;: c'est ce qui explique un écart de 30 à 50&nbsp;% avec le marché libre comparable.</p>
   </div>
   <img class="reveal" src="/assets/img/brs-1.jpg" alt="Résidence neuve en Bail Réel Solidaire" loading="lazy">
 </div></section>
 
-<section class="why" style="padding-block:80px"><div class="wrap mech-in" style="text-align:left">
+<section class="why"><div class="wrap mech-in" style="text-align:left">
   <div class="reveal">
     <p class="eyebrow">Le mécanisme</p>
-    <h2 style="font-size:clamp(25px,3.2vw,36px);line-height:1.12;margin:10px 0 16px">Où passe la différence de prix</h2>
-    <p style="color:#3C4F58;max-width:44ch">Pour un T3 neuf comparable dans le sud lyonnais, le marché libre s'établit autour de 310 000 €. Le même logement, en BRS, est proposé à 199 000 € : la part foncière a quitté le prix d'acquisition.</p>
+    <h2 class="titre">Où passe la différence de prix</h2>
+    <p style="color:#3C4F58">Pour un T3 neuf comparable dans le sud lyonnais, le marché libre s'établit autour de 310&nbsp;000&nbsp;€. Le même logement, en BRS, est proposé à 199&nbsp;000&nbsp;€&nbsp;: la part foncière a quitté le prix d'acquisition.</p>
   </div>
   <div class="bars reveal">
     <div class="bar">
-      <h3>Achat classique <span>≈ 310 000 €</span></h3>
+      <h3>Achat classique <span>≈ 310&nbsp;000&nbsp;€</span></h3>
       <div class="track"><i data-w="58" style="background:#2C566E"></i><i data-w="42" style="background:#D9B27C"></i></div>
       <div class="legend"><span><b style="background:#2C566E"></b>Bâti</span><span><b style="background:#D9B27C"></b>Foncier acheté</span></div>
     </div>
     <div class="bar">
-      <h3>En BRS <span>199 000 €</span></h3>
+      <h3>En BRS <span>199&nbsp;000&nbsp;€</span></h3>
       <div class="track"><i data-w="58" style="background:#2C566E"></i><i data-w="42" style="background:repeating-linear-gradient(45deg,#E4EBEE,#E4EBEE 5px,#F4F7F8 5px,#F4F7F8 10px)"></i></div>
       <div class="legend"><span><b style="background:#2C566E"></b>Bâti acheté</span><span><b style="background:#E4EBEE"></b>Foncier porté par l'OFS</span></div>
-      <p>La part foncière devient une redevance mensuelle — 1,15 €/m² habitable au 16 Télégraphe, soit environ 70 € par mois pour un T3 de 60 m².</p>
+      <p>La part foncière devient une redevance mensuelle — 1,15&nbsp;€/m² habitable au 16 Télégraphe, soit environ 70&nbsp;€ par mois pour un T3 de 60 m².</p>
     </div>
   </div>
 </div></section>
 
 <section><div class="wrap">
-  <div class="prose reveal">
-    <h2 style="margin-top:0">Les avantages, concrètement</h2>
-  </div>
-  <div class="grid4 left reveal" style="margin-top:18px">
+  <h2 class="titre reveal">Les avantages, concrètement</h2>
+  <div class="grid4 left reveal">
     <div><div class="tile"><svg viewBox="0 0 24 24"><path d="M3 7h18v12H3z"/><path d="M3 11h18"/><path d="M8 7V5h8v2"/></svg></div>
-      <h3>Un prix 30 à 50 % inférieur</h3><p>Le prix d'acquisition ne porte que sur le bâti, ce qui remet la propriété à portée dans des communes tendues.</p></div>
+      <h3>Un prix 30 à 50&nbsp;% inférieur</h3><p>Le prix d'acquisition ne porte que sur le bâti, ce qui remet la propriété à portée dans des communes tendues.</p></div>
     <div><div class="tile"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 10l7-7 7 7"/></svg></div>
-      <h3>TVA à 5,5 %</h3><p>Au lieu de 20 % sur un logement neuf classique, sous réserve du respect des conditions du dispositif.</p></div>
+      <h3>TVA à 5,5&nbsp;%</h3><p>Au lieu de 20&nbsp;% sur un logement neuf classique, sous réserve du respect des conditions du dispositif.</p></div>
     <div><div class="tile"><svg viewBox="0 0 24 24"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg></div>
-      <h3>Frais de notaire réduits</h3><p>De l'ordre de 2,5 % du prix, contre 7 à 8 % dans l'ancien. Le montant exact est calculé par le notaire.</p></div>
+      <h3>Frais de notaire réduits</h3><p>De l'ordre de 2,5&nbsp;% du prix, contre 7 à 8&nbsp;% dans l'ancien. Le montant exact est calculé par le notaire.</p></div>
     <div><div class="tile"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
       <h3>Garantie de rachat</h3><p>L'OFS garantit le rachat du logement, ce qui sécurise votre sortie et rassure les banques.</p></div>
   </div>
   <div class="callout" style="margin-top:34px">
-    <p><strong>Et le PTZ ?</strong> Le BRS ouvre droit au Prêt à Taux Zéro et aux prêts conventionnés pour l'acquisition de votre résidence principale dans le neuf. Selon la commune, une exonération partielle ou totale de taxe foncière peut également s'appliquer.</p>
+    <p><strong>Et le PTZ&nbsp;?</strong> Le BRS ouvre droit au Prêt à Taux Zéro et aux prêts conventionnés pour l'acquisition de votre résidence principale dans le neuf. Selon la commune, une exonération partielle ou totale de taxe foncière peut également s'appliquer.</p>
   </div>
 </div></section>
 
 <section class="why"><div class="wrap" style="text-align:left">
   <p class="eyebrow reveal">Les conditions</p>
-  <h2 class="reveal" style="margin-inline:0;max-width:22ch">Qui peut en bénéficier ?</h2>
+  <h2 class="reveal titre">Qui peut en bénéficier&nbsp;?</h2>
   <div class="split" style="margin-top:-24px">
     <div class="prose reveal">
-      <p>Deux conditions, et deux seulement :</p>
+      <p>Deux conditions, et deux seulement&nbsp;:</p>
       <ul>
         <li><strong>Un revenu sous plafond.</strong> Le revenu fiscal de référence N−2 du foyer doit rester sous un plafond qui dépend de la zone du programme et du nombre de personnes.</li>
         <li><strong>Une résidence principale.</strong> Le logement doit être occupé à titre de résidence principale, au moins huit mois par an.</li>
       </ul>
-      <p>Environ <strong>87 % des ménages français</strong> se situent sous ces plafonds — le BRS n'est pas réservé aux très bas revenus.</p>
+      <p>Environ <strong>87&nbsp;% des ménages français</strong> se situent sous ces plafonds — le BRS n'est pas réservé aux très bas revenus.</p>
       <p style="margin-top:22px"><a class="btn btn-blanc" href="/eligibilite.html">Tester mon éligibilité <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a></p>
     </div>
     <div class="reveal">
       <div class="table-wrap"><table style="min-width:0">
         <thead><tr><th>Composition du foyer</th><th class="num">Plafond RFR — zone B1</th></tr></thead>
-        <tbody><tr><td data-col="Foyer">1 personne</td><td class='num' data-col="Plafond RFR"><strong>37 581 €</strong></td></tr><tr><td data-col="Foyer">2 personnes</td><td class='num' data-col="Plafond RFR"><strong>50 023 €</strong></td></tr><tr><td data-col="Foyer">3 personnes</td><td class='num' data-col="Plafond RFR"><strong>60 543 €</strong></td></tr><tr><td data-col="Foyer">4 personnes</td><td class='num' data-col="Plafond RFR"><strong>70 718 €</strong></td></tr><tr><td data-col="Foyer">5 personnes</td><td class='num' data-col="Plafond RFR"><strong>80 183 €</strong></td></tr><tr><td data-col="Foyer">6 personnes et plus</td><td class='num' data-col="Plafond RFR"><strong>90 863 €</strong></td></tr></tbody>
+        <tbody><tr><td data-col="Foyer">1 personne</td><td class='num' data-col="Plafond RFR"><strong>37&nbsp;581&nbsp;€</strong></td></tr><tr><td data-col="Foyer">2 personnes</td><td class='num' data-col="Plafond RFR"><strong>50&nbsp;023&nbsp;€</strong></td></tr><tr><td data-col="Foyer">3 personnes</td><td class='num' data-col="Plafond RFR"><strong>60&nbsp;543&nbsp;€</strong></td></tr><tr><td data-col="Foyer">4 personnes</td><td class='num' data-col="Plafond RFR"><strong>70&nbsp;718&nbsp;€</strong></td></tr><tr><td data-col="Foyer">5 personnes</td><td class='num' data-col="Plafond RFR"><strong>80&nbsp;183&nbsp;€</strong></td></tr><tr><td data-col="Foyer">6 personnes et plus</td><td class='num' data-col="Plafond RFR"><strong>90&nbsp;863&nbsp;€</strong></td></tr></tbody>
       </table></div>
     </div>
   </div>
@@ -119,9 +125,9 @@
   <img class="reveal" src="/assets/img/brs-2.jpg" alt="Logements neufs en Bail Réel Solidaire" loading="lazy">
   <div class="prose reveal">
     <h2 style="margin-top:0">Revendre, transmettre, louer</h2>
-    <p>C'est la question qui revient le plus souvent, et la réponse est simple : <strong>vous restez maître de votre bien</strong>.</p>
+    <p>C'est la question qui revient le plus souvent, et la réponse est simple&nbsp;: <strong>vous restez maître de votre bien</strong>.</p>
     <h3>La revente</h3>
-    <p>Vous pouvez revendre à tout moment. L'acquéreur doit être lui aussi éligible, et le prix est encadré par la formule inscrite au bail. Vous récupérez votre apport et une plus-value plafonnée ; l'OFS garantit le rachat si aucun acquéreur ne se présente.</p>
+    <p>Vous pouvez revendre à tout moment. L'acquéreur doit être lui aussi éligible, et le prix est encadré par la formule inscrite au bail. Vous récupérez votre apport et une plus-value plafonnée&nbsp;; l'OFS garantit le rachat si aucun acquéreur ne se présente.</p>
     <h3>La transmission</h3>
     <p>Le droit réel se transmet aux héritiers, qui reprennent le bail et la redevance dans les mêmes conditions.</p>
     <h3>La location</h3>
@@ -129,23 +135,23 @@
   </div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap"><div class="faq">
+<section><div class="wrap"><div class="faq">
   <p class="eyebrow reveal">Questions fréquentes</p>
-  <h2 class="reveal" style="font-size:clamp(25px,3.2vw,36px);margin:10px 0 24px">Tout ce qu'on nous demande sur le BRS</h2>
-  <div class="reveal"><div class="q"><button type="button" aria-expanded="true"><span>Qui peut acheter en BRS ?</span><span class="ico"></span></button>
-      <div class="panel open"><div><p>Tout ménage dont le revenu fiscal de référence N−2 reste sous le plafond applicable à la zone du programme, et qui destine le logement à sa résidence principale. Il n'est pas nécessaire d'être primo-accédant, ni d'avoir un apport minimum imposé par le dispositif.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Le logement peut-il être loué ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>La location est possible, mais encadrée : elle suppose l'accord de l'Organisme de Foncier Solidaire et un locataire lui-même sous plafonds de ressources. Le BRS n'est pas un dispositif d'investissement locatif.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Que devient le bail en cas de décès ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Le droit réel se transmet aux héritiers, qui reprennent le bail et la redevance. S'ils ne remplissent pas les conditions d'occupation, l'OFS accompagne la revente du logement à un ménage éligible.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Paie-t-on la taxe foncière ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Oui, l'occupant est redevable de la taxe foncière. Certaines communes appliquent toutefois une exonération partielle ou totale sur les logements en BRS : cela se vérifie commune par commune.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Quelle est la durée du bail ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Le bail réel solidaire est conclu pour une longue durée, généralement de 18 à 99 ans selon l'OFS, et il est « rechargé » à sa durée initiale à chaque mutation : l'acquéreur suivant repart donc sur une durée pleine.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Peut-on faire des travaux ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Oui, comme dans tout logement dont vous êtes propriétaire. Les travaux touchant à la structure ou modifiant la consistance du bien doivent être portés à la connaissance de l'OFS, selon les termes du bail.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Suis-je vraiment propriétaire ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Oui. Vous détenez un droit réel sur le logement, inscrit chez le notaire : vous l'occupez, vous le transmettez à vos héritiers, vous le revendez et, sous conditions, vous le louez. Seul le terrain reste la propriété de l'Organisme de Foncier Solidaire.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Que se passe-t-il si je revends ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Vous revendez à un ménage lui aussi éligible, à un prix encadré par la formule inscrite au bail. Vous récupérez votre apport et une plus-value plafonnée — le logement, lui, reste accessible au ménage suivant. L'OFS vous accompagne et garantit le rachat.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Puis-je cumuler le BRS avec un PTZ ?</span><span class="ico"></span></button>
-      <div class="panel"><div><p>Oui. Le BRS est éligible au Prêt à Taux Zéro et aux prêts conventionnés, avec une TVA à 5,5 % au lieu de 20 % et des frais de notaire réduits.</p></div></div></div></div>
+  <h2 class="reveal titre">Tout ce qu'on nous demande sur le BRS</h2>
+  <div class="reveal"><div class="q"><button type="button" aria-expanded="false"><span>Qui peut acheter en BRS&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Tout ménage dont le revenu fiscal de référence N−2 reste sous le plafond applicable à la zone du programme, et qui destine le logement à sa résidence principale. Il n'est pas nécessaire d'être primo-accédant, ni d'avoir un apport minimum imposé par le dispositif.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Le logement peut-il être loué&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>La location est possible, mais encadrée&nbsp;: elle suppose l'accord de l'Organisme de Foncier Solidaire et un locataire lui-même sous plafonds de ressources. Le BRS n'est pas un dispositif d'investissement locatif.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Que devient le bail en cas de décès&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Le droit réel se transmet aux héritiers, qui reprennent le bail et la redevance. S'ils ne remplissent pas les conditions d'occupation, l'OFS accompagne la revente du logement à un ménage éligible.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Paie-t-on la taxe foncière&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Oui, l'occupant est redevable de la taxe foncière. Certaines communes appliquent toutefois une exonération partielle ou totale sur les logements en BRS&nbsp;: cela se vérifie commune par commune.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Quelle est la durée du bail&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Le bail réel solidaire est conclu pour une longue durée, généralement de 18 à 99 ans selon l'OFS, et il est «&nbsp;rechargé&nbsp;» à sa durée initiale à chaque mutation&nbsp;: l'acquéreur suivant repart donc sur une durée pleine.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Peut-on faire des travaux&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Oui, comme dans tout logement dont vous êtes propriétaire. Les travaux touchant à la structure ou modifiant la consistance du bien doivent être portés à la connaissance de l'OFS, selon les termes du bail.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Suis-je vraiment propriétaire&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Oui. Vous détenez un droit réel sur le logement, inscrit chez le notaire&nbsp;: vous l'occupez, vous le transmettez à vos héritiers, vous le revendez et, sous conditions, vous le louez. Seul le terrain reste la propriété de l'Organisme de Foncier Solidaire.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Que se passe-t-il si je revends&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Vous revendez à un ménage lui aussi éligible, à un prix encadré par la formule inscrite au bail. Vous récupérez votre apport et une plus-value plafonnée — le logement, lui, reste accessible au ménage suivant. L'OFS vous accompagne et garantit le rachat.</p></div></div></div><div class="q"><button type="button" aria-expanded="false"><span>Puis-je cumuler le BRS avec un PTZ&nbsp;?</span><span class="ico"></span></button>
+      <div class="panel"><div><p>Oui. Le BRS est éligible au Prêt à Taux Zéro et aux prêts conventionnés, avec une TVA à 5,5&nbsp;% au lieu de 20&nbsp;% et des frais de notaire réduits.</p></div></div></div></div>
 </div></div></section>
-<section style="padding-top:0"><div class="wrap"><div class="final reveal">
-  <h2>Une question que le guide<br>ne <em class="it">tranche</em> pas ?</h2>
-  <p>Posez-la directement à l'équipe : nous répondons sous 24 h, par téléphone ou par écrit, sans engagement.</p>
+<section><div class="wrap"><div class="final reveal">
+  <h2>Une question que le guide<br>ne <em class="it">tranche</em> pas&nbsp;?</h2>
+  <p>Posez-la directement à l'équipe&nbsp;: nous répondons sous 24 h, par téléphone ou par écrit, sans engagement.</p>
   <div class="final-cta">
     <a class="btn btn-sand" href="tel:0465848711">04 65 84 87 11</a>
     <a class="btn btn-line" href="/contact.html">Formulaire de contact <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
@@ -163,7 +169,7 @@
       <div><h4>Programmes</h4><ul><li><a href="/programmes/communay.html">Le 16 Télégraphe <span style="opacity:.6">· Communay</span></a></li><li><a href="/programmes/coublevie.html">Les Terrasses des 3 Parcs <span style="opacity:.6">· Coublevie</span></a></li><li><a href="/programmes/bourg-saint-christophe.html">Le Domaine des Chênes 2 <span style="opacity:.6">· Bourg-Saint-Christophe</span></a></li><li><a href="/programmes/frans.html">Green Parc <span style="opacity:.6">· Frans</span></a></li><li><a href="/programmes/savigneux.html">L'Orée des champs <span style="opacity:.6">· Savigneux</span></a></li><li><a href="/programmes.html"><strong>Tous les programmes</strong></a></li></ul></div>
       <div><h4>Comprendre</h4><ul>
         <li><a href="/guide-du-brs.html">Guide du BRS</a></li>
-        <li><a href="/eligibilite.html">Suis-je éligible ?</a></li>
+        <li><a href="/eligibilite.html">Suis-je éligible&nbsp;?</a></li>
         <li><a href="/accompagnement.html">Notre accompagnement</a></li>
         <li><a href="/guide-du-brs.html#revente">Revendre son BRS</a></li></ul></div>
       <div><h4>Homelia</h4><ul>
@@ -179,7 +185,7 @@
       <a href="/cookies.html">Politique de cookies</a><span class="sep">·</span>
       <a href="/plan-du-site.html">Plan du site</a>
     </div>
-    <p class="legal">SIREN 944 647 403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
+    <p class="legal">SIREN 944&nbsp;647&nbsp;403 · Document non contractuel. Prix, surfaces et disponibilités indicatifs, susceptibles de modification.
     Vente soumise aux conditions du Bail Réel Solidaire et aux plafonds de ressources en vigueur. Les visuels sont non contractuels.</p>
   </div>
 </footer>
