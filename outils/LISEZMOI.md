@@ -40,3 +40,15 @@ sans surtitre, « À la une » en titre sur les actualités, légende retirée
 sous la photo des clés. Idempotent, comme le précédent.
 
     python3 outils/retouches-2026-10b.py
+
+## versionner.py
+
+Ajoute une empreinte (`?v=1a2b3c4d`) aux adresses des fichiers de
+`assets/` dans toutes les pages. `vercel.json` fait garder ces fichiers un
+an par les navigateurs sans revérification : sans empreinte, un visiteur
+déjà venu verrait l'ancienne feuille de style après une mise à jour.
+
+**À relancer après chaque modification d'un fichier de `assets/`**
+(CSS, JS, images) :
+
+    python3 outils/versionner.py
