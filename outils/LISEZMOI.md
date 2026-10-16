@@ -52,3 +52,12 @@ déjà venu verrait l'ancienne feuille de style après une mise à jour.
 (CSS, JS, images) :
 
     python3 outils/versionner.py
+
+## retouches-2026-10c.py
+
+Bandeaux de page identiques partout : fil d'Ariane, titre, chapeau, puis
+la ligne d'information (commune, région, date) et les boutons. Le
+surtitre au-dessus du titre disparaît ; la page 404 reçoit un fil
+d'Ariane. Idempotent.
+
+    python3 outils/retouches-2026-10c.py
