@@ -31,3 +31,12 @@ que ce qui n'a pas encore été transformé. Utile après l'ajout d'une page
 écrite sur l'ancien modèle.
 
     python3 outils/refonte-2026-10.py
+
+## retouches-2026-10b.py
+
+Retouches du 16/10 : menu « Programmes » groupé par département, surtitre
+retiré des bandeaux quand il répétait le nom de la page, héros d'accueil
+sans surtitre, « À la une » en titre sur les actualités, légende retirée
+sous la photo des clés. Idempotent, comme le précédent.
+
+    python3 outils/retouches-2026-10b.py
