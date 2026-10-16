@@ -213,11 +213,26 @@
   if (rail) {
     var dots = $("#dots"), prev = $("#prev"), next = $("#next"),
         cards = $$(".card", rail);
-    if (dots) cards.forEach(function () { dots.insertAdjacentHTML("beforeend", "<i></i>"); });
-    var step = function () { return cards[0].getBoundingClientRect().width + 22; };
+    /* pas d'une carte à la suivante, écart compris, mesuré plutôt que supposé */
+    var step = function () { return cards.length > 1 ? cards[1].offsetLeft - cards[0].offsetLeft : rail.clientWidth; };
+    var bout = function () { return rail.scrollWidth - rail.clientWidth; };
+    /* Un point par position que le rail peut réellement atteindre : avec trois
+       cartes visibles sur sept, cinq positions et non sept. Recalculé quand la
+       fenêtre change de largeur, puisque le nombre de cartes visibles change. */
+    var poser = function () {
+      if (!dots) return 0;
+      var n = bout() <= 8 ? 1 : Math.ceil((bout() - 8) / step()) + 1;
+      n = Math.min(n, cards.length);
+      if (dots.children.length !== n) {
+        dots.innerHTML = "";
+        for (var k = 0; k < n; k++) dots.insertAdjacentHTML("beforeend", "<i></i>");
+      }
+      return n;
+    };
     var sync = function () {
-      var i = Math.round(rail.scrollLeft / step());
-      if (dots) $$("i", dots).forEach(function (d, n) { d.classList.toggle("on", n === i); });
+      var n = poser();
+      var i = rail.scrollLeft >= bout() - 8 ? n - 1 : Math.round(rail.scrollLeft / step());
+      if (dots) $$("i", dots).forEach(function (d, k) { d.classList.toggle("on", k === i); });
       if (prev) prev.disabled = rail.scrollLeft < 8;
       if (next) next.disabled = rail.scrollLeft > rail.scrollWidth - rail.clientWidth - 8;
     };
