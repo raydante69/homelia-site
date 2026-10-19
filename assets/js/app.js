@@ -220,16 +220,19 @@ window.Homelia = (function () {
 
   /* ---------------- en-tête : bouton compte ---------------- */
   function majEntete() {
+    /* Le bouton est présent dès l'affichage : on ne change que son libellé,
+       sans le faire apparaître ni disparaître, pour que l'en-tête ne bouge pas. */
     $$("[data-compte]").forEach(function (el) {
-      if (!actif) { el.hidden = true; return; }
-      el.hidden = false;
+      var libelle = el.querySelector("span") || el;
+      if (!actif) { el.style.visibility = "hidden"; return; }
+      el.style.visibility = "";
       if (session) {
         var nom = (profil && profil.nom) || session.user.email.split("@")[0];
-        el.textContent = estResponsable() ? "Administration" : "Mon espace";
+        libelle.textContent = estResponsable() ? "Administration" : "Mon espace";
         el.href = estResponsable() ? "/admin.html" : "/espace.html";
         el.title = nom;
       } else {
-        el.textContent = "Connexion";
+        libelle.textContent = "Connexion";
         el.href = "/connexion.html";
       }
     });

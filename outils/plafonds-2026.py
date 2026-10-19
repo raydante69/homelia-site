@@ -45,6 +45,10 @@ PLAFONDS = {
 def euro(n):
     return "{:,}".format(n).replace(",", "&nbsp;") + "&nbsp;€"
 
+def euro_tableau(n):
+    # sur mobile, le signe € disparaît des cellules (la note précise « en euros »)
+    return "{:,}".format(n).replace(",", "&nbsp;") + '<span class="eur">&nbsp;€</span>'
+
 def note_zone(zone, commune):
     if zone == "IDF":
         return ("%s est en Île-de-France&nbsp;: les plafonds franciliens diffèrent de ceux affichés ici, "
@@ -54,18 +58,20 @@ def note_zone(zone, commune):
 # ---------------------------------------------------------------- tableaux
 LIGNES = ["1 personne", "2 personnes", "3 personnes", "4 personnes", "5 personnes", "6 personnes",
           "Par personne en plus"]
+COURTS = ["1 pers.", "2 pers.", "3 pers.", "4 pers.", "5 pers.", "6 pers.", "En plus"]
 def tableau():
-    tete = ('<thead><tr><th>Composition du foyer</th><th class="num">Zone A</th>'
+    tete = ('<thead><tr><th><span class="l-long">Composition du foyer</span><span class="l-court">Foyer</span></th><th class="num">Zone A</th>'
             '<th class="num">Zone B1</th><th class="num">Zones B2 et C</th></tr></thead>')
     corps = "".join(
-        '<tr><td data-col="Foyer">%s</td>%s</tr>' % (LIGNES[i], "".join(
+        '<tr><td data-col="Foyer"><span class="l-long">%s</span><span class="l-court">%s</span></td>%s</tr>' % (LIGNES[i], COURTS[i], "".join(
             '<td class="num" data-col="%s"><strong>%s%s</strong></td>' % (
-                col, "+&nbsp;" if i == 6 else "", euro(PLAFONDS[z][i]))
+                col, "+&nbsp;" if i == 6 else "", euro_tableau(PLAFONDS[z][i]))
             for z, col in (("A", "Zone A"), ("B1", "Zone B1"), ("BC", "Zones B2 et C"))))
         for i in range(7))
     return '<div class="table-wrap"><table class="plafonds">%s<tbody>%s</tbody></table></div>' % (tete, corps)
 
-NOTE_TABLEAU = ('<p class="note">Plafonds 2026 de revenu fiscal de référence (N−2), hors Île-de-France. '
+NOTE_PRECEDENTE = '<p class="note">Plafonds 2026 de revenu fiscal de référence (N−2), hors Île-de-France. '
+NOTE_TABLEAU = ('<p class="note">Plafonds 2026 de revenu fiscal de référence (N−2), en euros, hors Île-de-France. '
                 'Une personne seule avec des personnes à charge passe à la ligne du dessus&nbsp;: avec un enfant, '
                 'elle relève de la ligne «&nbsp;3 personnes&nbsp;», comme un jeune ménage. En zones A et B1, ces '
                 'plafonds dits intermédiaires valent pour une partie seulement des logements vendus chaque année&nbsp;: '
@@ -74,6 +80,7 @@ NOTE_TABLEAU = ('<p class="note">Plafonds 2026 de revenu fiscal de référence (
 ANCIEN_TABLEAU = re.compile(
     r'<div class="table-wrap"><table style="min-width:0">\s*<thead><tr><th>Composition du foyer</th>'
     r'<th class="num">Plafond RFR — zone B1</th></tr></thead>\s*<tbody>(?:(?!</table>).)*</tbody>\s*</table></div>', re.S)
+TABLEAU_2026 = re.compile(r'<div class="table-wrap"><table class="plafonds">.*?</table></div>', re.S)
 ANCIENNE_NOTE = re.compile(r'<p class="note">Plafonds de revenu fiscal de référence \(N−2\) applicables en zone B1\.(?:(?!</p>).)*</p>')
 
 # -------------------------------------------------------------- simulateur
@@ -112,6 +119,13 @@ for f in pages:
 
     s, n = ANCIEN_TABLEAU.subn(lambda m: tableau(), s)
     compter("tableaux de plafonds", n)
+    t = TABLEAU_2026.sub(lambda m: tableau(), s)
+    if t != s:
+        s = t
+        compter("tableaux 2026 mis à jour", 1)
+    if NOTE_PRECEDENTE in s:
+        s = s.replace(NOTE_PRECEDENTE, NOTE_TABLEAU[:NOTE_TABLEAU.index("hors Île-de-France. ") + len("hors Île-de-France. ")])
+        compter("notes de tableau", 1)
     s, n = ANCIENNE_NOTE.subn(lambda m: NOTE_TABLEAU, s)
     compter("notes de tableau", n)
 

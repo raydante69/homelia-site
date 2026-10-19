@@ -152,7 +152,7 @@
       if (e.key === "Escape" && drawer.classList.contains("open")) { ouvrirMenu(false); burger.focus(); }
     });
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 940 && drawer.classList.contains("open")) ouvrirMenu(false);
+      if (window.innerWidth > 1060 && drawer.classList.contains("open")) ouvrirMenu(false);
     });
     /* « Programmes » se déplie sur place, fermé à l'ouverture du menu */
     $$(".tiroir-ouvrir", drawer).forEach(function (b) {

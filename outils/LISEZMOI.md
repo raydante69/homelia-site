@@ -74,3 +74,12 @@ la durée du bail (99 ans, renouvelable). Les montants sont aussi dans
 
 Pour un nouveau programme : l'ajouter à la liste `PROGRAMMES` du script,
 avec la zone de sa commune, puis relancer le script et `versionner.py`.
+
+## finitions-2026-10.py
+
+Finitions du 19/10 : bouton « Connexion » présent dès l'affichage (il
+décalait le menu de 65 px à chaque changement de page), bloc titre des
+questions fréquentes qui reste à l'écran, titre de la page Éligibilité qui
+n'est plus coupé à la main. Idempotent.
+
+    python3 outils/finitions-2026-10.py
