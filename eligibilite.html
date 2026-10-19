@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/site.css?v=a30e1eea">
+<link rel="stylesheet" href="/assets/css/site.css?v=2c572ca5">
 <script src="/assets/js/vendor/supabase.js?v=43b205e2" defer></script>
 <script src="/assets/js/supabase-config.js?v=cb9fe5a1" defer></script>
 <script src="/assets/js/app.js?v=db3b0946" defer></script>
@@ -66,19 +66,20 @@
         <button type="button" data-p="6" aria-pressed="false">6 et +</button>
       </div>
     </div>
+    <div class="field"><label for="sim-prog">Programme visé</label><select id="sim-prog"><option value="communay" data-zone="B1" data-commune="Communay" selected>Le 16 Télégraphe · Communay (69)</option><option value="saint-julien" data-zone="C" data-commune="Saint-Julien">Le Clos Chopin · Saint-Julien (69)</option><option value="gleize" data-zone="B1" data-commune="Gleizé">Via Edena · Gleizé (69)</option><option value="les-cheres" data-zone="B1" data-commune="Les Chères">Côme · Les Chères (69)</option><option value="bourg-saint-christophe" data-zone="B1" data-commune="Bourg-Saint-Christophe">Le Domaine des Chênes 2 · Bourg-Saint-Christophe (01)</option><option value="frans" data-zone="B2" data-commune="Frans">Green Parc · Frans (01)</option><option value="savigneux" data-zone="C" data-commune="Savigneux">L&#39;Orée des champs · Savigneux (01)</option><option value="coublevie" data-zone="B1" data-commune="Coublevie">Les Terrasses des 3 Parcs · Coublevie (38)</option><option value="bassens" data-zone="A" data-commune="Bassens">Camberia · Bassens (73)</option><option value="la-chapelle-de-guinchay" data-zone="C" data-commune="La Chapelle-de-Guinchay">Le Bois de la Croix · La Chapelle-de-Guinchay (71)</option><option value="drancy" data-zone="IDF" data-commune="Drancy">L&#39;Essentiel · Drancy (93)</option><option value="thorigne-fouillard" data-zone="B1" data-commune="Thorigné-Fouillard">Serenia · Thorigné-Fouillard (35)</option></select></div>
     <div class="field">
       <div class="rfr-head"><label for="rfr" style="margin:0">Revenu fiscal de référence</label><b class="tabnum" id="rfrVal">44&nbsp;000&nbsp;€</b></div>
-      <input type="range" id="rfr" min="10000" max="110000" step="500" value="44000">
+      <input type="range" id="rfr" min="10000" max="125000" step="500" value="44000">
     </div>
-    <p style="font-size:12px;color:var(--mut);margin:0">Plafonds de la zone B1, celle du programme de Communay. Le zonage varie d'une commune à l'autre&nbsp;: indiquez-nous la vôtre, nous vous communiquons le plafond exact.</p>
+    <p class="sim-note" id="sim-note">Plafonds 2026 de la zone B1, celle de Communay.</p>
   </div>
   <div class="verdict" id="verdict">
     <span class="state" id="vState"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5"/></svg>Éligible</span>
     <div class="gauge">
       <div class="gauge-track"><i class="gauge-fill" id="gFill"></i></div>
-      <div class="gauge-legend"><span>Votre RFR</span><span class="tabnum" id="gCap">Plafond 60&nbsp;543&nbsp;€</span></div>
+      <div class="gauge-legend"><span>Votre RFR</span><span class="tabnum" id="gCap">Plafond 64&nbsp;431&nbsp;€</span></div>
     </div>
-    <div class="big tabnum" id="vBig">16&nbsp;543&nbsp;€ de marge</div>
+    <div class="big tabnum" id="vBig">20&nbsp;431&nbsp;€ de marge</div>
     <p id="vText">Votre foyer de 3 personnes reste sous le plafond de la zone B1.</p>
     <small>Simulation indicative. Seule l'analyse de votre avis d'imposition par l'Organisme de Foncier Solidaire vaut décision d'éligibilité.</small>
   </div>
@@ -90,13 +91,11 @@
     <p>Il figure sur votre <strong>avis d'imposition</strong>, en première page, dans le cadre «&nbsp;Vos références&nbsp;». C'est le revenu fiscal de référence de l'année N−2 qui est pris en compte&nbsp;: pour une acquisition en 2026, l'avis 2025 portant sur les revenus 2024.</p>
     <p>Si votre foyer compte plusieurs personnes imposées séparément, les revenus fiscaux de référence s'additionnent.</p>
     <h3>Ce que le simulateur ne fait pas</h3>
-    <p>Il applique les plafonds de la zone B1, celle de la plupart de nos programmes. Il ne tient pas compte des situations particulières — changement de situation familiale, revenus exceptionnels, année blanche. Ces cas se traitent avec nous, puis avec l'OFS, qui prend la décision finale.</p>
+    <p>Il applique les plafonds 2026 de la zone du programme choisi, hors Île-de-France. Il ne tient pas compte des situations particulières — changement de situation familiale, revenus exceptionnels, année blanche. Ces cas se traitent avec nous, puis avec l'OFS, qui prend la décision finale.</p>
   </div>
   <div class="reveal">
-    <div class="table-wrap"><table style="min-width:0">
-      <thead><tr><th>Composition du foyer</th><th class="num">Plafond RFR — zone B1</th></tr></thead>
-      <tbody><tr><td data-col="Foyer">1 personne</td><td class='num' data-col="Plafond RFR"><strong>37&nbsp;581&nbsp;€</strong></td></tr><tr><td data-col="Foyer">2 personnes</td><td class='num' data-col="Plafond RFR"><strong>50&nbsp;023&nbsp;€</strong></td></tr><tr><td data-col="Foyer">3 personnes</td><td class='num' data-col="Plafond RFR"><strong>60&nbsp;543&nbsp;€</strong></td></tr><tr><td data-col="Foyer">4 personnes</td><td class='num' data-col="Plafond RFR"><strong>70&nbsp;718&nbsp;€</strong></td></tr><tr><td data-col="Foyer">5 personnes</td><td class='num' data-col="Plafond RFR"><strong>80&nbsp;183&nbsp;€</strong></td></tr><tr><td data-col="Foyer">6 personnes et plus</td><td class='num' data-col="Plafond RFR"><strong>90&nbsp;863&nbsp;€</strong></td></tr></tbody></table></div>
-    <p class="note">Plafonds de revenu fiscal de référence (N−2) applicables en zone B1. Communiquez-nous votre commune&nbsp;: nous vous indiquons la zone et le plafond exact.</p>
+    <div class="table-wrap"><table class="plafonds"><thead><tr><th>Composition du foyer</th><th class="num">Zone A</th><th class="num">Zone B1</th><th class="num">Zones B2 et C</th></tr></thead><tbody><tr><td data-col="Foyer">1 personne</td><td class="num" data-col="Zone A"><strong>38&nbsp;844&nbsp;€</strong></td><td class="num" data-col="Zone B1"><strong>38&nbsp;844&nbsp;€</strong></td><td class="num" data-col="Zones B2 et C"><strong>33&nbsp;771&nbsp;€</strong></td></tr><tr><td data-col="Foyer">2 personnes</td><td class="num" data-col="Zone A"><strong>58&nbsp;057&nbsp;€</strong></td><td class="num" data-col="Zone B1"><strong>53&nbsp;579&nbsp;€</strong></td><td class="num" data-col="Zones B2 et C"><strong>45&nbsp;100&nbsp;€</strong></td></tr><tr><td data-col="Foyer">3 personnes</td><td class="num" data-col="Zone A"><strong>76&nbsp;105&nbsp;€</strong></td><td class="num" data-col="Zone B1"><strong>64&nbsp;431&nbsp;€</strong></td><td class="num" data-col="Zones B2 et C"><strong>54&nbsp;235&nbsp;€</strong></td></tr><tr><td data-col="Foyer">4 personnes</td><td class="num" data-col="Zone A"><strong>90&nbsp;863&nbsp;€</strong></td><td class="num" data-col="Zone B1"><strong>77&nbsp;783&nbsp;€</strong></td><td class="num" data-col="Zones B2 et C"><strong>65&nbsp;476&nbsp;€</strong></td></tr><tr><td data-col="Foyer">5 personnes</td><td class="num" data-col="Zone A"><strong>108&nbsp;107&nbsp;€</strong></td><td class="num" data-col="Zone B1"><strong>91&nbsp;503&nbsp;€</strong></td><td class="num" data-col="Zones B2 et C"><strong>77&nbsp;023&nbsp;€</strong></td></tr><tr><td data-col="Foyer">6 personnes</td><td class="num" data-col="Zone A"><strong>121&nbsp;650&nbsp;€</strong></td><td class="num" data-col="Zone B1"><strong>103&nbsp;122&nbsp;€</strong></td><td class="num" data-col="Zones B2 et C"><strong>86&nbsp;805&nbsp;€</strong></td></tr><tr><td data-col="Foyer">Par personne en plus</td><td class="num" data-col="Zone A"><strong>+&nbsp;13&nbsp;557&nbsp;€</strong></td><td class="num" data-col="Zone B1"><strong>+&nbsp;11&nbsp;506&nbsp;€</strong></td><td class="num" data-col="Zones B2 et C"><strong>+&nbsp;9&nbsp;683&nbsp;€</strong></td></tr></tbody></table></div>
+    <p class="note">Plafonds 2026 de revenu fiscal de référence (N−2), hors Île-de-France. Une personne seule avec des personnes à charge passe à la ligne du dessus&nbsp;: avec un enfant, elle relève de la ligne «&nbsp;3 personnes&nbsp;», comme un jeune ménage. En zones A et B1, ces plafonds dits intermédiaires valent pour une partie seulement des logements vendus chaque année&nbsp;: nous vous confirmons votre situation.</p>
   </div>
 </div></section>
 
@@ -237,6 +236,6 @@
   </svg>
 </aside>
 
-<script src="/assets/js/site.js?v=01fddc9c" defer></script>
+<script src="/assets/js/site.js?v=24ef41e5" defer></script>
 </body>
 </html>

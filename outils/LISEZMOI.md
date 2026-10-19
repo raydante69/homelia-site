@@ -61,3 +61,16 @@ surtitre au-dessus du titre disparaît ; la page 404 reçoit un fil
 d'Ariane. Idempotent.
 
     python3 outils/retouches-2026-10c.py
+
+## plafonds-2026.py
+
+Plafonds de ressources 2026 (fichier « Plafonds SIEG 2026 » transmis par
+Homelia, hors Île-de-France) et zone ABC de chaque commune (zonage officiel
+en vigueur depuis le 26 juin 2026, data.gouv.fr). Refait les tableaux de
+plafonds, règle le simulateur de chaque fiche sur la zone de sa commune,
+ajoute le choix « Programme visé » à l'accueil et sur Éligibilité, et écrit
+la durée du bail (99 ans, renouvelable). Les montants sont aussi dans
+`assets/js/site.js` (simulateur) : les deux doivent rester identiques.
+
+Pour un nouveau programme : l'ajouter à la liste `PROGRAMMES` du script,
+avec la zone de sa commune, puis relancer le script et `versionner.py`.

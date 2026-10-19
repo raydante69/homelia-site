@@ -1053,3 +1053,19 @@ main input[type=range]:active::-moz-range-thumb{ transform:scale(1.28); }
   .nav-in > .logo{ min-width:0; }
   .hero-in{ padding-block:44px 100px; }
 }
+
+/* ---------- plafonds 2026 ---------- */
+.sim select{ width:100%; border:1px solid var(--line); border-radius:var(--r-champ); padding:12px 14px;
+  font-size:15px; background:var(--paper); color:var(--ink); }
+.sim-note{ font-size:12.5px; color:var(--mut); margin:0; line-height:1.5; }
+table.plafonds{ min-width:0; }
+table.plafonds th,table.plafonds td{ padding-inline:14px; }
+table.plafonds th:first-child,table.plafonds td:first-child{ padding-left:20px; }
+table.plafonds th:last-child,table.plafonds td:last-child{ padding-right:20px; }
+table.plafonds tr:last-child td{ color:var(--mut); }
+@media (max-width:560px){
+  table.plafonds th,table.plafonds td{ padding:12px 8px; font-size:13.5px; }
+  table.plafonds th{ font-size:10.5px; letter-spacing:.06em; }
+  table.plafonds th:first-child,table.plafonds td:first-child{ padding-left:14px; }
+  table.plafonds th:last-child,table.plafonds td:last-child{ padding-right:14px; }
+}

@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/site.css?v=a30e1eea">
+<link rel="stylesheet" href="/assets/css/site.css?v=2c572ca5">
 <script src="/assets/js/vendor/supabase.js?v=43b205e2" defer></script>
 <script src="/assets/js/supabase-config.js?v=cb9fe5a1" defer></script>
 <script src="/assets/js/app.js?v=db3b0946" defer></script>
@@ -186,7 +186,7 @@
     </div>
   </div>
 </div></section>
-<section><div class="wrap sim-band" style="padding:0;background:none"><div class="sim flat" id="sim-form">
+<section><div class="wrap sim-band" style="padding:0;background:none"><div class="sim flat" id="sim-form" data-zone="B1" data-commune="Communay">
   <div>
     <h2>Suis-je éligible au BRS&nbsp;?</h2>
     <p class="hint">Deux informations suffisent&nbsp;: la taille de votre foyer et votre revenu fiscal de référence N−2 (ligne 25 de votre avis d'imposition).</p>
@@ -203,17 +203,17 @@
     </div>
     <div class="field">
       <div class="rfr-head"><label for="rfr" style="margin:0">Revenu fiscal de référence</label><b class="tabnum" id="rfrVal">44&nbsp;000&nbsp;€</b></div>
-      <input type="range" id="rfr" min="10000" max="110000" step="500" value="44000">
+      <input type="range" id="rfr" min="10000" max="125000" step="500" value="44000">
     </div>
-    <p style="font-size:12px;color:var(--mut);margin:0">Plafonds de la zone B1, celle du programme de Communay. Le zonage varie d'une commune à l'autre&nbsp;: indiquez-nous la vôtre, nous vous communiquons le plafond exact.</p>
+    <p class="sim-note" id="sim-note">Plafonds 2026 de la zone B1, celle de Communay.</p>
   </div>
   <div class="verdict" id="verdict">
     <span class="state" id="vState"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 12.5l5 5L20 6.5"/></svg>Éligible</span>
     <div class="gauge">
       <div class="gauge-track"><i class="gauge-fill" id="gFill"></i></div>
-      <div class="gauge-legend"><span>Votre RFR</span><span class="tabnum" id="gCap">Plafond 60&nbsp;543&nbsp;€</span></div>
+      <div class="gauge-legend"><span>Votre RFR</span><span class="tabnum" id="gCap">Plafond 64&nbsp;431&nbsp;€</span></div>
     </div>
-    <div class="big tabnum" id="vBig">16&nbsp;543&nbsp;€ de marge</div>
+    <div class="big tabnum" id="vBig">20&nbsp;431&nbsp;€ de marge</div>
     <p id="vText">Votre foyer de 3 personnes reste sous le plafond de la zone B1.</p>
     <small>Simulation indicative. Seule l'analyse de votre avis d'imposition par l'Organisme de Foncier Solidaire vaut décision d'éligibilité.</small>
   </div>
@@ -343,6 +343,6 @@
   </svg>
 </aside>
 
-<script src="/assets/js/site.js?v=01fddc9c" defer></script>
+<script src="/assets/js/site.js?v=24ef41e5" defer></script>
 </body>
 </html>

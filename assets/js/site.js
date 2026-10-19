@@ -297,24 +297,51 @@
   /* ---- simulateur d'éligibilité (plafonds BRS) ---- */
   var sim = $("#sim-form");
   if (sim) {
-    /* Plafonds de revenu fiscal de référence (N-2), zone B1.
-       Source : documentation Homelia. Les autres zones sont communiquées sur demande. */
-    var plafonds = { B1: { 1: 37581, 2: 50023, 3: 60543, 4: 70718, 5: 80183, 6: 90863 } };
-    var foyer = 3, zone = "B1";
-    var seg = $("#seg"), rfr = $("#rfr"), verdict = $("#verdict"), big = $("#vBig"), zoneSel = $("#zone");
+    /* Plafonds 2026 de revenu fiscal de référence (N-2) pour les opérations
+       PSLA et BRS, hors Île-de-France (fichier « Plafonds SIEG 2026 » transmis
+       par Homelia). En zones A et B1, ce sont les plafonds intermédiaires.
+       Index 0 à 5 : foyer de 1 à 6 personnes. */
+    var plafonds = {
+      A:  [38844, 58057, 76105, 90863, 108107, 121650],
+      B1: [38844, 53579, 64431, 77783, 91503, 103122],
+      B2: [33771, 45100, 54235, 65476, 77023, 86805],
+      C:  [33771, 45100, 54235, 65476, 77023, 86805]
+    };
+    var foyer = 3;
+    var seg = $("#seg"), rfr = $("#rfr"), verdict = $("#verdict"), big = $("#vBig"),
+        choix = $("#sim-prog"), note = $("#sim-note"), jauge = $(".gauge", sim);
     var euro = function (n) { return Math.round(n).toLocaleString("fr-FR").replace(/\u202F|\u00A0| /g, "\u00A0") + "\u00A0€"; };
+    /* la zone vient de la fiche programme (data-zone) ou du programme choisi */
+    function cible() {
+      if (choix) { var o = choix.options[choix.selectedIndex]; return { zone: o.dataset.zone, commune: o.dataset.commune }; }
+      return { zone: sim.dataset.zone || "B1", commune: sim.dataset.commune || "" };
+    }
     function render(pulse) {
-      var v = Number(rfr.value), p = plafonds[zone][foyer], ok = v <= p;
+      var c = cible(), v = Number(rfr.value), grille = plafonds[c.zone];
       $("#rfrVal").textContent = euro(v);
+      var label = foyer === 6 ? "6 personnes et plus" : foyer + (foyer > 1 ? " personnes" : " personne");
+      if (note) note.textContent = c.zone === "IDF"
+        ? c.commune + " est en Île-de-France\u00A0: les plafonds franciliens diffèrent de ceux affichés ici, nous vous les communiquons."
+        : "Plafonds 2026 de la zone " + c.zone + ", celle de " + c.commune + ".";
+      /* Île-de-France : hors du champ des plafonds dont nous disposons */
+      if (!grille) {
+        verdict.classList.remove("no");
+        if (jauge) jauge.hidden = true;
+        $("#vState").lastChild.textContent = "À vérifier avec nous";
+        big.textContent = "Plafonds franciliens";
+        $("#vText").textContent = "Pour un programme en Île-de-France, nous vérifions votre éligibilité avec les plafonds propres à la région.";
+        return;
+      }
+      if (jauge) jauge.hidden = false;
+      var p = grille[foyer - 1], ok = v <= p;
       $("#gCap").textContent = "Plafond " + euro(p);
       $("#gFill").style.width = Math.min(v / p * 100, 100) + "%";
       verdict.classList.toggle("no", !ok);
       $("#vState").lastChild.textContent = ok ? "Éligible" : "Au-dessus du plafond";
       big.textContent = ok ? euro(p - v) + " de marge" : euro(v - p) + " au-dessus";
-      var label = foyer === 6 ? "6 personnes et plus" : foyer + (foyer > 1 ? " personnes" : " personne");
       $("#vText").textContent = ok
-        ? "Votre foyer de " + label + " reste sous le plafond de la zone " + zone + "."
-        : "Votre foyer de " + label + " dépasse le plafond de la zone " + zone + ". D'autres zones ou programmes peuvent rester accessibles.";
+        ? "Votre foyer de " + label + " reste sous le plafond de la zone " + c.zone + "."
+        : "Votre foyer de " + label + " dépasse le plafond de la zone " + c.zone + ". D'autres programmes, dans une autre zone, peuvent rester accessibles.";
       if (pulse && !reduce) { big.classList.remove("pop"); void big.offsetWidth; big.classList.add("pop"); }
     }
     seg.addEventListener("click", function (e) {
@@ -323,7 +350,7 @@
       foyer = Number(b.dataset.p); render(true);
     });
     rfr.addEventListener("input", function () { render(false); });
-    if (zoneSel) zoneSel.addEventListener("change", function () { zone = zoneSel.value; render(true); });
+    if (choix) choix.addEventListener("change", function () { render(true); });
     render(false);
   }
 
