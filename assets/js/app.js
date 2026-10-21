@@ -387,7 +387,7 @@ window.Homelia = (function () {
       + '<div class="card-tete"><span class="card-type" title="' + libelle + '">' + ICONES[genre]
       + '<span class="vh">' + libelle + "</span></span>"
       + '<div class="card-titre"><h3>' + echappe(a.nom) + '</h3><p class="loc">' + echappe(a.ville)
-      + " · " + echappe(a.departement_nom || "") + " (" + echappe(a.departement) + ")</p></div></div>"
+      + '<span class="loc-dep"> · ' + echappe(a.departement_nom || "") + " (" + echappe(a.departement) + ")</span></p></div></div>"
       + '<ul class="card-infos">' + puces + "</ul>"
       + '<div class="card-img"><span class="chip">' + echappe(a.statut || "") + "</span>" + coeur
       + '<img src="' + echappe(image(a)) + '" alt="' + echappe(a.nom + " à " + a.ville) + '" loading="lazy">'

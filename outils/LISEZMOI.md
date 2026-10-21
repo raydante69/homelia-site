@@ -83,3 +83,13 @@ questions fréquentes qui reste à l'écran, titre de la page Éligibilité qui
 n'est plus coupé à la main. Idempotent.
 
     python3 outils/finitions-2026-10.py
+
+## mobile-2026-10.py
+
+Passe mobile du 21/10 : « Voir tous les programmes » en dernière ligne du
+menu mobile, encart raccourci sous les annonces de la page Programmes,
+département isolé dans les cartes (masqué sur les petites cartes mobiles),
+« Nos valeurs » en partie distincte et case « 4 régions » sur Nous
+connaître. Idempotent.
+
+    python3 outils/mobile-2026-10.py

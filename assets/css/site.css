@@ -32,7 +32,7 @@
   --wrap:1296px;
   --gout:22px;       /* marge entre l'écran et le contenu */
   --pad:clamp(24px,4.4vw,60px);      /* marge intérieure d'un grand encart */
-  --rythme:clamp(30px,4.2vw,56px);   /* moitié de l'espace entre deux sections */
+  --rythme:clamp(40px,4.2vw,56px);   /* moitié de l'espace entre deux sections */
   --apres-titre:clamp(24px,3vw,40px);
 
   --police:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -43,7 +43,7 @@
 html{ scroll-behavior:smooth; }
 body{ margin:0; background:var(--fond); color:var(--ink); font-family:var(--police);
   font-size:16.5px; line-height:1.6; -webkit-font-smoothing:antialiased; }
-img{ display:block; max-width:100%; }
+img{ display:block; max-width:100%; height:auto; }
 [hidden]{ display:none !important; }
 a{ color:inherit; text-decoration:none; }
 button,input,select,textarea{ font:inherit; }
@@ -162,7 +162,11 @@ main > section:first-child{ padding-top:8px; }
 
 /* menu mobile : un panneau qui défile seul, la page derrière reste immobile */
 .drawer{ display:none; }
-html.menu-ouvert,html.menu-ouvert body{ overflow:hidden; }
+/* menu ouvert : la page est figée à sa position (top posé par le script) et
+   l'en-tête reste fixé en haut de l'écran */
+html.menu-ouvert{ overflow:hidden; }
+html.menu-ouvert body{ position:fixed; left:0; right:0; padding-top:var(--haut-tiroir,72px); }
+html.menu-ouvert .nav{ position:fixed; top:0; left:0; right:0; }
 
 /* ---------- bandeaux bleu nuit ---------- */
 /* L'accueil et chaque page s'ouvrent sur un bandeau pleine largeur, dans le
@@ -1045,7 +1049,7 @@ main input[type=range]:active::-moz-range-thumb{ transform:scale(1.28); }
 .hero-in{ padding-block:70px 120px; }
 .hero h1{ font-size:clamp(36px,5.1vw,62px); line-height:1.02; margin:0 0 22px; font-weight:600; letter-spacing:-.035em; }
 .hero .sub{ max-width:46ch; }
-.accueil .why > .wrap,.accueil #mecanisme > .wrap{ background:none; border-radius:0; padding:0; }
+.accueil .why > .wrap{ background:none; border-radius:0; padding:0; }
 /* accueil : les quatre engagements se posent sur le fond, sans encart */
 .accueil .grid4{ gap:36px 32px; }
 .accueil .grid4 > div{ background:none; border-radius:0; padding:0; }
@@ -1110,3 +1114,150 @@ table.plafonds tr:last-child td{ color:var(--mut); }
   .nav-in > .btn{ padding-inline:15px; font-size:13.5px; }
   .nav-compte{ padding-inline:12px; font-size:13.5px; }
 }
+
+/* ==========================================================================
+   Listes déroulantes compactes (remplacent l'affichage natif)
+   ========================================================================== */
+.choix{ position:relative; }
+.choix-natif{ position:absolute; inset:0; width:100%; height:100%; opacity:0; pointer-events:none; }
+.choix-bouton{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px;
+  border:1px solid var(--line); border-radius:var(--r-champ); padding:13px 15px; font-size:15px;
+  background:var(--paper); color:var(--ink); text-align:left; cursor:pointer;
+  transition:border-color .2s, box-shadow .25s var(--ease), transform .25s var(--ease); }
+.choix-bouton:hover{ border-color:var(--sand-2); }
+.choix-texte{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.choix-bouton::after{ content:""; flex:0 0 auto; width:7px; height:7px; margin:-4px 2px 0 0;
+  border-right:1.7px solid var(--deep2); border-bottom:1.7px solid var(--deep2); transform:rotate(45deg);
+  transition:transform .25s var(--ease), margin .25s var(--ease); }
+.choix.ouverte .choix-bouton{ border-color:var(--deep2); box-shadow:0 0 0 4px var(--sand-soft); }
+.choix.ouverte .choix-bouton::after{ transform:rotate(-135deg); margin-top:4px; }
+.choix-liste{ position:absolute; z-index:40; top:calc(100% + 6px); left:0; min-width:100%; width:max-content;
+  max-width:min(300px, calc(100vw - 32px)); max-height:min(320px, 55vh); overflow-y:auto; overscroll-behavior:contain;
+  margin:0; padding:6px; list-style:none; background:var(--paper); border:1px solid var(--line); border-radius:14px;
+  box-shadow:0 18px 40px rgba(19,35,43,.16); animation:choixOuvre .18s var(--ease); }
+.choix-liste.a-droite{ left:auto; right:0; }
+@keyframes choixOuvre{ from{ opacity:0; transform:translateY(-4px); } }
+.choix-liste li{ padding:9px 12px; border-radius:9px; font-size:14px; line-height:1.35; color:var(--ink); cursor:pointer; outline:none; }
+.choix-liste li:hover,.choix-liste li:focus{ background:var(--surf); }
+.choix-liste li[aria-selected="true"]{ font-weight:600; color:var(--deep); }
+.choix-liste li[aria-selected="true"]::after{ content:" ✓"; color:var(--sand-ink); }
+
+/* page Programmes : encart sous les annonces, sur une ligne */
+.encart-suite{ display:flex; align-items:center; justify-content:space-between; gap:12px 24px; flex-wrap:wrap; margin-top:32px; }
+.encart-suite p{ margin:0; }
+
+/* menu mobile : lien vers la liste complète, en dernière ligne */
+.tiroir-sous a.tiroir-tout{ justify-content:flex-start; gap:8px; font-weight:600; color:var(--deep); background:var(--sand-soft); }
+.tiroir-sous a.tiroir-tout svg{ flex:0 0 auto; }
+
+/* Nous connaître : les valeurs forment une partie à part */
+.prose h2.valeurs-titre{ font-size:clamp(30px,3.9vw,48px); margin:56px 0 18px; }
+.valeurs{ display:grid; gap:10px; }
+.valeurs > div{ background:var(--paper); border-radius:18px; padding:18px 20px; }
+.prose .valeurs h3{ margin:0 0 6px; font-size:17px; }
+.prose .valeurs p{ margin:0; font-size:15px; }
+
+/* ==========================================================================
+   Passe mobile du 21/10 — uniquement sur téléphone
+   ========================================================================== */
+@media (max-width:640px){
+  /* titres : interlettrage moins serré, les mots respirent */
+  .hero h1,.phead h1,.titre,.sim h2,.final h2,.split h2,.prose h2,.mech-in h2{ letter-spacing:-.02em; }
+
+  /* annonces du héros : la photo reste visible, les infos tiennent sur une
+     barre compacte en bas (nom et commune, prix, flèche) */
+  .hero-frame{ aspect-ratio:4/3.3; }
+  .hero-tag{ top:10px; left:10px; padding:5px 11px; font-size:11.5px; }
+  .hero-ctrl{ top:10px; right:10px; }
+  .hero-ctrl button{ width:30px; height:30px; }
+  .hero-ann{ left:10px; right:10px; bottom:10px; flex-wrap:nowrap; align-items:center; gap:10px;
+    padding:10px 10px 10px 14px; border-radius:16px; }
+  .hero-ann > div:first-child{ flex:1 1 auto; min-width:0; }
+  .hero-ann h2{ font-size:15.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .hero-ann .loc{ font-size:12px; white-space:nowrap; overflow:hidden; }
+  .hero-ann .meta{ display:none; }
+  .hero-ann .tarif{ margin-left:auto; align-items:flex-end; text-align:right; flex:0 0 auto; }
+  .hero-ann .tarif span{ font-size:10.5px; }
+  .hero-ann .tarif b{ font-size:16px; white-space:nowrap; }
+  .hero-ann .btn{ width:40px; height:40px; padding:0; flex:0 0 auto; border-radius:50%; font-size:0; gap:0; justify-content:center; }
+  .hero-ann .btn svg{ width:17px; height:17px; }
+
+  /* simulateur d'éligibilité : plus court, titre aéré */
+  .sim{ padding:20px 18px; gap:18px; }
+  .sim h2{ font-size:27px; line-height:1.12; text-wrap:pretty; }
+  .sim .hint{ font-size:13.5px; line-height:1.5; margin:12px 0 18px; }
+  .field{ margin-bottom:16px; }
+  .field > label{ margin-bottom:8px; }
+  .seg{ flex-wrap:nowrap; gap:5px; }
+  .seg button{ flex:1 1 0; min-width:0; padding:10px 0; font-size:13.5px; }
+  .rfr-head label{ font-size:14.5px; }
+  .rfr-head b{ font-size:20px; }
+  .choix-bouton{ padding:11px 13px; font-size:14px; }
+  .verdict{ padding:18px 16px; }
+  .verdict .big{ font-size:23px; margin-top:8px; }
+  .verdict p{ font-size:13.5px; }
+  .verdict small{ font-size:11px; padding-top:12px; }
+  .gauge{ margin:14px 0 4px; }
+
+  /* simulateur de mensualité : champs deux par deux, résultat resserré */
+  #sim-mens .form-grid{ grid-template-columns:1fr 1fr; gap:12px 10px; }
+  #sim-mens .form-grid > .fw{ display:flex; flex-direction:column; justify-content:flex-end; }
+  #sim-mens .form-grid > .fw > label{ font-size:12px; line-height:1.3; margin-bottom:5px; }
+  #sim-mens .form-grid input:not([type=range]){ padding:10px 11px; }
+  #sim-mens label b{ font-size:12.5px; }
+  .ligne-calc{ padding-block:8px; font-size:14px; }
+  .ligne-calc b{ font-size:16px; }
+  .ligne-calc.total{ padding-top:10px; }
+  #m-total{ font-size:22px; }
+  #m-resultat .note{ font-size:12px; margin-top:10px !important; }
+
+  /* listes de programmes : deux annonces par ligne, carte resserrée */
+  .cards{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+  .cards .card{ padding:7px 7px 10px; gap:8px; border-radius:18px; }
+  .cards .card-img{ order:-1; margin-top:0; border-radius:12px; aspect-ratio:1/1; }
+  .cards .card-tete{ align-items:flex-start; gap:7px; padding:2px 3px 0; }
+  .cards .card-type{ width:24px; height:24px; margin-top:1px; }
+  .cards .card-type svg{ width:13px; height:13px; }
+  .cards .card-titre h3{ font-size:14px; line-height:1.2; }
+  .cards .card-titre .loc{ font-size:11.5px; }
+  .cards .loc-dep{ display:none; }
+  .cards .card-infos{ margin-top:auto; }
+  .cards .card-infos{ padding:0 3px; }
+  .cards .card-infos li:not(.typo){ display:none; }
+  .cards .card-infos li{ font-size:11px; padding:3px 8px; }
+  .cards .chip{ top:7px; left:7px; padding:3px 8px; font-size:10.5px; }
+  .cards .card-prix{ right:6px; bottom:6px; padding:4px 10px; gap:0; }
+  .cards .card-prix small{ font-size:9px; }
+  .cards .card-prix b{ font-size:13px; }
+  .cards .card-prix i{ display:none; }
+  .cards .fav{ top:6px; right:6px; transform:scale(.85); }
+
+  /* filtres de la page Programmes : recherche sur toute la largeur, puis les
+     trois listes côte à côte */
+  .recherche{ grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px 8px; }
+  .recherche > div:first-child{ grid-column:1 / -1; }
+  .recherche label{ font-size:10.5px; letter-spacing:.05em; margin-bottom:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .recherche .choix-bouton{ padding:10px 10px 10px 11px; font-size:13.5px; gap:6px; }
+  .recherche .choix-liste{ max-width:calc(100vw - 32px); }
+
+  /* tableau des logements : une carte par lot (nom et prix, puis le détail) */
+  #lots table:has(thead th:nth-child(5)){ min-width:0; }
+  #lots table:has(thead th:nth-child(5)) thead{ display:none; }
+  #lots table:has(thead th:nth-child(5)) tbody{ display:block; }
+  #lots table:has(thead th:nth-child(5)) tr{ display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 8px;
+    padding:13px 16px; border-bottom:1px solid var(--line); }
+  #lots table:has(thead th:nth-child(5)) tr:last-child{ border-bottom:none; }
+  #lots table:has(thead th:nth-child(5)) td{ padding:0; border:none; font-size:13px; color:var(--mut); }
+  #lots table:has(thead th:nth-child(5)) td:first-child{ order:1; flex:1 1 auto; font-size:15px; color:var(--ink); }
+  #lots table:has(thead th:nth-child(5)) td:last-child{ order:2; font-size:15px; color:var(--ink); }
+  #lots table:has(thead th:nth-child(5)) tr::after{ content:""; order:3; flex-basis:100%; height:0; }
+  #lots table:has(thead th:nth-child(5)) td:nth-child(2){ order:4; }
+  #lots table:has(thead th:nth-child(5)) td:nth-child(3){ order:5; }
+  #lots table:has(thead th:nth-child(5)) td:nth-child(4){ order:6; }
+  #lots table:has(thead th:nth-child(5)) td:nth-child(4)::before{ content:"· jardin "; }
+  #lots table:has(thead th:nth-child(5)) td:nth-child(5){ order:7; flex-basis:100%; }
+
+  /* chiffres clés : la case épouse son contenu */
+  .stat{ min-height:0; gap:12px; padding:16px; }
+}
+

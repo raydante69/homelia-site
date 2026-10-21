@@ -10,6 +10,8 @@
   /* ---- navigation : condensation, progression, parallaxe ---- */
   var nav = $("#nav"), progress = $("#progress");
   function onScroll() {
+    /* menu ouvert : la page est figée, l'en-tête garde son état */
+    if (document.documentElement.classList.contains("menu-ouvert")) return;
     if (nav) nav.classList.toggle("stuck", window.scrollY > 24);
     if (progress) {
       var h = document.documentElement.scrollHeight - window.innerHeight;
@@ -129,18 +131,32 @@
   window.homeliaInitRotator();
 
   /* ---- menu mobile ----
-     Le panneau couvre l'écran sous la barre et défile seul : la page derrière
-     est immobilisée tant qu'il est ouvert, sinon le doigt la faisait glisser
-     à travers le menu et le bas de la liste restait hors d'atteinte. */
-  var burger = $("#burger"), drawer = $("#drawer");
+     Le panneau couvre l'écran sous la barre et défile seul. Tant qu'il est
+     ouvert, la page est figée à sa position (body en position fixe) et
+     l'en-tête est fixé en haut de l'écran.
+     Un simple overflow:hidden ne suffit pas : sur iPhone le doigt fait
+     encore glisser la page, et l'en-tête « collant » perd son point
+     d'accroche et remonte hors de l'écran. */
+  var burger = $("#burger"), drawer = $("#drawer"), defileMenu = 0;
   if (burger && drawer) {
     var ouvrirMenu = function (oui) {
+      var racine = document.documentElement;
+      if (oui === racine.classList.contains("menu-ouvert")) return;
       burger.setAttribute("aria-expanded", String(oui));
       burger.setAttribute("aria-label", oui ? "Fermer le menu" : "Ouvrir le menu");
-      if (oui && nav) drawer.style.setProperty("--haut-tiroir", Math.round(nav.getBoundingClientRect().bottom) + "px");
-      drawer.classList.toggle("open", oui);
-      document.documentElement.classList.toggle("menu-ouvert", oui);
-      if (oui) drawer.scrollTop = 0;
+      if (oui) {
+        defileMenu = window.scrollY;
+        racine.style.setProperty("--haut-tiroir", (nav ? Math.round(nav.getBoundingClientRect().height) : 72) + "px");
+        document.body.style.top = -defileMenu + "px";
+        racine.classList.add("menu-ouvert");
+        drawer.classList.add("open");
+        drawer.scrollTop = 0;
+      } else {
+        drawer.classList.remove("open");
+        racine.classList.remove("menu-ouvert");
+        document.body.style.top = "";
+        window.scrollTo({ top: defileMenu, behavior: "instant" });
+      }
     };
     burger.addEventListener("click", function () {
       ouvrirMenu(burger.getAttribute("aria-expanded") !== "true");
@@ -596,9 +612,10 @@
     });
     raz.addEventListener("click", function () {
       $("#f-texte").value = "";
-      $("#f-dep").value = "";
-      $("#f-typo").value = "";
-      $("#f-budget").value = "";
+      $$("#f-dep, #f-typo, #f-budget").forEach(function (el) {
+        el.value = "";
+        el.dispatchEvent(new Event("change"));   /* remet aussi à jour les listes compactes */
+      });
       filtrer();
     });
     window.homeliaFiltrer = filtrer;   /* rappelé après ajout d'annonces depuis la base */
@@ -719,4 +736,113 @@
     r.addEventListener("input", function () { remplir(r); });
     r.addEventListener("change", function () { remplir(r); });
   });
+
+  /* ---- listes déroulantes compactes ----
+     Sur téléphone, la liste native s'ouvre en grand, dans la police du
+     système. Ces listes-ci restent sous le champ, en petit. Le <select>
+     d'origine est conservé (masqué) : il garde la valeur et prévient les
+     scripts existants par son événement « change ». */
+  var listesOuvertes = [];
+  function fermerListes(sauf) {
+    listesOuvertes.forEach(function (f) { if (f !== sauf) f(); });
+  }
+  $$(".recherche select, #sim-prog").forEach(function (sel, n) {
+    var boite = document.createElement("div"),
+        bouton = document.createElement("button"),
+        texte = document.createElement("span"),
+        liste = document.createElement("ul");
+    boite.className = "choix";
+    sel.parentNode.insertBefore(boite, sel);
+    boite.appendChild(sel);
+    sel.classList.add("choix-natif");
+    sel.tabIndex = -1;
+    sel.setAttribute("aria-hidden", "true");
+
+    bouton.type = "button";
+    bouton.className = "choix-bouton";
+    bouton.id = (sel.id || "choix-" + n) + "-bouton";
+    bouton.setAttribute("aria-haspopup", "listbox");
+    bouton.setAttribute("aria-expanded", "false");
+    texte.className = "choix-texte";
+    bouton.appendChild(texte);
+    var etiquette = sel.id && document.querySelector('label[for="' + sel.id + '"]');
+    if (etiquette) {
+      etiquette.id = etiquette.id || sel.id + "-etiquette";
+      etiquette.htmlFor = bouton.id;
+      bouton.setAttribute("aria-labelledby", etiquette.id + " " + bouton.id);
+    }
+
+    liste.className = "choix-liste";
+    liste.id = bouton.id + "-liste";
+    liste.setAttribute("role", "listbox");
+    liste.hidden = true;
+    bouton.setAttribute("aria-controls", liste.id);
+    [].forEach.call(sel.options, function (o, i) {
+      var li = document.createElement("li");
+      li.setAttribute("role", "option");
+      li.tabIndex = -1;
+      li.dataset.i = i;
+      li.textContent = o.textContent;
+      liste.appendChild(li);
+    });
+    boite.appendChild(bouton);
+    boite.appendChild(liste);
+    var options = $$("li", liste);
+
+    function majChoix() {
+      var o = sel.options[sel.selectedIndex];
+      texte.textContent = o ? o.textContent : "";
+      options.forEach(function (li, i) { li.setAttribute("aria-selected", String(i === sel.selectedIndex)); });
+    }
+    function fermer(rendreFocus) {
+      if (liste.hidden) return;
+      liste.hidden = true;
+      bouton.setAttribute("aria-expanded", "false");
+      boite.classList.remove("ouverte");
+      if (rendreFocus) bouton.focus();
+    }
+    function ouvrir() {
+      fermerListes(fermer);
+      liste.hidden = false;
+      bouton.setAttribute("aria-expanded", "true");
+      boite.classList.add("ouverte");
+      /* la liste s'aligne à droite du champ si elle déborde de l'écran */
+      liste.classList.remove("a-droite");
+      if (liste.getBoundingClientRect().right > window.innerWidth - 8) liste.classList.add("a-droite");
+      (options[sel.selectedIndex] || options[0]).focus();
+    }
+    function choisir(i) {
+      if (i !== sel.selectedIndex) {
+        sel.selectedIndex = i;
+        sel.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      fermer(true);
+    }
+    listesOuvertes.push(fermer);
+
+    bouton.addEventListener("click", function () { if (liste.hidden) ouvrir(); else fermer(false); });
+    bouton.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); ouvrir(); }
+    });
+    liste.addEventListener("click", function (e) {
+      var li = e.target.closest("li");
+      if (li) choisir(Number(li.dataset.i));
+    });
+    liste.addEventListener("keydown", function (e) {
+      var i = options.indexOf(document.activeElement);
+      if (e.key === "ArrowDown") { e.preventDefault(); options[Math.min(i + 1, options.length - 1)].focus(); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); options[Math.max(i - 1, 0)].focus(); }
+      else if (e.key === "Home") { e.preventDefault(); options[0].focus(); }
+      else if (e.key === "End") { e.preventDefault(); options[options.length - 1].focus(); }
+      else if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (i >= 0) choisir(i); }
+      else if (e.key === "Escape") { e.preventDefault(); fermer(true); }
+      else if (e.key === "Tab") fermer(false);
+    });
+    sel.addEventListener("change", majChoix);
+    majChoix();
+  });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".choix")) fermerListes(null);
+  });
+
 })();

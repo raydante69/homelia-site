@@ -17,10 +17,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..800&amp;family=Fraunces:ital,opsz,wght@1,9..144,400&amp;display=swap">
-<link rel="stylesheet" href="/assets/css/site.css?v=2bb9cdaf">
+<link rel="stylesheet" href="/assets/css/site.css?v=3b287ebd">
 <script src="/assets/js/vendor/supabase.js?v=43b205e2" defer></script>
 <script src="/assets/js/supabase-config.js?v=cb9fe5a1" defer></script>
-<script src="/assets/js/app.js?v=709b2aa7" defer></script>
+<script src="/assets/js/app.js?v=64bfa775" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
@@ -37,7 +37,7 @@
 <div class="drawer" id="drawer"><div class="in">
   <a href="/index.html">Accueil</a>
   <button class="tiroir-ouvrir on" type="button" aria-expanded="false" aria-controls="tiroir-prog">Programmes <i aria-hidden="true"></i></button>
-  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/programmes.html"><strong>Tous les programmes</strong><span>12</span></a><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a></div></div>
+  <div class="tiroir-sous" id="tiroir-prog"><div><a href="/territoires/rhone.html">Rhône<span>4 programmes</span></a><a href="/territoires/ain.html">Ain<span>3 programmes</span></a><a href="/territoires/isere.html">Isère<span>1 programme</span></a><a href="/territoires/savoie.html">Savoie<span>1 programme</span></a><a href="/territoires/saone-et-loire.html">Saône-et-Loire<span>1 programme</span></a><a href="/territoires/seine-saint-denis.html">Seine-Saint-Denis<span>1 programme</span></a><a href="/territoires/ille-et-vilaine.html">Ille-et-Vilaine<span>1 programme</span></a><a class="tiroir-tout" href="/programmes.html">Voir tous les programmes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a></div></div>
   <a href="/guide-du-brs.html">Le BRS</a>
   <a href="/eligibilite.html">Éligibilité</a>
   <a href="/accompagnement.html">Accompagnement</a>
@@ -112,7 +112,7 @@
   <div class="cards" id="liste"><div data-slug="communay" data-dep="69" data-typo="T3 T4" data-prix="199000" data-statut="en vente" data-texte="le 16 télégraphe communay rhône 69 douze maisons de ville neuves avec jardin privatif, au sud de la métropole de lyon."><a class="card" href="/programmes/communay.html">
       <div class="card-tete">
         <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
-        <div class="card-titre"><h3>Le 16 Télégraphe</h3><p class="loc">Communay · Rhône (69)</p></div>
+        <div class="card-titre"><h3>Le 16 Télégraphe</h3><p class="loc">Communay<span class="loc-dep"> · Rhône (69)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T3 · T4</li><li>12 logements</li><li>Jardin privatif</li><li>2 stationnements</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -122,7 +122,7 @@
     </a></div><div data-slug="coublevie" data-dep="38" data-typo="T2 T3 T4 T5" data-prix="129000" data-statut="en vente" data-texte="les terrasses des 3 parcs coublevie isère 38 une résidence au cœur de coublevie, aux portes du parc naturel régional de chartreuse."><a class="card" href="/programmes/coublevie.html">
       <div class="card-tete">
         <span class="card-type" title="Appartements"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h1.5M13.5 7.5H15M9 11h1.5M13.5 11H15M9 14.5h1.5M13.5 14.5H15M10.5 20.5V18h3v2.5"/></svg><span class="vh">Appartements</span></span>
-        <div class="card-titre"><h3>Les Terrasses des 3 Parcs</h3><p class="loc">Coublevie · Isère (38)</p></div>
+        <div class="card-titre"><h3>Les Terrasses des 3 Parcs</h3><p class="loc">Coublevie<span class="loc-dep"> · Isère (38)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T2 à T5</li><li>Espaces extérieurs</li><li>Verger partagé</li><li>Proche Voiron</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -132,7 +132,7 @@
     </a></div><div data-slug="bourg-saint-christophe" data-dep="01" data-typo="T4" data-prix="235500" data-statut="en vente" data-texte="le domaine des chênes 2 bourg-saint-christophe ain 01 des maisons en duplex de près de 90 m², à trente kilomètres de lyon."><a class="card" href="/programmes/bourg-saint-christophe.html">
       <div class="card-tete">
         <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
-        <div class="card-titre"><h3>Le Domaine des Chênes 2</h3><p class="loc">Bourg-Saint-Christophe · Ain (01)</p></div>
+        <div class="card-titre"><h3>Le Domaine des Chênes 2</h3><p class="loc">Bourg-Saint-Christophe<span class="loc-dep"> · Ain (01)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T4 en duplex</li><li>Près de 90 m²</li><li>Jardin privatif</li><li>Garage individuel</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -142,7 +142,7 @@
     </a></div><div data-slug="frans" data-dep="01" data-typo="T4" data-prix="219000" data-statut="en vente" data-texte="green parc frans ain 01 quatorze pavillons en duplex avec jardin, entre villefranche-sur-saône et lyon."><a class="card" href="/programmes/frans.html">
       <div class="card-tete">
         <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
-        <div class="card-titre"><h3>Green Parc</h3><p class="loc">Frans · Ain (01)</p></div>
+        <div class="card-titre"><h3>Green Parc</h3><p class="loc">Frans<span class="loc-dep"> · Ain (01)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T4 duplex</li><li>14 pavillons</li><li>Jardin et terrasse</li><li>Aire de jeux</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -152,7 +152,7 @@
     </a></div><div data-slug="savigneux" data-dep="01" data-typo="T4" data-prix="225000" data-statut="en vente" data-texte="l'orée des champs savigneux ain 01 des t4 avec terrasse et jardin, au cœur d'un village de l'ain."><a class="card" href="/programmes/savigneux.html">
       <div class="card-tete">
         <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
-        <div class="card-titre"><h3>L'Orée des champs</h3><p class="loc">Savigneux · Ain (01)</p></div>
+        <div class="card-titre"><h3>L'Orée des champs</h3><p class="loc">Savigneux<span class="loc-dep"> · Ain (01)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T4</li><li>Terrasse</li><li>Jardin privatif</li><li>2 stationnements</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -162,7 +162,7 @@
     </a></div><div data-slug="saint-julien" data-dep="69" data-typo="T4" data-prix="257500" data-statut="en vente" data-texte="le clos chopin saint-julien rhône 69 huit maisons en duplex avec vue sur les monts du beaujolais."><a class="card" href="/programmes/saint-julien.html">
       <div class="card-tete">
         <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
-        <div class="card-titre"><h3>Le Clos Chopin</h3><p class="loc">Saint-Julien · Rhône (69)</p></div>
+        <div class="card-titre"><h3>Le Clos Chopin</h3><p class="loc">Saint-Julien<span class="loc-dep"> · Rhône (69)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T4 en duplex</li><li>8 logements</li><li>Près de 100 m²</li><li>Parcelles jusqu'à 450 m²</li><li>Garage</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -172,7 +172,7 @@
     </a></div><div data-slug="la-chapelle-de-guinchay" data-dep="71" data-typo="T4" data-prix="185000" data-statut="en vente" data-texte="le bois de la croix la chapelle-de-guinchay saône-et-loire 71 des maisons jumelées en duplex, entre mâcon et belleville-en-beaujolais."><a class="card" href="/programmes/la-chapelle-de-guinchay.html">
       <div class="card-tete">
         <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
-        <div class="card-titre"><h3>Le Bois de la Croix</h3><p class="loc">La Chapelle-de-Guinchay · Saône-et-Loire (71)</p></div>
+        <div class="card-titre"><h3>Le Bois de la Croix</h3><p class="loc">La Chapelle-de-Guinchay<span class="loc-dep"> · Saône-et-Loire (71)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T4 duplex jumelés</li><li>Terrasse et jardin</li><li>Garage</li><li>Finitions personnalisables</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -182,7 +182,7 @@
     </a></div><div data-slug="bassens" data-dep="73" data-typo="T2 T3" data-prix="153000" data-statut="en vente" data-texte="camberia bassens savoie 73 le calme d'une commune résidentielle, à la porte de chambéry."><a class="card" href="/programmes/bassens.html">
       <div class="card-tete">
         <span class="card-type" title="Appartements"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h1.5M13.5 7.5H15M9 11h1.5M13.5 11H15M9 14.5h1.5M13.5 14.5H15M10.5 20.5V18h3v2.5"/></svg><span class="vh">Appartements</span></span>
-        <div class="card-titre"><h3>Camberia</h3><p class="loc">Bassens · Savoie (73)</p></div>
+        <div class="card-titre"><h3>Camberia</h3><p class="loc">Bassens<span class="loc-dep"> · Savoie (73)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T2 · T3</li><li>Espace extérieur</li><li>Stationnement et cave</li><li>Proche Chambéry</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -192,7 +192,7 @@
     </a></div><div data-slug="drancy" data-dep="93" data-typo="T2 T3" data-prix="169000" data-statut="en vente" data-texte="l'essentiel drancy seine-saint-denis 93 une résidence contemporaine du quartier paris campagne, aux portes de paris."><a class="card" href="/programmes/drancy.html">
       <div class="card-tete">
         <span class="card-type" title="Appartements"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h1.5M13.5 7.5H15M9 11h1.5M13.5 11H15M9 14.5h1.5M13.5 14.5H15M10.5 20.5V18h3v2.5"/></svg><span class="vh">Appartements</span></span>
-        <div class="card-titre"><h3>L'Essentiel</h3><p class="loc">Drancy · Seine-Saint-Denis (93)</p></div>
+        <div class="card-titre"><h3>L'Essentiel</h3><p class="loc">Drancy<span class="loc-dep"> · Seine-Saint-Denis (93)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T2 · T3</li><li>Balcon ou loggia</li><li>Stationnement inclus</li><li>Quartier Paris Campagne</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -202,7 +202,7 @@
     </a></div><div data-slug="gleize" data-dep="69" data-typo="T4 T5" data-prix="277000" data-statut="en vente" data-texte="via edena gleizé rhône 69 un nouveau quartier pavillonnaire à huit minutes du centre de villefranche-sur-saône."><a class="card" href="/programmes/gleize.html">
       <div class="card-tete">
         <span class="card-type" title="Maisons"><svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg><span class="vh">Maisons</span></span>
-        <div class="card-titre"><h3>Via Edena</h3><p class="loc">Gleizé · Rhône (69)</p></div>
+        <div class="card-titre"><h3>Via Edena</h3><p class="loc">Gleizé<span class="loc-dep"> · Rhône (69)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T4 · T5</li><li>Duplex avec jardin</li><li>Garage + stationnement</li><li>Terrasse et pergola</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -212,7 +212,7 @@
     </a></div><div data-slug="les-cheres" data-dep="69" data-typo="T2 T3 T4" data-prix="159400" data-statut="en vente" data-texte="côme les chères rhône 69 dix-huit appartements dans un village authentique, à vingt minutes de l'entrée de lyon."><a class="card" href="/programmes/les-cheres.html">
       <div class="card-tete">
         <span class="card-type" title="Appartements"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h1.5M13.5 7.5H15M9 11h1.5M13.5 11H15M9 14.5h1.5M13.5 14.5H15M10.5 20.5V18h3v2.5"/></svg><span class="vh">Appartements</span></span>
-        <div class="card-titre"><h3>Côme</h3><p class="loc">Les Chères · Rhône (69)</p></div>
+        <div class="card-titre"><h3>Côme</h3><p class="loc">Les Chères<span class="loc-dep"> · Rhône (69)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T2 à T4</li><li>18 appartements</li><li>Extérieur privatif</li><li>Stationnement inclus</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -222,7 +222,7 @@
     </a></div><div data-slug="thorigne-fouillard" data-dep="35" data-typo="T2 T3" data-prix="159900" data-statut="en vente" data-texte="serenia thorigné-fouillard ille-et-vilaine 35 notre adresse bretonne, dans la première couronne de rennes."><a class="card" href="/programmes/thorigne-fouillard.html">
       <div class="card-tete">
         <span class="card-type" title="Appartements"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M9 7.5h1.5M13.5 7.5H15M9 11h1.5M13.5 11H15M9 14.5h1.5M13.5 14.5H15M10.5 20.5V18h3v2.5"/></svg><span class="vh">Appartements</span></span>
-        <div class="card-titre"><h3>Serenia</h3><p class="loc">Thorigné-Fouillard · Ille-et-Vilaine (35)</p></div>
+        <div class="card-titre"><h3>Serenia</h3><p class="loc">Thorigné-Fouillard<span class="loc-dep"> · Ille-et-Vilaine (35)</span></p></div>
       </div>
       <ul class="card-infos"><li class="typo">T2 · T3</li><li>Stationnement inclus</li><li>Bus 50 vers le métro</li><li>Première couronne rennaise</li></ul>
       <div class="card-img"><span class="chip">En vente</span>
@@ -230,10 +230,9 @@
         <span class="card-prix"><span><small>T2 à partir de</small><b>159&nbsp;900&nbsp;€</b></span><i aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M12 5l7 7-7 7"/></svg></i></span>
       </div>
     </a></div></div>
-  <div class="callout" style="margin-top:40px">
-    <p><strong>Également en préparation.</strong> Trois programmes sont en cours de montage à Gleizé (69), Les Chères (69)
-    et Thorigné-Fouillard (35). Leurs fiches ne sont pas encore publiées&nbsp;:
-    <a href="/contact.html">contactez-nous</a> pour être informé de leur commercialisation en avant-première.</p>
+  <div class="callout encart-suite">
+    <p><strong>D'autres programmes arrivent.</strong> Soyez prévenu avant leur mise en vente.</p>
+    <a class="btn btn-sm btn-ghost" href="/contact.html">Être prévenu <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h13M12 5l7 7-7 7"/></svg></a>
   </div>
 </div></section>
 
@@ -333,6 +332,6 @@
   </svg>
 </aside>
 
-<script src="/assets/js/site.js?v=2baa82df" defer></script>
+<script src="/assets/js/site.js?v=55451a59" defer></script>
 </body>
 </html>
